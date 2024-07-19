@@ -1,7 +1,11 @@
 const { default: userModel } = require("../models/user");
 const { default: registerValidate } = require("../validators/auth/register");
 const { default: loginValidate } = require("../validators/auth/login");
-const { generateAccessToken } = require("../utils/auth");
+const {
+  generateAccessToken,
+  hashPassword,
+  isValidHashedPassword,
+} = require("../utils/auth");
 
 const register = async (req, res) => {
   const isValidRequestBody = registerValidate(req.body);
@@ -9,7 +13,11 @@ const register = async (req, res) => {
     return res.status(422).json({ message: registerValidate.error });
   }
   try {
-    const addedUser = await userModel.create(req.body);
+    const hashedPassword = await hashPassword(req.body.password);
+    const addedUser = await userModel.create({
+      ...req.body,
+      password: hashedPassword,
+    });
     if (!addedUser) {
       return res.status(500).json({ message: "User registration faild !!" });
     }
