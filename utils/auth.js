@@ -8,10 +8,12 @@ const hashPassword = async (password) => {
   return hashedPassword;
 };
 
-hashPassword("test-1010").then((password) => {
-  console.log(password);
-});
+const isValidHashedPassword = async (password, hashedPassword) => {
+  const isValid = await bcrypt.compare(password, hashedPassword);
+  return isValid;
+};
 
 module.exports = {
   hashPassword,
+  isValidHashedPassword,
 };
