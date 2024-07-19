@@ -21,6 +21,11 @@ const register = async (req, res) => {
     if (!addedUser) {
       return res.status(500).json({ message: "User registration faild !!" });
     }
+    const accessToken = generateAccessToken(addedUser);
+    res.cookie("accessToken", accessToken, {
+      maxAge: 1000 * 60 * 24,
+      httpOnly: true,
+    });
     return res
       .status(201)
       .json({ message: "User added successfully :))", user: addedUser });
