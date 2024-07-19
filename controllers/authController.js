@@ -8,16 +8,8 @@ const register = async (req, res) => {
   if (!isValidRequestBody) {
     return res.status(422).json({ message: registerValidate.error });
   }
-  const { firstname, lastname, username, email, phone, password } = req.body;
   try {
-    const addedUser = await userModel.create({
-      firstname,
-      lastname,
-      username,
-      email,
-      phone,
-      password,
-    });
+    const addedUser = await userModel.create(req.body);
     if (!addedUser) {
       return res.status(500).json({ message: "User registration faild !!" });
     }
