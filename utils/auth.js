@@ -13,7 +13,16 @@ const isValidHashedPassword = async (password, hashedPassword) => {
   return isValid;
 };
 
+const generateAccessToken = (data) => {
+  const { tokenSecretKey, tokenExpiresTime } = process.env;
+  const token = jwt.sign(data, tokenSecretKey, {
+    expiresIn: tokenExpiresTime,
+  });
+  return token;
+};
+
 module.exports = {
   hashPassword,
   isValidHashedPassword,
+  generateAccessToken,
 };
