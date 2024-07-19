@@ -2,10 +2,10 @@
   "name": "sabzlearn-backend-nodejs",
   "version": "1.0.0",
   "description": "Develop Sabzlearn back-end using: Nodejs &amp; ExpressJS",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
