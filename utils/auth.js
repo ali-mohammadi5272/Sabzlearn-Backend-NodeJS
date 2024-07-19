@@ -21,8 +21,20 @@ const generateAccessToken = (data) => {
   return token;
 };
 
+const tokenPayloadData = (token) => {
+  const { tokenSecretKey } = process.env;
+  try {
+    const tokenPayload = jwt.verify(token, tokenSecretKey);
+    return tokenPayload;
+  } catch (err) {
+    console.log("Error verifying token !!", err);
+    return null;
+  }
+};
+
 module.exports = {
   hashPassword,
   isValidHashedPassword,
   generateAccessToken,
+  tokenPayloadData,
 };
