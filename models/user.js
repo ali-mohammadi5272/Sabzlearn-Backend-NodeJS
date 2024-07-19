@@ -29,9 +29,9 @@ const schema = new mongoose.Schema(
       unique: true,
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
-      min: 11,
+      match: /^[1-9]\d{9}$/,
       unique: true,
     },
     password: {
