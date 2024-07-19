@@ -32,9 +32,15 @@ const tokenPayloadData = (token) => {
   }
 };
 
+const decodedTokenData = (token) => {
+  const tokenPayload = jwt.decode(token);
+  return tokenPayload;
+};
+
 module.exports = {
   hashPassword,
   isValidHashedPassword,
   generateAccessToken,
   tokenPayloadData,
+  decodedTokenData,
 };
