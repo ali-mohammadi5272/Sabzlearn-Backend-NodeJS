@@ -36,7 +36,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const isValidRequestBody = loginValidate(req.body);
-  console.log("first-test-1");
   if (!isValidRequestBody) {
     return res.status(422).json({ message: loginValidate.error });
   }
