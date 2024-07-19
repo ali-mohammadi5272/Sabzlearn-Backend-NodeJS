@@ -22,7 +22,7 @@ const register = async (req, res) => {
       return res.status(500).json({ message: "User registration faild !!" });
     }
     const newAddedUser = JSON.parse(JSON.stringify(addedUser));
-    const accessToken = generateAccessToken(newAddedUser);
+    const accessToken = generateAccessToken({ _id: newAddedUser._id });
     res.cookie("accessToken", accessToken, {
       maxAge: 1000 * 60 * 24,
       httpOnly: true,
