@@ -59,7 +59,7 @@ const login = async (req, res) => {
         .status(422)
         .json({ message: "Username/Email or Password is not valid !!" });
     }
-    const accessToken = generateAccessToken(findedUser);
+    const accessToken = generateAccessToken({ _id: findedUser._id });
     res.cookie("accessToken", accessToken, {
       maxAge: 1000 * 60 * 24,
       httpOnly: true,
