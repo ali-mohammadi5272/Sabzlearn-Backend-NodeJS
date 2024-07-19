@@ -44,17 +44,17 @@ const login = async (req, res) => {
   try {
     const findedUser = await userModel
       .findOne({
-        password,
         $or: [{ email }, { username }],
       })
       .lean();
     if (!findedUser) {
-      const existUser = await userModel.findOne({
-        $or: [{ email }, { username }],
-      });
-      if (!existUser) {
-        return res.status(404).json({ message: "User not found !!" });
-      }
+      return res.status(404).json({ message: "User not found !!" });
+    }
+    const isValidPassword = await isValidHashedPassword(
+      password,
+      findedUser.password
+    );
+    if (!isValidPassword) {
       return res
         .status(422)
         .json({ message: "Username/Email or Password is not valid !!" });
