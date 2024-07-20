@@ -21,7 +21,7 @@ const schema = {
     },
     phone: {
       type: "number",
-      pattern: `^[1-9]\\d{9}$`,
+      pattern: `^(0|\\+98)?9\\d{9}$`,
     },
     password: {
       type: "string",
