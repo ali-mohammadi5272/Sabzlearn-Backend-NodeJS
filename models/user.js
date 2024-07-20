@@ -31,7 +31,7 @@ const schema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
-      match: /^[1-9]\d{9}$/,
+      match: /^(0|\+98)?9\d{9}$/,
       unique: true,
     },
     password: {
