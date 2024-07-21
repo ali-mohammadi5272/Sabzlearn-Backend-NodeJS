@@ -10,7 +10,7 @@ const banUser = async (req, res) => {
     await checkDBCollectionIndexes(banUserModel);
   } catch (err) {
     const isUserExistBefore = await banUserModel
-      .findOne({ changedPhoneNumber })
+      .findOne({ phone: changedPhoneNumber })
       .lean();
     if (isUserExistBefore) {
       return res.status(422).json({ message: "User is already exist !!" });
