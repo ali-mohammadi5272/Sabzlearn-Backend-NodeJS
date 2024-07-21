@@ -20,7 +20,7 @@ const schema = {
       type: "string",
     },
     phone: {
-      type: "number",
+      type: "string",
       pattern: `^(0|\\+98)?9\\d{9}$`,
     },
     password: {
