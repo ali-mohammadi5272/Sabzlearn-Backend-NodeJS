@@ -34,23 +34,26 @@ const register = async (req, res) => {
     const hashedPassword = await hashPassword(password);
     const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
 
-    const addedUser = await userModel.create({
+    const newUser = await userModel.create({
       ...req.body,
       phone: changedPhoneNumber,
       password: hashedPassword,
     });
-    if (!addedUser) {
+    if (!newUser) {
       return res.status(500).json({ message: "User registration faild !!" });
     }
-    const newAddedUser = JSON.parse(JSON.stringify(addedUser));
-    const accessToken = generateAccessToken({ _id: newAddedUser._id });
+    const newUserObject = newUser.toObject();
+    Reflect.deleteProperty(newUserObject, "password");
+    Reflect.deleteProperty(newUserObject, "__v");
+
+    const accessToken = generateAccessToken({ _id: newUserObject._id });
     res.cookie("accessToken", accessToken, {
       maxAge: 1000 * 60 * 24,
       httpOnly: true,
     });
     return res
       .status(201)
-      .json({ message: "User added successfully :))", user: addedUser });
+      .json({ message: "User added successfully :))", user: newUserObject });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
