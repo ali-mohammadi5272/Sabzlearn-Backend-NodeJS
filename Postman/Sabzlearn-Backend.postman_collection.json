@@ -44,7 +44,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": \"+9891531320022\"\r\n}",
+              "raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": \"9334719063\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -55,6 +55,41 @@
               "raw": "{{base_url}}/api/{{version}}/auth/register",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "auth", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ban User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\": \"09153132525\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/auth/banUser",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "auth", "banUser"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Free User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/auth/freeUser/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "auth", "freeUser", "{{id}}"]
             }
           },
           "response": []
