@@ -17,13 +17,16 @@ const register = async (req, res) => {
     return res.status(422).json({ message: registerValidate.error });
   }
   const { password, phone, email, username } = req.body;
+  const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
 
   try {
     await checkDBCollectionIndexes(userModel);
   } catch (err) {
-    const isUserExistBefore = await userModel.findOne({
-      $or: [{ email }, { phone }, { username }],
-    });
+    const isUserExistBefore = await userModel
+      .findOne({
+        $or: [{ email }, { phone: changedPhoneNumber }, { username }],
+      })
+      .lean();
     if (isUserExistBefore) {
       return res.status(422).json({ message: "User is already exist !!" });
     }
@@ -31,8 +34,6 @@ const register = async (req, res) => {
 
   try {
     const hashedPassword = await hashPassword(password);
-    const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
-
     const newUser = await userModel.create({
       ...req.body,
       phone: changedPhoneNumber,
