@@ -19,11 +19,11 @@ const banUser = async (req, res) => {
   try {
     const newBanUser = await banUserModel.create({ phone: changedPhoneNumber });
     if (!newBanUser) {
-      return res
-        .status(500)
-        .json({ message: "User added failed !!", user: newBanUser });
+      return res.status(500).json({ message: "Add User failed !!" });
     }
-    return res.status(201).json({ message: "User added successfully :))" });
+    return res
+      .status(201)
+      .json({ message: "User added successfully :))", user: newBanUser });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
