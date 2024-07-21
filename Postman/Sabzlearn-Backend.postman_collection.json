@@ -30,9 +30,9 @@
               }
             },
             "url": {
-              "raw": "{{base_url}}/api/auth/login",
+              "raw": "{{base_url}}/api/v1/auth/login",
               "host": ["{{base_url}}"],
-              "path": ["api", "auth", "login"]
+              "path": ["api", "v1", "auth", "login"]
             }
           },
           "response": []
@@ -44,7 +44,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": 9152505272\r\n}",
+              "raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": \"+9891531320022\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -52,9 +52,9 @@
               }
             },
             "url": {
-              "raw": "{{base_url}}/api/auth/register",
+              "raw": "{{base_url}}/api/v1/auth/register",
               "host": ["{{base_url}}"],
-              "path": ["api", "auth", "register"]
+              "path": ["api", "v1", "auth", "register"]
             }
           },
           "response": []
