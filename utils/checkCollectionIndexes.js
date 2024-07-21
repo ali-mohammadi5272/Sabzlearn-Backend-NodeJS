@@ -7,4 +7,4 @@ const checkDBCollectionIndexes = async (model) => {
   }
 };
 
-module.exports.default = checkDBCollectionIndexes;
+module.exports = { checkDBCollectionIndexes };
