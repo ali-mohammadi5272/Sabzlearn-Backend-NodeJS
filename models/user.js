@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { roles } = require("../utils/constants");
+const { phoneNumberPattern } = require("../utils/patterns");
 
 const schema = new mongoose.Schema(
   {
@@ -31,7 +32,7 @@ const schema = new mongoose.Schema(
     phone: {
       type: String,
       required: true,
-      match: /^(0|\+98)?9\d{9}$/,
+      match: phoneNumberPattern,
       unique: true,
     },
     password: {
