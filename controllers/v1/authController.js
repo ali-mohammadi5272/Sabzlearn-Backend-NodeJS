@@ -6,6 +6,7 @@ const {
   hashPassword,
   isValidHashedPassword,
 } = require("../../utils/auth");
+const { phoneNumberPrefixPattern } = require("../../utils/patterns");
 
 const register = async (req, res) => {
   const isValidRequestBody = registerValidate(req.body);
@@ -13,9 +14,13 @@ const register = async (req, res) => {
     return res.status(422).json({ message: registerValidate.error });
   }
   try {
-    const hashedPassword = await hashPassword(req.body.password);
+    const { password, phone } = req.body;
+    const hashedPassword = await hashPassword(password);
+    const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
+
     const addedUser = await userModel.create({
       ...req.body,
+      phone: changedPhoneNumber,
       password: hashedPassword,
     });
     if (!addedUser) {
