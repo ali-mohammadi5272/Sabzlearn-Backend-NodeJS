@@ -14,17 +14,17 @@ const isValidHashedPassword = async (password, hashedPassword) => {
 };
 
 const generateAccessToken = (data) => {
-  const { tokenSecretKey, tokenExpiresTime } = process.env;
-  const token = jwt.sign(data, tokenSecretKey, {
-    expiresIn: tokenExpiresTime,
+  const { TokenSecretKey, TokenExpiresTime } = process.env;
+  const token = jwt.sign(data, TokenSecretKey, {
+    expiresIn: TokenExpiresTime,
   });
   return token;
 };
 
 const tokenPayloadData = (token) => {
-  const { tokenSecretKey } = process.env;
+  const { TokenSecretKey } = process.env;
   try {
-    const tokenPayload = jwt.verify(token, tokenSecretKey);
+    const tokenPayload = jwt.verify(token, TokenSecretKey);
     return tokenPayload;
   } catch (err) {
     console.log("Error verifying token !!", err);
