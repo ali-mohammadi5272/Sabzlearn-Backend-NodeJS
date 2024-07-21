@@ -1,11 +1,11 @@
-const { default: userModel } = require("../models/user");
-const { default: registerValidate } = require("../validators/auth/register");
-const { default: loginValidate } = require("../validators/auth/login");
+const { default: userModel } = require("../../models/user");
+const { default: registerValidate } = require("../../validators/auth/register");
+const { default: loginValidate } = require("../../validators/auth/login");
 const {
   generateAccessToken,
   hashPassword,
   isValidHashedPassword,
-} = require("../utils/auth");
+} = require("../../utils/auth");
 
 const register = async (req, res) => {
   const isValidRequestBody = registerValidate(req.body);
