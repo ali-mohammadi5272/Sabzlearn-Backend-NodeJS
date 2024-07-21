@@ -2,6 +2,10 @@ const { default: userModel } = require("../../models/user");
 const { default: registerValidate } = require("../../validators/auth/register");
 const { default: loginValidate } = require("../../validators/auth/login");
 const {
+  default: checkDBCollectionIndexes,
+} = require("../../utils/checkCollectionIndexes");
+
+const {
   generateAccessToken,
   hashPassword,
   isValidHashedPassword,
@@ -13,8 +17,20 @@ const register = async (req, res) => {
   if (!isValidRequestBody) {
     return res.status(422).json({ message: registerValidate.error });
   }
+  const { password, phone, email, username } = req.body;
+
   try {
-    const { password, phone } = req.body;
+    await checkDBCollectionIndexes(userModel);
+  } catch (err) {
+    const isUserExistBefore = await userModel.findOne({
+      $or: [{ email }, { phone }, { username }],
+    });
+    if (isUserExistBefore) {
+      return res.status(422).json({ message: "User is already exist !!" });
+    }
+  }
+
+  try {
     const hashedPassword = await hashPassword(password);
     const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
 
