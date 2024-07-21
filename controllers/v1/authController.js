@@ -2,9 +2,8 @@ const { default: userModel } = require("../../models/user");
 const { default: registerValidate } = require("../../validators/auth/register");
 const { default: loginValidate } = require("../../validators/auth/login");
 const {
-  default: checkDBCollectionIndexes,
+  checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
-
 const {
   generateAccessToken,
   hashPassword,
