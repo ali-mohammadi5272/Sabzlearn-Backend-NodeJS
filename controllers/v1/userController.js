@@ -1,6 +1,7 @@
 const { isValidObjectId } = require("mongoose");
 const { default: userModel } = require("../../models/user");
 const { default: banUserModel } = require("../../models/banUser");
+const { roles } = require("../../utils/constants");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
@@ -54,6 +55,37 @@ const removeUser = async (req, res) => {
       return res.status(404).json({ message: "User not found !!" });
     }
     return res.status(200).json({ message: "User deleted successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const changeRole = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "UserId is not valid !!" });
+  }
+
+  try {
+    const user = await userModel
+      .findOne({ _id: id })
+      .select("-__v -password")
+      .lean();
+    if (!user) {
+      return res.status(404).json({ message: "User not found !!" });
+    }
+    const newRole = user.role === roles.admin ? roles.user : roles.admin;
+    const updatedUser = await userModel.findOneAndUpdate(
+      { _id: id },
+      { role: newRole }
+    );
+    if (!updatedUser) {
+      return res.status(500).json({ message: "Update User faild !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "User's Role changed successfully :))" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -135,6 +167,7 @@ module.exports = {
   getAll,
   getUser,
   removeUser,
+  changeRole,
   banUser,
   freeUser,
 };
