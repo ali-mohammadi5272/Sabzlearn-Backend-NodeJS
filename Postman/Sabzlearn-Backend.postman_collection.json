@@ -11,7 +11,7 @@
       "name": "User",
       "item": [
         {
-          "name": "GetAll Users",
+          "name": "Get all Users",
           "request": {
             "auth": {
               "type": "bearer",
@@ -34,7 +34,7 @@
           "response": []
         },
         {
-          "name": "Get Single User",
+          "name": "Get single User",
           "request": {
             "method": "GET",
             "header": [],
@@ -68,6 +68,38 @@
               "raw": "{{base_url}}/api/{{version}}/users/free/{{id}}",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "users", "free", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE2NTk5NDYsImV4cCI6MTcyMTc0NjM0Nn0.rXDauaKiVAkjEvQ2Xq99G_pXT-Eo7XfZHvx5G72m02I",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": \"9152505373\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "users"]
             }
           },
           "response": []
@@ -131,6 +163,59 @@
               "raw": "{{base_url}}/api/{{version}}/auth/register",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "auth", "register"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "Get all Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get single Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/categories/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "categories", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"{{$randomWord}}\",\r\n    \"href\": \"{{$randomWord}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "categories"]
             }
           },
           "response": []
