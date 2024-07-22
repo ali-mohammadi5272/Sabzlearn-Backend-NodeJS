@@ -76,7 +76,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const isValidRequestBody = loginValidate(req.body);
   if (!isValidRequestBody) {
-    return res.status(422).json({ message: loginValidate.errors });
+    return res.status(422).json(loginValidate.errors);
   }
   const { identifier, password } = req.body;
   try {
