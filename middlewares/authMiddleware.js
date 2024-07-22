@@ -12,7 +12,8 @@ const middleware = (req, res, next) => {
   }
   const { _id } = tokenPayload;
   const user = userModel.findOne({ _id }).select("-__v -password").lean();
-  req.user = structuredClone(user);
+  req.user = Object.assign({}, user);
+
   next();
 };
 
