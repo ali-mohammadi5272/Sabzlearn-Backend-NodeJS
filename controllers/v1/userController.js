@@ -15,6 +15,27 @@ const getAll = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "UserId is not valid !!" });
+  }
+
+  try {
+    const user = await userModel
+      .findOne({ _id: id })
+      .select("-__v -password")
+      .lean();
+    if (!user) {
+      return res.status(404).json({ message: "User not found !!" });
+    }
+    return res.status(200).json(user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const banUser = async (req, res) => {
   const { phone } = req.body;
   const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
@@ -71,6 +92,7 @@ const freeUser = async (req, res) => {
 
 module.exports = {
   getAll,
+  getUser,
   banUser,
   freeUser,
 };
