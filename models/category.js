@@ -6,6 +6,7 @@ const schema = new mongoose.Schema.Schema(
       type: String,
       required: true,
       minLength: 1,
+      unique: true,
     },
     href: {
       type: String,
