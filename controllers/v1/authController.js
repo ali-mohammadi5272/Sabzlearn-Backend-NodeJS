@@ -15,7 +15,7 @@ const { default: banUserModel } = require("../../models/banUser");
 const register = async (req, res) => {
   const isValidRequestBody = registerValidate(req.body);
   if (!isValidRequestBody) {
-    return res.status(422).json({ message: registerValidate.errors });
+    return res.status(422).json(registerValidate.errors);
   }
   const { password, phone, email, username } = req.body;
   const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
