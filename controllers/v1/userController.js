@@ -1,12 +1,13 @@
 const { isValidObjectId } = require("mongoose");
 const { default: userModel } = require("../../models/user");
 const { default: banUserModel } = require("../../models/banUser");
-const { phoneNumberPrefixPattern } = require("../../utils/patterns");
-const { checkDBCollectionIndexes } = require("../../utils/checkCollectionIndexes");
+const {
+  checkDBCollectionIndexes,
+} = require("../../utils/checkCollectionIndexes");
 
 const getAll = async (req, res) => {
   try {
-    const users = await userModel.find().select("-__v -password").lean();
+    const users = await userModel.find({}).select("-__v -password").lean();
     if (!users) {
       return res.status(500).json({ message: "Internal Server Error !!" });
     }
