@@ -3,6 +3,18 @@ const { default: userModel } = require("../../models/user");
 const { default: banUserModel } = require("../../models/banUser");
 const { phoneNumberPrefixPattern } = require("../../utils/patterns");
 
+const getAll = async (req, res) => {
+  try {
+    const users = await userModel.find().select("-__v -password").lean();
+    if (!users) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const banUser = async (req, res) => {
   const { phone } = req.body;
   const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
@@ -58,6 +70,7 @@ const freeUser = async (req, res) => {
 };
 
 module.exports = {
+  getAll,
   banUser,
   freeUser,
 };
