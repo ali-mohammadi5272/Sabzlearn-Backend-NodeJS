@@ -2,7 +2,7 @@ const { tokenPayloadData } = require("../utils/auth");
 const { default: userModel } = require("../models/user");
 
 const middleware = (req, res, next) => {
-  const accessToken = req.header("Authorization").trim(" ")[1];
+  const accessToken = req.header("Authorization")?.split(" ")[1];
   if (!accessToken) {
     return res.status(401).json({ message: "Unauthorized !!" });
   }
