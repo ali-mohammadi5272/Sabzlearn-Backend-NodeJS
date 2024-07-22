@@ -6,6 +6,9 @@ const {
 const {
   default: userRouter,
 } = require(`./routes/${process.env.VERSION}/userRouter`);
+const {
+  default: categoryRouter,
+} = require(`./routes/${process.env.VERSION}/categoryRouter`);
 const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -19,5 +22,6 @@ app.use(cookieParser());
 
 app.use(`/api/${process.env.VERSION}/auth/`, authRouter);
 app.use(`/api/${process.env.VERSION}/users/`, userRouter);
+app.use(`/api/${process.env.VERSION}/categories/`, categoryRouter);
 
 module.exports = app;
