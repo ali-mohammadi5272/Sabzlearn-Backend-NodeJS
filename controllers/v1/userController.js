@@ -38,6 +38,27 @@ const getUser = async (req, res) => {
   }
 };
 
+const removeUser = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "UserId is not valid !!" });
+  }
+
+  try {
+    const user = await userModel
+      .findOneAndDelete({ _id: id })
+      .select("-__v -password")
+      .lean();
+    if (!user) {
+      return res.status(404).json({ message: "User not found !!" });
+    }
+    return res.status(200).json({ message: "User deleted successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const banUser = async (req, res) => {
   const { id } = req.params;
   const isValidId = isValidObjectId(id);
@@ -113,6 +134,7 @@ const freeUser = async (req, res) => {
 module.exports = {
   getAll,
   getUser,
+  removeUser,
   banUser,
   freeUser,
 };
