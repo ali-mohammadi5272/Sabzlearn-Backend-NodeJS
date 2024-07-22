@@ -10,10 +10,11 @@ const {
   default: isAdminMiddleware,
 } = require("../../middlewares/isAdminMiddleware");
 const router = express.Router();
+router.use(authMiddleware, isAdminMiddleware);
 
 router.get("/", getAll);
 router.get("/:id", getUser);
-router.post("/ban/:id", authMiddleware, isAdminMiddleware, banUser);
-router.put("/free/:id", authMiddleware, isAdminMiddleware, freeUser);
+router.post("/ban/:id", banUser);
+router.put("/free/:id", freeUser);
 
 module.exports.default = router;
