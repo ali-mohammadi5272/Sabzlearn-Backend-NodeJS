@@ -1,6 +1,5 @@
 const { tokenPayloadData } = require("../utils/auth");
 const { default: userModel } = require("../models/user");
-const { request } = require("http");
 
 const middleware = (req, res, next) => {
   const accessToken = req.header("Authorization").trim(" ")[1];
@@ -13,7 +12,7 @@ const middleware = (req, res, next) => {
   }
   const { _id } = tokenPayload;
   const user = userModel.findOne({ _id }).select("-__v -password").lean();
-  request.user = structuredClone(user);
+  req.user = structuredClone(user);
   next();
 };
 
