@@ -2,7 +2,7 @@ const { tokenPayloadData } = require("../utils/auth");
 const { default: userModel } = require("../models/user");
 const { request } = require("http");
 
-const authMiddleware = (req, res, next) => {
+const middleware = (req, res, next) => {
   const accessToken = req.header("Authorization").trim(" ")[1];
   if (!accessToken) {
     return res.status(401).json({ message: "Unauthorized !!" });
@@ -17,4 +17,4 @@ const authMiddleware = (req, res, next) => {
   next();
 };
 
-module.exports = { authMiddleware };
+module.exports.default = middleware;
