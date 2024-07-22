@@ -10,6 +10,7 @@ const {
   isValidHashedPassword,
 } = require("../../utils/auth");
 const { phoneNumberPrefixPattern } = require("../../utils/patterns");
+const { default: banUserModel } = require("../../models/banUser");
 
 const register = async (req, res) => {
   const isValidRequestBody = registerValidate(req.body);
@@ -18,6 +19,19 @@ const register = async (req, res) => {
   }
   const { password, phone, email, username } = req.body;
   const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
+
+  try {
+    const isBanUser = await banUserModel
+      .findOne({ phone: changedPhoneNumber })
+      .lean();
+    if (isBanUser) {
+      return res.status(403).json({
+        message: `Access denied: This Phone (${phone}) Number have been banned.`,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 
   try {
     await checkDBCollectionIndexes(userModel);
