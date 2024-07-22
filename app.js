@@ -3,6 +3,9 @@ const express = require("express");
 const {
   default: authRouter,
 } = require(`./routes/${process.env.VERSION}/authRouter`);
+const {
+  default: userRouter,
+} = require(`./routes/${process.env.VERSION}/userRouter`);
 const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -15,5 +18,6 @@ app.use(cors());
 app.use(cookieParser());
 
 app.use(`/api/${process.env.VERSION}/auth/`, authRouter);
+app.use(`/api/${process.env.VERSION}/users/`, userRouter);
 
 module.exports = app;
