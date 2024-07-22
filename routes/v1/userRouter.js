@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getAll,
   getUser,
+  removeUser,
   freeUser,
   banUser,
 } = require("../../controllers/v1/userController");
@@ -13,8 +14,8 @@ const router = express.Router();
 router.use(authMiddleware, isAdminMiddleware);
 
 router.get("/", getAll);
-router.get("/:id", getUser);
 router.post("/ban/:id", banUser);
 router.put("/free/:id", freeUser);
+router.route("/:id").get(getUser).delete(removeUser);
 
 module.exports.default = router;
