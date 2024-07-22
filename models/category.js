@@ -7,6 +7,7 @@ const schema = new mongoose.Schema(
       required: true,
       minLength: 1,
       unique: true,
+      trim: true,
     },
     href: {
       type: String,
@@ -14,6 +15,7 @@ const schema = new mongoose.Schema(
       unique: true,
       enum: ["front-end", "back-end"],
       minLength: 5,
+      trim: true,
     },
   },
   { timestamps: true }
