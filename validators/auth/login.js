@@ -4,11 +4,7 @@ const ajv = new Ajv();
 const schema = {
   type: "object",
   properties: {
-    username: {
-      type: "string",
-      minLength: 3,
-    },
-    email: {
+    identifier: {
       type: "string",
     },
     password: {
@@ -16,8 +12,7 @@ const schema = {
       minLength: 8,
     },
   },
-  oneOf: [{ required: ["username"] }, { required: ["email"] }],
-  required: ["password"],
+  required: ["password", "identifier"],
   additionalProperties: false,
 };
 
