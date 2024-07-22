@@ -1,5 +1,8 @@
 const Ajv = require("ajv");
-const ajv = new Ajv();
+const ajv = new Ajv({
+  allErrors: true,
+  $data: true,
+});
 
 const schema = {
   type: "object",
@@ -27,8 +30,22 @@ const schema = {
       type: "string",
       minLength: 8,
     },
+    confirmPassword: {
+      const: {
+        $data: "1/password",
+      },
+      type: "string",
+    },
   },
-  required: ["firstname", "lastname", "username", "email", "phone", "password"],
+  required: [
+    "firstname",
+    "lastname",
+    "username",
+    "email",
+    "phone",
+    "password",
+    "confirmPassword",
+  ],
   additionalProperties: false,
 };
 
