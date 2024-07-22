@@ -45,6 +45,19 @@ const addCategroy = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const categories = await categoryModel.find({}).select("-__v").lean();
+    if (!categories) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(categories);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addCategroy,
+  getAll,
 };
