@@ -2,6 +2,7 @@ const { isValidObjectId } = require("mongoose");
 const { default: userModel } = require("../../models/user");
 const { default: banUserModel } = require("../../models/banUser");
 const { phoneNumberPrefixPattern } = require("../../utils/patterns");
+const { checkDBCollectionIndexes } = require("../../utils/checkCollectionIndexes");
 
 const getAll = async (req, res) => {
   try {
@@ -37,14 +38,32 @@ const getUser = async (req, res) => {
 };
 
 const banUser = async (req, res) => {
-  const { phone } = req.body;
-  const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  let findedUser;
+
+  if (!isValidId) {
+    return res.status(422).json({ message: "UserId is not valid !!" });
+  }
+
+  try {
+    const user = await userModel
+      .findOne({ _id: id })
+      .select("-__v -password")
+      .lean();
+    if (!user) {
+      return res.status(404).json({ message: "User not found !!" });
+    }
+    findedUser = structuredClone(user);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 
   try {
     await checkDBCollectionIndexes(banUserModel);
   } catch (err) {
     const isUserExistBefore = await banUserModel
-      .findOne({ phone: changedPhoneNumber })
+      .findOne({ phone: findedUser.phone })
       .lean();
     if (isUserExistBefore) {
       return res.status(422).json({ message: "User is already in banList !!" });
@@ -52,13 +71,13 @@ const banUser = async (req, res) => {
   }
 
   try {
-    const newBanUser = await banUserModel.create({ phone: changedPhoneNumber });
+    const newBanUser = await banUserModel.create({ phone: findedUser.phone });
     if (!newBanUser) {
       return res.status(500).json({ message: "Add User to banList failed !!" });
     }
     return res.status(201).json({
       message: "User added to banList successfully :))",
-      user: newBanUser,
+      user: findedUser,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
