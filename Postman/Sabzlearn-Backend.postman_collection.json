@@ -13,6 +13,16 @@
         {
           "name": "GetAll Users",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE2NDU1NTgsImV4cCI6MTcyMTczMTk1OH0.EHVuOy3ItMdH7w5Jj8fNsqMUMydI1j_gnLCvoV8N_k0",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "GET",
             "header": [],
             "url": {
@@ -52,12 +62,25 @@
         {
           "name": "Free User",
           "request": {
-            "method": "POST",
+            "method": "PUT",
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/{{version}}/users/free/{{id}}",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "users", "free", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/users/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "users", "{{id}}"]
             }
           },
           "response": []
@@ -97,7 +120,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"phone\": \"9334719087\"\r\n}",
+              "raw": "{\r\n    \"firstname\": \"{{$randomFirstName}}\",\r\n    \"lastname\": \"{{$randomLastName}}\",\r\n    \"username\": \"{{$randomUserName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\",\r\n    \"confirmPassword\": \"{{$randomPassword}}\",\r\n    \"phone\": \"9334719087\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
