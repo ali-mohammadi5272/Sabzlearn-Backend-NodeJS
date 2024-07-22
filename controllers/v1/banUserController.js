@@ -48,9 +48,13 @@ const freeUser = async (req, res) => {
     }
     const deletedUser = await banUserModel.findOneAndDelete({ _id: id });
     if (!deletedUser) {
-      return res.status(500).json({ message: "Remove User failed !!" });
+      return res
+        .status(500)
+        .json({ message: "Remove User from banList failed !!" });
     }
-    return res.status(200).json({ message: "User deleted successfully :))" });
+    return res
+      .status(200)
+      .json({ message: "User removed from banList successfully :))" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
