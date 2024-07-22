@@ -6,14 +6,17 @@ const {
   changeRole,
   freeUser,
   banUser,
+  updateUser,
 } = require("../../controllers/v1/userController");
 const { default: authMiddleware } = require("../../middlewares/authMiddleware");
 const {
   default: isAdminMiddleware,
 } = require("../../middlewares/isAdminMiddleware");
 const router = express.Router();
-router.use(authMiddleware, isAdminMiddleware);
 
+router.use(authMiddleware);
+router.put("/", updateUser);
+router.use(isAdminMiddleware);
 router.get("/", getAll);
 router.post("/ban/:id", banUser);
 router.put("/free/:id", freeUser);
