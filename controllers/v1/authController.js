@@ -76,13 +76,13 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const isValidRequestBody = loginValidate(req.body);
   if (!isValidRequestBody) {
-    return res.status(422).json({ message: loginValidate.error });
+    return res.status(422).json({ message: loginValidate.errors });
   }
-  const { username, email, password } = req.body;
+  const { identifier, password } = req.body;
   try {
     const findedUser = await userModel
       .findOne({
-        $or: [{ email }, { username }],
+        $or: [{ email: identifier }, { username: identifier }],
       })
       .lean();
     if (!findedUser) {
