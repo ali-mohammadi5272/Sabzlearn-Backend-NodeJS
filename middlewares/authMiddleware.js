@@ -16,7 +16,7 @@ const middleware = async (req, res, next) => {
       .findOne({ _id })
       .select("-__v -password")
       .lean();
-    req.user = structuredClone(user);
+    req.user = Object.assign({}, user);
     next();
   } catch (error) {
     return res.status(500).json({ message: error.message });
