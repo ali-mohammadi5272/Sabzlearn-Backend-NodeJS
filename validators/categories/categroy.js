@@ -11,6 +11,7 @@ const schema = {
     href: {
       type: "string",
       minLength: 5,
+      enum: ["front-end", "back-end"],
     },
   },
   required: ["title", "href"],
