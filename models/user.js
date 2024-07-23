@@ -27,6 +27,7 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      match: /^[\w\.-_]+@[\w]{5,8}.[a-z]{2,3}$/,
       unique: true,
     },
     phone: {
