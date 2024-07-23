@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.use(authMiddleware);
 router.put("/", updateUser);
-router.put("/:id", accessLevelMiddleware(roles.manager), changeRole);
+router.put("/role/:id", accessLevelMiddleware(roles.manager), changeRole);
 router.use(accessLevelMiddleware(roles.admin));
 router.get("/", getAll);
 router.post("/ban/:id", banUser);
