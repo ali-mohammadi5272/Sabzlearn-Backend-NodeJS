@@ -9,6 +9,9 @@ const {
 const {
   default: categoryRouter,
 } = require(`./routes/${process.env.VERSION}/categoryRouter`);
+const {
+  default: teacherRouter,
+} = require(`./routes/${process.env.VERSION}/teacherRouter`);
 const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -23,5 +26,6 @@ app.use(cookieParser());
 app.use(`/api/${process.env.VERSION}/auth/`, authRouter);
 app.use(`/api/${process.env.VERSION}/users/`, userRouter);
 app.use(`/api/${process.env.VERSION}/categories/`, categoryRouter);
+app.use(`/api/${process.env.VERSION}/teachers/`, teacherRouter);
 
 module.exports = app;
