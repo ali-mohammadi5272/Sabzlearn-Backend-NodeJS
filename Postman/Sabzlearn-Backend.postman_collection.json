@@ -105,6 +105,38 @@
           "response": []
         },
         {
+          "name": "Change Role",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3NDE4NTMsImV4cCI6MTcyMTgyODI1M30.WieWnpXQZvmIgzN3Jnf7eVDB9La78awZiUV2ku8lTLk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"TEACHER_HELPER\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/users/role/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "users", "role", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Remove User",
           "request": {
             "method": "DELETE",
@@ -199,8 +231,73 @@
           "response": []
         },
         {
+          "name": "Update Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3MTExMTAsImV4cCI6MTcyMTc5NzUxMH0.hpZ_CnWvfgBMuVcHL6ZaeY-dtrj42dh6RIS-dyQ5Ii8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"بک اند\",\r\n    \"href\": \"back-end\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/categories/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "categories", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3MTExMTAsImV4cCI6MTcyMTc5NzUxMH0.hpZ_CnWvfgBMuVcHL6ZaeY-dtrj42dh6RIS-dyQ5Ii8",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/categories/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "categories", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Add Category",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3MTExMTAsImV4cCI6MTcyMTc5NzUxMH0.hpZ_CnWvfgBMuVcHL6ZaeY-dtrj42dh6RIS-dyQ5Ii8",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [],
             "body": {
@@ -213,9 +310,9 @@
               }
             },
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/categories",
+              "raw": "{{base_url}}/api/{{version}}/categories/",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "categories"]
+              "path": ["api", "{{version}}", "categories", ""]
             }
           },
           "response": []
