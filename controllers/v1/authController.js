@@ -17,7 +17,8 @@ const register = async (req, res) => {
   if (!isValidRequestBody) {
     return res.status(422).json(registerValidate.errors);
   }
-  const { password, phone, email, username } = req.body;
+  const { firstname, lastname, password, phone, email, username } = req.body;
+
   const changedPhoneNumber = phone.replace(phoneNumberPrefixPattern, "");
 
   try {
@@ -49,7 +50,10 @@ const register = async (req, res) => {
   try {
     const hashedPassword = await hashPassword(password);
     const newUser = await userModel.create({
-      ...req.body,
+      firstname,
+      lastname,
+      username,
+      email,
       phone: changedPhoneNumber,
       password: hashedPassword,
     });
