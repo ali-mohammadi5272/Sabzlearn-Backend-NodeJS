@@ -1,7 +1,8 @@
 const { roles } = require("../utils/constants");
 const middleware = (req, res, next) => {
+  const { role } = req.user;
   const isAdmin =
-    req.user.role === roles.admin || req.user.role === roles.manager;
+    role === roles.admin || role === roles.teacher || role === roles.manager;
   if (!isAdmin) {
     return res.status(403).json({
       message:
