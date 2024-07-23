@@ -61,6 +61,27 @@ const addTeacher = async (req, res) => {
   }
 };
 
+const removeTeacher = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "TeacherId is not valid !!" });
+  }
+
+  try {
+    const teacher = await teacherModel.findOneAndDelete({ _id: id });
+    if (!teacher) {
+      return res.status(404).json({ message: "Categroy not found !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Teacher removed successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addTeacher,
+  removeTeacher,
 };
