@@ -8,14 +8,15 @@ const {
 } = require("../../controllers/v1/categoryController");
 const { default: authMiddleware } = require("../../middlewares/authMiddleware");
 const {
-  default: isAdminMiddleware,
-} = require("../../middlewares/isAdminMiddleware");
+  default: accessLevelMiddleware,
+} = require("../../middlewares/accessLevelMiddleware");
+const { roles } = require("../../utils/constants");
 
 const router = express.Router();
 
 router.get("/", getAll);
 router.get("/:id", getCategory);
-router.use(authMiddleware, isAdminMiddleware);
+router.use(authMiddleware, accessLevelMiddleware(roles.admin));
 router.route("/").post(addCategroy);
 router.route("/:id").delete(removeCategory).put(updateCategory);
 
