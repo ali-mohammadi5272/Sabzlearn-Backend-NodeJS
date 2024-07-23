@@ -1,10 +1,12 @@
 const { isValidObjectId } = require("mongoose");
 const { default: userModel } = require("../../models/user");
 const { default: banUserModel } = require("../../models/banUser");
-const { roles } = require("../../utils/constants");
 const {
   default: updateUserValidate,
 } = require("../../validators/users/updateUser");
+const {
+  default: changeRoleValidate,
+} = require("../../validators/users/changeRole");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
@@ -72,21 +74,20 @@ const changeRole = async (req, res) => {
     return res.status(422).json({ message: "UserId is not valid !!" });
   }
 
+  const isValidRequestBody = changeRoleValidate(req.body);
+  if (!isValidRequestBody) {
+    return res.status(422).json(changeRoleValidate.errors);
+  }
+  const { role } = req.body;
+
   try {
-    const user = await userModel
-      .findOne({ _id: id })
-      .select("-__v -password")
-      .lean();
+    const user = await userModel.findOne({ _id: id }).lean();
     if (!user) {
       return res.status(404).json({ message: "User not found !!" });
     }
-    const newRole = user.role === roles.admin ? roles.user : roles.admin;
-    const updatedUser = await userModel.findOneAndUpdate(
-      { _id: id },
-      { role: newRole }
-    );
+    const updatedUser = await userModel.findOneAndUpdate({ _id: id }, { role });
     if (!updatedUser) {
-      return res.status(500).json({ message: "Update User faild !!" });
+      return res.status(500).json({ message: "Update User's Role faild !!" });
     }
     return res
       .status(200)
