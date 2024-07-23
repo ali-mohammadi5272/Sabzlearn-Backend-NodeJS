@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { roles } = require("../utils/constants");
-const { phoneNumberPattern } = require("../utils/patterns");
+const { phoneNumberPattern, emailPattern } = require("../utils/patterns");
 
 const schema = new mongoose.Schema(
   {
@@ -27,7 +27,7 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      match: /^[\w\.-_]+@[\w]{5,8}.[a-z]{2,3}$/,
+      match: emailPattern,
       unique: true,
     },
     phone: {
