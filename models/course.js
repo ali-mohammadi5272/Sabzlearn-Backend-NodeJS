@@ -75,7 +75,7 @@ schema.virtual("sessions", {
   foreignFields: "courseId",
 });
 
-const model = mongoose.models.Comment || mongoose.model("Comment", schema);
+const model = mongoose.models.Course || mongoose.model("Course", schema);
 
 module.exports = {
   schema,
