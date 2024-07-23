@@ -12,8 +12,14 @@ const isAllowedUser = (validRoles, userRole) => {
 };
 
 const managerLevel = [roles.manager];
-const teacherLevel = [roles.manager, roles.teacher];
-const adminLevel = [roles.manager, roles.teacher, roles.admin];
+const adminLevel = [roles.manager, roles.admin];
+const teacherLevel = [roles.manager, roles.admin, roles.teacher];
+const teacherHelperLevel = [
+  roles.manager,
+  roles.admin,
+  roles.teacher,
+  roles.teacherHelper,
+];
 
 const middleware = (middlwareRole) => {
   return (req, res, next) => {
@@ -26,6 +32,13 @@ const middleware = (middlwareRole) => {
       next();
     }
 
+    // Admin Access Level:
+    else if (middlwareRole === roles.admin) {
+      const isAdmin = isAllowedUser(adminLevel, userRole);
+      if (!isAdmin) return forbiddenResponse(res);
+      next();
+    }
+
     // Teacher Access Level:
     else if (middlwareRole === roles.teacher) {
       const isAdmin = isAllowedUser(teacherLevel, userRole);
@@ -33,9 +46,9 @@ const middleware = (middlwareRole) => {
       next();
     }
 
-    // Admin Access Level:
-    else if (middlwareRole === roles.admin) {
-      const isAdmin = isAllowedUser(adminLevel, userRole);
+    // Teacher_Helper Access Level:
+    else if (middlwareRole === roles.teacherHelper) {
+      const isAdmin = isAllowedUser(teacherHelperLevel, userRole);
       if (!isAdmin) return forbiddenResponse(res);
       next();
     }
