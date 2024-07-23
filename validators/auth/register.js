@@ -21,6 +21,7 @@ const schema = {
     },
     email: {
       type: "string",
+      pattern: `^[\\w\\.-_]+@[\\w]{5,8}\\.[a-z]{2,3}$`,
     },
     phone: {
       type: "string",
