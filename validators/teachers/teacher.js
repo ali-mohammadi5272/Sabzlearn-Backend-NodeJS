@@ -6,7 +6,6 @@ const schema = {
   properties: {
     userId: {
       type: "string",
-      minLength: 24,
     },
   },
   required: ["userId"],
