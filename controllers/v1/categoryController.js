@@ -35,7 +35,7 @@ const addCategroy = async (req, res) => {
     }
 
     const newCategoryObject = newCategory.toObject();
-    Reflect.deleteProperty(newCategory, "__v");
+    Reflect.deleteProperty(newCategoryObject, "__v");
 
     return res.status(201).json({
       message: "Category added successfully :))",
