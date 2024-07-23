@@ -99,9 +99,38 @@ const removeCategory = async (req, res) => {
   }
 };
 
+const updateCategory = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "CategoryId is not valid !!" });
+  }
+
+  const isValidRequestBody = categoryValidate(req.body);
+  if (!isValidRequestBody) {
+    return res.status(422).json(categoryValidate.errors);
+  }
+
+  try {
+    const category = await categoryModel.findOneAndUpdate(
+      { _id: id },
+      req.body
+    );
+    if (!category) {
+      return res.status(404).json({ message: "Categroy not found !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Category updated successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addCategroy,
   getAll,
   getCategory,
   removeCategory,
+  updateCategory,
 };
