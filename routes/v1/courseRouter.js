@@ -10,6 +10,8 @@ const {
 const router = express.Router();
 
 router.use(authMiddleware, accessLevelMiddleware(roles.admin));
-router.route("/").post(uploader.single("upload"), addCourse);
+router
+  .route("/")
+  .post(uploader("public/courses/covers").single("upload"), addCourse);
 
 module.exports.default = router;
