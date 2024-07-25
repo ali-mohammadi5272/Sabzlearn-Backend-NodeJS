@@ -20,12 +20,12 @@ const addCourse = async (req, res) => {
   try {
     await checkDBCollectionIndexes(courseModel);
   } catch (err) {
-    const isUserExistBefore = await courseModel
+    const isCourseExistBefore = await courseModel
       .findOne({
         $or: [{ title }],
       })
       .lean();
-    if (isUserExistBefore) {
+    if (isCourseExistBefore) {
       return res.status(422).json({ message: "Course is already exist !!" });
     }
   }
@@ -47,7 +47,7 @@ const addCourse = async (req, res) => {
 
     return res.status(201).json({
       message: "Course added successfully :))",
-      category: findedCourse,
+      course: findedCourse,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
