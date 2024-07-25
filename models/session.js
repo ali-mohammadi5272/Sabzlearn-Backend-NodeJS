@@ -7,6 +7,7 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
       minLength: 1,
+      uniqe: true,
     },
     time: {
       type: String,
