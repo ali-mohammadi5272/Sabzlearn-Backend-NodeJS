@@ -6,6 +6,7 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
       minLength: 5,
+      unique: true,
     },
     cover: {
       type: String,
@@ -53,7 +54,7 @@ const schema = new mongoose.Schema(
           type: String,
         },
       ],
-      default: [],
+      required: true,
     },
     discount: {
       type: Number,
@@ -62,7 +63,7 @@ const schema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["preSell", "in Process", "completed", "stop selling"],
+      enum: ["preSell", "in-Process", "completed", "stop-selling"],
       required: true,
     },
   },
