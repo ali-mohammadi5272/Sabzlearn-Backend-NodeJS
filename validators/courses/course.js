@@ -14,14 +14,11 @@ const schema = {
     longDescription: {
       type: "string",
     },
-    teacherId: {
-      type: "string",
-    },
     categoryId: {
       type: "string",
     },
     price: {
-      type: number,
+      type: "number",
       minimum: 0,
     },
     supportMethod: {
@@ -33,7 +30,7 @@ const schema = {
     },
     qualification: {
       type: "array",
-      items: [{ type: "string" }],
+      items: { type: "string" },
     },
     discount: {
       type: "number",
@@ -48,7 +45,6 @@ const schema = {
     "title",
     "shortDescription",
     "longDescription",
-    "teacherId",
     "categoryId",
     "price",
     "supportMethod",
