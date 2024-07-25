@@ -12,10 +12,6 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    introduceVideo: {
-      type: String,
-      required: true,
-    },
     shortDescription: {
       type: String,
       required: true,
