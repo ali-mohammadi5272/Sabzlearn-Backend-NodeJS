@@ -9,10 +9,14 @@ const {
 const {
   default: categoryRouter,
 } = require(`./routes/${process.env.VERSION}/categoryRouter`);
+const {
+  default: courseRouter,
+} = require(`./routes/${process.env.VERSION}/courseRouter`);
 
 const helmet = require("helmet");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 const app = express();
 
 app.use(express.json());
@@ -25,5 +29,10 @@ app.use(cookieParser());
 app.use(`/api/${process.env.VERSION}/auth/`, authRouter);
 app.use(`/api/${process.env.VERSION}/users/`, userRouter);
 app.use(`/api/${process.env.VERSION}/categories/`, categoryRouter);
+app.use(`/api/${process.env.VERSION}/courses/`, courseRouter);
+
+app.get("/courses/covers/:fileName", (req, res) => {
+  res.sendFile(path.join(process.cwd(), req.url));
+});
 
 module.exports = app;
