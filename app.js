@@ -12,6 +12,9 @@ const {
 const {
   default: courseRouter,
 } = require(`./routes/${process.env.VERSION}/courseRouter`);
+const {
+  default: sessionRouter,
+} = require(`./routes/${process.env.VERSION}/sessionRouter`);
 
 const helmet = require("helmet");
 const cors = require("cors");
@@ -30,8 +33,12 @@ app.use(`/api/${process.env.VERSION}/auth/`, authRouter);
 app.use(`/api/${process.env.VERSION}/users/`, userRouter);
 app.use(`/api/${process.env.VERSION}/categories/`, categoryRouter);
 app.use(`/api/${process.env.VERSION}/courses/`, courseRouter);
+app.use(`/api/${process.env.VERSION}/sessions/`, sessionRouter);
 
 app.get("/courses/covers/:fileName", (req, res) => {
+  res.sendFile(path.join(process.cwd(), req.url));
+});
+app.get("/courses/sessions/:fileName", (req, res) => {
   res.sendFile(path.join(process.cwd(), req.url));
 });
 
