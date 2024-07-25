@@ -68,8 +68,8 @@ const schema = new mongoose.Schema(
 
 schema.virtual("sessions", {
   ref: "Session",
-  localFields: "_id",
-  foreignFields: "courseId",
+  localField: "_id",
+  foreignField: "courseId",
 });
 
 const model = mongoose.models.Course || mongoose.model("Course", schema);
