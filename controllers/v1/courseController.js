@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { isValidObjectId } = require("mongoose");
 const { default: courseModel } = require("../../models/course");
 const {
   checkDBCollectionIndexes,
@@ -54,4 +55,26 @@ const addCourse = async (req, res) => {
   }
 };
 
-module.exports = { addCourse };
+const getCourse = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "CourseId is not valid !!" });
+  }
+
+  try {
+    const course = await courseModel
+      .findOne({ _id: id })
+      .populate("sessions", "title time free -courseId")
+      .select("-__v")
+      .lean();
+    if (!course) {
+      return res.status(404).json({ message: "Course not found !!" });
+    }
+    return res.status(200).json(course);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { addCourse, getCourse };
