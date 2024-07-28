@@ -7,6 +7,25 @@ const {
   default: sessionValidate,
 } = require("../../validators/sessions/session");
 
+const getAll = async (req, res) => {
+  try {
+    const sessions = await sessionModel
+      .find({})
+      .select("-__v")
+      .populate({
+        path: "courseId",
+        select: "title cover",
+      })
+      .lean();
+    if (!sessions) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(sessions);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const addSession = async (req, res) => {
   req.body.free = JSON.parse(req.body.free);
   const isValidRequestBody = sessionValidate(req.body);
@@ -49,4 +68,4 @@ const addSession = async (req, res) => {
   }
 };
 
-module.exports = { addSession };
+module.exports = { getAll, addSession };
