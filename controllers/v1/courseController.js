@@ -6,6 +6,21 @@ const {
 } = require("../../utils/checkCollectionIndexes");
 const { default: courseValidate } = require("../../validators/courses/course");
 
+const getAll = async (req, res) => {
+  try {
+    const courses = await courseModel
+      .find({})
+      .select("title cover price discount status")
+      .lean();
+    if (!courses) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(courses);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const addCourse = async (req, res) => {
   req.body.price = +req.body.price;
   req.body.qualification = JSON.parse(req.body.qualification);
@@ -77,4 +92,4 @@ const getCourse = async (req, res) => {
   }
 };
 
-module.exports = { addCourse, getCourse };
+module.exports = { getAll, addCourse, getCourse };
