@@ -3,6 +3,7 @@ const {
   getAll,
   addSession,
   getSession,
+  getSessionAndAllCourseSessions,
 } = require("../../controllers/v1/sessionController");
 const { uploader } = require("../../utils/uploader");
 const { roles } = require("../../utils/constants");
@@ -13,12 +14,13 @@ const {
 
 const router = express.Router();
 
+router.route("/:courseId/:sessionId").get(getSessionAndAllCourseSessions);
+router.route("/:id").get(getSession);
+
 router.use(authMiddleware, accessLevelMiddleware(roles.teacher));
 router
   .route("/")
   .get(getAll)
   .post(uploader("public/courses/sessions").single("upload"), addSession);
-
-router.route("/:id").get(getSession);
 
 module.exports.default = router;
