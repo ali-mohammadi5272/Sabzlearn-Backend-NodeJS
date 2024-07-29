@@ -1,4 +1,5 @@
 const { default: sessionModel } = require("../../models/session");
+const { default: courseModel } = require("../../models/course");
 const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
@@ -6,7 +7,6 @@ const {
 const {
   default: sessionValidate,
 } = require("../../validators/sessions/session");
-
 
 const getAll = async (req, res) => {
   try {
@@ -90,4 +90,46 @@ const getSession = async (req, res) => {
   }
 };
 
-module.exports = { getAll, addSession, getSession };
+const getSessionAndAllCourseSessions = async (req, res) => {
+  const { courseId, sessionId } = req.params;
+  const isValidIdSessionId = isValidObjectId(sessionId);
+  const isValidIdCourseId = isValidObjectId(courseId);
+  if (!isValidIdSessionId) {
+    return res.status(422).json({ message: "SessionId is not valid !!" });
+  }
+  if (!isValidIdCourseId) {
+    return res.status(422).json({ message: "CourseId is not valid !!" });
+  }
+
+  try {
+    const session = await sessionModel
+      .findOne({ _id: sessionId })
+      .select("-__v")
+      .lean();
+    if (!session) {
+      return res.status(404).json({ message: "Session not found !!" });
+    }
+    const course = await courseModel
+      .findOne({ _id: courseId })
+      .populate("sessions", "title time free -courseId")
+      .select("-__v")
+      .lean();
+    if (!course) {
+      return res.status(404).json({ message: "Course not found !!" });
+    }
+
+    return res.status(200).json({
+      session,
+      course,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  getAll,
+  addSession,
+  getSession,
+  getSessionAndAllCourseSessions,
+};
