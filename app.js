@@ -46,4 +46,8 @@ app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
 });
 
+app.use((req, res) => {
+  return res.status(400).json({ message: "Bad Request. Wrong Api !!" });
+});
+
 module.exports = app;
