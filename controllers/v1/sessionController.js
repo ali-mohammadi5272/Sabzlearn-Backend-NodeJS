@@ -1,3 +1,4 @@
+const fs = require("fs");
 const { default: sessionModel } = require("../../models/session");
 const { default: courseModel } = require("../../models/course");
 const { isValidObjectId } = require("mongoose");
@@ -7,6 +8,7 @@ const {
 const {
   default: sessionValidate,
 } = require("../../validators/sessions/session");
+const path = require("path");
 
 const getAll = async (req, res) => {
   try {
@@ -90,6 +92,39 @@ const getSession = async (req, res) => {
   }
 };
 
+const removeSession = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "SessionId is not valid !!" });
+  }
+
+  try {
+    const findedSession = await sessionModel
+      .findOne({ _id: id })
+      .select("-__v")
+      .lean();
+    if (!findedSession) {
+      return res.status(404).json({ message: "Session not found !!" });
+    }
+    fs.unlinkSync(
+      path.join(process.cwd(), "public/courses/sessions", findedSession.video)
+    );
+    const session = await sessionModel
+      .findOneAndDelete({ _id: id })
+      .select("-__v")
+      .lean();
+    if (!session) {
+      return res.status(404).json({ message: "Delete Session faild !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Session removed successfully :))", session });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const getSessionAndAllCourseSessions = async (req, res) => {
   const { courseId, sessionId } = req.params;
   const isValidIdSessionId = isValidObjectId(sessionId);
@@ -132,4 +167,5 @@ module.exports = {
   addSession,
   getSession,
   getSessionAndAllCourseSessions,
+  removeSession,
 };
