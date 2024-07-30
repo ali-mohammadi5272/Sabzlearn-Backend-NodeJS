@@ -4,6 +4,7 @@ const {
   addSession,
   getSession,
   getSessionAndAllCourseSessions,
+  removeSession,
 } = require("../../controllers/v1/sessionController");
 const { uploader } = require("../../utils/uploader");
 const { roles } = require("../../utils/constants");
@@ -22,5 +23,6 @@ router
   .route("/")
   .get(getAll)
   .post(uploader("public/courses/sessions").single("upload"), addSession);
+router.route("/:id").delete(removeSession);
 
 module.exports.default = router;
