@@ -42,4 +42,8 @@ app.get("/courses/sessions/:fileName", (req, res) => {
   res.sendFile(path.join(process.cwd(), req.url));
 });
 
+app.use((err, req, res, next) => {
+  return res.status(500).json({ message: err.message });
+});
+
 module.exports = app;
