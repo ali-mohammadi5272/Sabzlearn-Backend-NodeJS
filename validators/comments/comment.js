@@ -14,8 +14,14 @@ const schema = {
     score: {
       type: "number",
     },
+    isAnswer: {
+      type: "boolean",
+    },
+    mainCommentId: {
+      type: ["string", "null"],
+    },
   },
-  required: ["body", "courseId", "score"],
+  required: ["body", "courseId", "score", "isAnswer"],
   additionalProperties: false,
 };
 
