@@ -25,9 +25,8 @@ const schema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    categoryId: {
-      type: mongoose.Types.ObjectId,
-      ref: "Category",
+    categories: {
+      type: [{ type: mongoose.Types.ObjectId, ref: "Category" }],
       required: true,
     },
     price: {
