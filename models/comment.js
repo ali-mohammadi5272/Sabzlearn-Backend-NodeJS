@@ -32,6 +32,7 @@ const schema = new mongoose.Schema(
     mainCommentId: {
       type: mongoose.Types.ObjectId,
       ref: "Comment",
+      default: null,
     },
   },
   { timestamps: true }
