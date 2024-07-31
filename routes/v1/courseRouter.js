@@ -4,6 +4,7 @@ const {
   getCourse,
   getAll,
   registerCourse,
+  getCoursesByCategory,
 } = require("../../controllers/v1/courseController");
 const { uploader } = require("../../utils/uploader");
 const { roles } = require("../../utils/constants");
@@ -15,6 +16,7 @@ const {
 const router = express.Router();
 
 router.route("/").get(getAll);
+router.route("/category/:categoryId").get(getCoursesByCategory);
 router.route("/:id").get(getCourse);
 router.route("/register").post(authMiddleware, registerCourse);
 router.use(authMiddleware, accessLevelMiddleware(roles.admin));
