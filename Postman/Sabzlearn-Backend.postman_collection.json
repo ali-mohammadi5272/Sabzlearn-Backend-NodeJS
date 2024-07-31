@@ -318,6 +318,286 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Get all Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one Course",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Course",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE5MTA5MTcsImV4cCI6MTcyMTk5NzMxN30.TQLD8blZ_hhIYi1AY352_IDw3hn6N3NPHqfvF85qO2E",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "src": "/C:/Users/alimo/OneDrive/Pictures/Screenshots/Screenshot 2024-07-23 094606.png"
+                },
+                {
+                  "key": "title",
+                  "value": "دوره جامع نود جی اس",
+                  "type": "text"
+                },
+                {
+                  "key": "shortDescription",
+                  "value": "{{$randomLoremParagraph}}",
+                  "type": "text"
+                },
+                {
+                  "key": "longDescription",
+                  "value": "{{$randomLoremParagraphs}}",
+                  "type": "text"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "669f3acdb8ef29517507e276",
+                  "type": "text"
+                },
+                {
+                  "key": "price",
+                  "value": "100",
+                  "type": "text"
+                },
+                {
+                  "key": "supportMethod",
+                  "value": "oneline",
+                  "type": "text"
+                },
+                {
+                  "key": "watchMethod",
+                  "value": "online",
+                  "type": "text"
+                },
+                {
+                  "key": "qualification",
+                  "value": "[\"js\", \"ts\"]",
+                  "type": "text"
+                },
+                {
+                  "key": "discount",
+                  "value": "0",
+                  "type": "text"
+                },
+                {
+                  "key": "status",
+                  "value": "preSell",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sessions",
+      "item": [
+        {
+          "name": "Add Session",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE5MTA5MTcsImV4cCI6MTcyMTk5NzMxN30.TQLD8blZ_hhIYi1AY352_IDw3hn6N3NPHqfvF85qO2E",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "جلسه معرفی دوره نود جی اس",
+                  "type": "text"
+                },
+                {
+                  "key": "time",
+                  "value": "08:33",
+                  "type": "text"
+                },
+                {
+                  "key": "free",
+                  "value": "true",
+                  "type": "text"
+                },
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "src": "/C:/Users/alimo/OneDrive/Desktop/gifs/Heart_Love.mp4"
+                },
+                {
+                  "key": "courseId",
+                  "value": "66a26b9e14eed805273b908f",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/sessions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "sessions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Sessions",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjIxNzEwNjEsImV4cCI6MTcyMjI1NzQ2MX0.yWdPijL6YEXPSUKdiPjagGAQaXDZeELRAtUTmz-wN44",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/sessions",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "sessions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one Session",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/sessions/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "sessions", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one Session and all Course Sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/sessions/{{courseId}}/{{sessionId}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "sessions",
+                "{{courseId}}",
+                "{{sessionId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Session",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/sessions/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "sessions", "{{id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Add Comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI0MTE4ODQsImV4cCI6MTcyMjQ5ODI4NH0.Z_O4LqKolq8C6rcers05qsJtB1vmnRMzePWF4EM5cxI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"body\": \"{{$randomLoremParagraph}}\",\r\n    \"courseId\": \"66a26b9e14eed805273b908f\",\r\n    \"score\": 5,\r\n    \"isAnswer\": false,\r\n    \"mainCommentId\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/comments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "comments"]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "auth": {
