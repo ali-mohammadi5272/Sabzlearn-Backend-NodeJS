@@ -3,6 +3,7 @@ const {
   addCourse,
   getCourse,
   getAll,
+  registerCourse,
 } = require("../../controllers/v1/courseController");
 const { uploader } = require("../../utils/uploader");
 const { roles } = require("../../utils/constants");
@@ -15,6 +16,7 @@ const router = express.Router();
 
 router.route("/").get(getAll);
 router.route("/:id").get(getCourse);
+router.route("/").post(authMiddleware, registerCourse);
 router.use(authMiddleware, accessLevelMiddleware(roles.admin));
 router
   .route("/")
