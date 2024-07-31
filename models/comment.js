@@ -23,12 +23,10 @@ const schema = new mongoose.Schema(
     },
     isAccepted: {
       type: Boolean,
-      enum: [true, false],
       default: false,
     },
     isAnswer: {
       type: Boolean,
-      enum: [true, false],
       required: true,
     },
     mainCommentId: {
