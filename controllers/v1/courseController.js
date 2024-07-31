@@ -28,6 +28,7 @@ const getAll = async (req, res) => {
 const addCourse = async (req, res) => {
   req.body.price = +req.body.price;
   req.body.qualification = JSON.parse(req.body.qualification);
+  req.body.categories = JSON.parse(req.body.categories);
   req.body.discount = +req.body.discount;
 
   const isValidRequestBody = courseValidate(req.body);
@@ -62,7 +63,7 @@ const addCourse = async (req, res) => {
 
     const findedCourse = await courseModel
       .findOne({ _id: newCourse._id })
-      .populate("teacherId categoryId", "firstname lastname title href")
+      .populate("teacherId categories", "firstname lastname title href")
       .lean();
 
     return res.status(201).json({
