@@ -359,7 +359,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE5MTA5MTcsImV4cCI6MTcyMTk5NzMxN30.TQLD8blZ_hhIYi1AY352_IDw3hn6N3NPHqfvF85qO2E",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI0Mjk0NTcsImV4cCI6MTcyMjUxNTg1N30.tEO5QZ4ozt6lqRHfpT5R_9R-dfNwveNMyR9GPqCXrZ4",
                   "type": "string"
                 }
               ]
@@ -376,7 +376,7 @@
                 },
                 {
                   "key": "title",
-                  "value": "دوره جامع نود جی اس",
+                  "value": "دوره جامع NextJS",
                   "type": "text"
                 },
                 {
@@ -390,8 +390,8 @@
                   "type": "text"
                 },
                 {
-                  "key": "categoryId",
-                  "value": "669f3acdb8ef29517507e276",
+                  "key": "categories",
+                  "value": "[\"669f3acdb8ef29517507e276\"]",
                   "type": "text"
                 },
                 {
@@ -430,6 +430,51 @@
               "raw": "{{base_url}}/api/{{version}}/courses",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "courses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Course",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI0MTE4ODQsImV4cCI6MTcyMjQ5ODI4NH0.Z_O4LqKolq8C6rcers05qsJtB1vmnRMzePWF4EM5cxI",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"courseId\": \"66a26b9e14eed805273b908f\",\r\n    \"price\": 150\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses by CategoryId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses/category/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses", "category", "{{id}}"]
             }
           },
           "response": []
