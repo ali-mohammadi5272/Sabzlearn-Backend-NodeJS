@@ -12,7 +12,7 @@ const addComment = async (req, res) => {
   }
 
   try {
-    const course = courseModel.findOne({ _id: req.body.courseId }).lean();
+    const course = await courseModel.findOne({ _id: req.body.courseId }).lean();
     if (!course) {
       return res.status(422).json({ message: "Course not found !!" });
     }
