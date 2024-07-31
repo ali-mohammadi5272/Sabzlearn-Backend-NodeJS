@@ -14,8 +14,9 @@ const schema = {
     longDescription: {
       type: "string",
     },
-    categoryId: {
-      type: "string",
+    categories: {
+      type: "array",
+      items: { type: "string" },
     },
     price: {
       type: "number",
@@ -45,7 +46,7 @@ const schema = {
     "title",
     "shortDescription",
     "longDescription",
-    "categoryId",
+    "categories",
     "price",
     "supportMethod",
     "watchMethod",
