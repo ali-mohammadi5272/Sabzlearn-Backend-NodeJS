@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.route("/").get(getAll);
 router.route("/:id").get(getCourse);
-router.route("/").post(authMiddleware, registerCourse);
+router.route("/register").post(authMiddleware, registerCourse);
 router.use(authMiddleware, accessLevelMiddleware(roles.admin));
 router
   .route("/")
