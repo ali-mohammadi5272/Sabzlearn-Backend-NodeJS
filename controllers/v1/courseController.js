@@ -1,10 +1,14 @@
 require("dotenv").config();
 const { isValidObjectId } = require("mongoose");
 const { default: courseModel } = require("../../models/course");
+const { default: userCourseModel } = require("../../models/userCourse");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
 const { default: courseValidate } = require("../../validators/courses/course");
+const {
+  default: registerCourseValidate,
+} = require("../../validators/courses/registerCourse");
 
 const getAll = async (req, res) => {
   try {
@@ -92,4 +96,47 @@ const getCourse = async (req, res) => {
   }
 };
 
-module.exports = { getAll, addCourse, getCourse };
+const registerCourse = async (req, res) => {
+  const isValidRequestBody = registerCourseValidate(req.body);
+  if (!isValidRequestBody) {
+    return res.status(422).json(registerCourseValidate.errors);
+  }
+
+  try {
+    const course = await courseModel.findOne({ _id: req.body.courseId }).lean();
+    if (!course) {
+      return res.status(422).json({ message: "Course not found !!" });
+    }
+
+    const userCourseExist = await userCourseModel
+      .findOne({
+        userId: req.user._id,
+        courseId: req.body.courseId,
+      })
+      .lean();
+    if (userCourseExist) {
+      return res
+        .status(409)
+        .json({ message: "You have already registered for this course !!" });
+    }
+
+    const newRegisterCourse = await userCourseModel.create({
+      ...req.body,
+      userId: req.user._id,
+    });
+    if (!newRegisterCourse) {
+      return res.status(500).json({ message: "Register failed !!" });
+    }
+
+    const newRegisterCourseObject = newRegisterCourse.toObject();
+    Reflect.deleteProperty(newRegisterCourseObject, "__v");
+
+    return res.status(201).json({
+      message: "Congratulations 🥳. You have registered successfully :))",
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getAll, addCourse, getCourse, registerCourse };
