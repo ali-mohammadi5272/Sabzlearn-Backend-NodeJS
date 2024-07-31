@@ -2,6 +2,7 @@ require("dotenv").config();
 const { isValidObjectId } = require("mongoose");
 const { default: courseModel } = require("../../models/course");
 const { default: userCourseModel } = require("../../models/userCourse");
+const { default: categoryModel } = require("../../models/category");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
@@ -140,4 +141,40 @@ const registerCourse = async (req, res) => {
   }
 };
 
-module.exports = { getAll, addCourse, getCourse, registerCourse };
+const getCoursesByCategory = async (req, res) => {
+  const { categoryId } = req.params;
+  const isValidId = isValidObjectId(categoryId);
+  if (!isValidId) {
+    return res.status(422).json({ message: "CategoryId is not valid !!" });
+  }
+  try {
+    const category = await categoryModel.findOne({ _id: categoryId }).lean();
+    if (!category) {
+      return res.status(404).json({ message: "Category not found !!" });
+    }
+
+    const courses = await courseModel
+      .find({
+        categories: { $in: [categoryId] },
+      })
+      .select("title cover price discount")
+      .lean();
+    if (!courses) {
+      return res.status(404).json({
+        message: `Courses with ${category.title} Category not found !!`,
+      });
+    }
+
+    return res.status(200).json(courses);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  getAll,
+  addCourse,
+  getCourse,
+  registerCourse,
+  getCoursesByCategory,
+};
