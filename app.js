@@ -39,13 +39,6 @@ app.use(`/api/${process.env.VERSION}/courses/`, courseRouter);
 app.use(`/api/${process.env.VERSION}/sessions/`, sessionRouter);
 app.use(`/api/${process.env.VERSION}/comments/`, commentRouter);
 
-app.get("/courses/covers/:fileName", (req, res) => {
-  res.sendFile(path.join(process.cwd(), req.url));
-});
-app.get("/courses/sessions/:fileName", (req, res) => {
-  res.sendFile(path.join(process.cwd(), req.url));
-});
-
 app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
 });
