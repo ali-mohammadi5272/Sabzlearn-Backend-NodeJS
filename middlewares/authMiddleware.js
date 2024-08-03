@@ -2,7 +2,7 @@ const { isUserRegisterInApplication } = require("../utils/auth");
 
 const middleware = async (req, res, next) => {
   try {
-    const user = await userRegisterInApplicationInfo(req);
+    const user = await isUserRegisterInApplication(req);
     if (!user) {
       return res.status(401).json({ message: "Unauthorized !!" });
     }
