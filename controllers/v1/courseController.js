@@ -3,6 +3,7 @@ const { isValidObjectId } = require("mongoose");
 const { default: courseModel } = require("../../models/course");
 const { default: userCourseModel } = require("../../models/userCourse");
 const { default: categoryModel } = require("../../models/category");
+const { isUserRegisterInApplication } = require("../../utils/auth");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
@@ -101,7 +102,20 @@ const getCourse = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: "Course not found !!" });
     }
-    return res.status(200).json(course);
+
+    const user = await isUserRegisterInApplication(req);
+    if (!user) {
+      return res
+        .status(200)
+        .json({ ...course, isUserRegisteredToThisCourse: false });
+    }
+
+    const isUserRegisteredToThisCourse = !!(await userCourseModel.findOne({
+      userId: user._id,
+      courseId: course._id,
+    }));
+
+    return res.status(200).json({ ...course, isUserRegisteredToThisCourse });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
