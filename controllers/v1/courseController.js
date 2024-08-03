@@ -179,9 +179,7 @@ const getCoursesByCategory = async (req, res) => {
     }
 
     const courses = await courseModel
-      .find({
-        category: categoryId,
-      })
+      .find({ categoryId })
       .select("title cover price discount")
       .lean();
     if (!courses) {
