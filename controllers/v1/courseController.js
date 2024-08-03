@@ -1,4 +1,6 @@
 require("dotenv").config();
+const fs = require("fs");
+const path = require("path");
 const { isValidObjectId } = require("mongoose");
 const { default: courseModel } = require("../../models/course");
 const { default: userCourseModel } = require("../../models/userCourse");
@@ -194,10 +196,42 @@ const getCoursesByCategory = async (req, res) => {
   }
 };
 
+const removeCourse = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "Course Id is not valid !!" });
+  }
+
+  try {
+    const findedCourse = await courseModel.findOne({ _id: id });
+    if (!findedCourse) {
+      return res.status(404).json({ message: "Course not found !!" });
+    }
+    console.log("findedCourse-->", findedCourse);
+    fs.unlinkSync(
+      path.join(process.cwd(), "public/courses/covers", findedCourse.cover)
+    );
+    const course = await courseModel
+      .findOneAndDelete({ _id: findedCourse._id })
+      .select("-__v");
+
+    if (!course) {
+      return res.status(404).json({ message: "Delete Course faild !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Course removed successfully :))", course });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getAll,
   addCourse,
   getCourse,
   registerCourse,
   getCoursesByCategory,
+  removeCourse,
 };
