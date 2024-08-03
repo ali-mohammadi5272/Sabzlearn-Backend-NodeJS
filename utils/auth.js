@@ -1,6 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { default: userModel } = require("../models/user");
 
 const hashPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
@@ -37,10 +38,26 @@ const decodedTokenData = (token) => {
   return tokenPayload;
 };
 
+const isUserRegisterInApplication = async (req) => {
+  try {
+    const accessToken = req.header("Authorization")?.split(" ")[1];
+    const tokenPayload = tokenPayloadData(accessToken);
+    const { _id } = tokenPayload;
+    const user = await userModel.findOne({ _id }).select("-__v -password");
+    if (!user) {
+      return false;
+    }
+    return user;
+  } catch (error) {
+    return false;
+  }
+};
+
 module.exports = {
   hashPassword,
   isValidHashedPassword,
   generateAccessToken,
   tokenPayloadData,
   decodedTokenData,
+  isUserRegisterInApplication,
 };
