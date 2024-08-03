@@ -27,6 +27,8 @@ const addComment = async (req, res) => {
 
     const newCommentObject = newComment.toObject();
     Reflect.deleteProperty(newCommentObject, "__v");
+    Reflect.deleteProperty(newCommentObject, "userId");
+    Reflect.deleteProperty(newCommentObject, "courseId");
 
     return res.status(201).json({
       message: "Comment added successfully :))",
