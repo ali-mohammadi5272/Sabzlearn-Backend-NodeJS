@@ -173,14 +173,14 @@ const getCoursesByCategory = async (req, res) => {
     return res.status(422).json({ message: "CategoryId is not valid !!" });
   }
   try {
-    const category = await categoryModel.findOne({ _id: categoryId }).lean();
+    const category = await categoryModel.findOne({ _id: categoryId });
     if (!category) {
       return res.status(404).json({ message: "Category not found !!" });
     }
 
     const courses = await courseModel
       .find({
-        categories: { $in: [categoryId] },
+        category: categoryId,
       })
       .select("title cover price discount")
       .lean();
