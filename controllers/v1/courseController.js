@@ -3,7 +3,7 @@ const { isValidObjectId } = require("mongoose");
 const { default: courseModel } = require("../../models/course");
 const { default: userCourseModel } = require("../../models/userCourse");
 const { default: categoryModel } = require("../../models/category");
-const { isUserRegisterInApplication } = require("../../utils/auth");
+const { userRegisterInApplicationInfo } = require("../../utils/auth");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
@@ -103,7 +103,7 @@ const getCourse = async (req, res) => {
       return res.status(404).json({ message: "Course not found !!" });
     }
 
-    const user = await isUserRegisterInApplication(req);
+    const user = await userRegisterInApplicationInfo(req);
     if (!user) {
       return res
         .status(200)
