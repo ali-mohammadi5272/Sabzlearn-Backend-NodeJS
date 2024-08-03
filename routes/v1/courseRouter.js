@@ -5,6 +5,7 @@ const {
   getAll,
   registerCourse,
   getCoursesByCategory,
+  removeCourse,
 } = require("../../controllers/v1/courseController");
 const { uploader } = require("../../utils/uploader");
 const { roles } = require("../../utils/constants");
@@ -23,5 +24,6 @@ router.use(authMiddleware, accessLevelMiddleware(roles.admin));
 router
   .route("/")
   .post(uploader("public/courses/covers").single("upload"), addCourse);
+router.route("/:id").delete(removeCourse);
 
 module.exports.default = router;
