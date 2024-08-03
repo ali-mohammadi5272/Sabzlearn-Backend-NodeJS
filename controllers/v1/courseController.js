@@ -87,6 +87,15 @@ const getCourse = async (req, res) => {
     const course = await courseModel
       .findOne({ _id: id })
       .populate("sessions", "title time free -courseId")
+      .populate({
+        path: "comments",
+        match: { isAccepted: true },
+        select: "body score isAnswer mainCommentId createdAt",
+        populate: {
+          path: "userId",
+          select: "username createdAt",
+        },
+      })
       .select("-__v")
       .lean();
     if (!course) {
