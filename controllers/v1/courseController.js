@@ -90,6 +90,8 @@ const getCourse = async (req, res) => {
   try {
     const course = await courseModel
       .findOne({ _id: id })
+      .populate("teacherId", "firstname lastname")
+      .populate("categoryId", "title")
       .populate("sessions", "title time free -courseId")
       .populate({
         path: "comments",
@@ -105,12 +107,21 @@ const getCourse = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: "Course not found !!" });
     }
+    const relatedCourses = await courseModel
+      .find({
+        categoryId: course.categoryId,
+        _id: { $ne: course._id },
+      })
+      .select("title cover")
+      .lean();
 
     const user = await userRegisterInApplicationInfo(req);
     if (!user) {
-      return res
-        .status(200)
-        .json({ ...course, isUserRegisteredToThisCourse: false });
+      return res.status(200).json({
+        ...course,
+        isUserRegisteredToThisCourse: false,
+        relatedCourses,
+      });
     }
 
     const isUserRegisteredToThisCourse = !!(await userCourseModel.findOne({
@@ -118,7 +129,9 @@ const getCourse = async (req, res) => {
       courseId: course._id,
     }));
 
-    return res.status(200).json({ ...course, isUserRegisteredToThisCourse });
+    return res
+      .status(200)
+      .json({ ...course, isUserRegisteredToThisCourse, relatedCourses });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
