@@ -2,6 +2,7 @@ const express = require("express");
 const {
   addComment,
   removeComment,
+  acceptComment,
 } = require("../../controllers/v1/commentController");
 const { default: authMiddleware } = require("../../middlewares/authMiddleware");
 const {
@@ -15,5 +16,6 @@ router.use(authMiddleware);
 router.route("/").post(addComment);
 router.use(accessLevelMiddleware(roles.admin));
 router.route("/:id").delete(removeComment);
+router.route("/accept/:id").put(acceptComment);
 
 module.exports.default = router;
