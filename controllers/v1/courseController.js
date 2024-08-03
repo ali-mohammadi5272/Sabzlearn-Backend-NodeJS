@@ -18,7 +18,9 @@ const getAll = async (req, res) => {
   try {
     const courses = await courseModel
       .find({})
-      .select("title cover price discount status")
+      .populate("teacherId", "firstname lastname")
+      .populate("categoryId", "title")
+      .select("title cover price discount status teacherId categoryId")
       .lean();
     if (!courses) {
       return res.status(500).json({ message: "Internal Server Error !!" });
