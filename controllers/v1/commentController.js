@@ -1,3 +1,4 @@
+const { isValidObjectId } = require("mongoose");
 const { default: commentModel } = require("../../models/comment");
 const { default: courseModel } = require("../../models/course");
 
@@ -39,4 +40,27 @@ const addComment = async (req, res) => {
   }
 };
 
-module.exports = { addComment };
+const removeComment = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "CommentId is not valid !!" });
+  }
+
+  try {
+    const comment = await commentModel
+      .findOneAndDelete({ _id: id })
+      .populate("userId courseId", "username title cover")
+      .select("-__v");
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Comment deleted successfully :))", comment });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { addComment, removeComment };
