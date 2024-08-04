@@ -113,6 +113,7 @@ const getCourse = async (req, res) => {
           },
         ],
       })
+      .populate("studentsCount")
       .select("-__v")
       .lean();
     if (!course) {
@@ -127,19 +128,12 @@ const getCourse = async (req, res) => {
       .select("title cover")
       .lean();
 
-    const studentsCount = await userCourseModel
-      .find({
-        courseId: course._id,
-      })
-      .countDocuments();
-
     const user = await userRegisterInApplicationInfo(req);
     if (!user) {
       return res.status(200).json({
         ...course,
         isUserRegisteredToThisCourse: false,
         relatedCourses,
-        studentsCount,
       });
     }
 
@@ -152,7 +146,6 @@ const getCourse = async (req, res) => {
       ...course,
       isUserRegisteredToThisCourse,
       relatedCourses,
-      studentsCount,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
