@@ -5,6 +5,9 @@ const { default: courseModel } = require("../../models/course");
 const {
   default: commentValidate,
 } = require("../../validators/comments/comment");
+const {
+  default: answerCommentValidate,
+} = require("../../validators/comments/answerComment");
 
 const addComment = async (req, res) => {
   const isValidRequestBody = commentValidate(req.body);
@@ -72,7 +75,7 @@ const acceptComment = async (req, res) => {
 
   try {
     const comment = await commentModel
-      .findByIdAndUpdate(
+      .findOneAndUpdate(
         { _id: id },
         {
           isAccepted: true,
@@ -83,9 +86,13 @@ const acceptComment = async (req, res) => {
     if (!comment) {
       return res.status(404).json({ message: "Comment not found !!" });
     }
-    return res
-      .status(200)
-      .json({ message: "Comment updated successfully :))", comment });
+    return res.status(200).json({
+      message: "Comment updated successfully :))",
+      comment: {
+        ...comment.toObject(),
+        isAccepted: true,
+      },
+    });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
