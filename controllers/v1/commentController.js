@@ -151,4 +151,33 @@ const answerComment = async (req, res) => {
   }
 };
 
-module.exports = { addComment, removeComment, acceptComment, answerComment };
+const getAll = async (req, res) => {
+  try {
+    const comments = await commentModel
+      .find({ mainCommentId: null })
+      .populate({
+        path: "children",
+        select: "userId isAccepted createdAt body mainCommentId",
+        populate: {
+          path: "userId",
+          select: "username createdAt body",
+        },
+      })
+      .select("body createdAt isAccepted mainCommentId")
+      .lean();
+    if (!comments) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(comments);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  addComment,
+  removeComment,
+  acceptComment,
+  answerComment,
+  getAll,
+};

@@ -95,12 +95,22 @@ const getCourse = async (req, res) => {
       .populate("sessions", "title time free -courseId")
       .populate({
         path: "comments",
-        match: { isAccepted: true },
-        select: "body score isAnswer mainCommentId createdAt",
-        populate: {
-          path: "userId",
-          select: "username createdAt",
-        },
+        match: { isAccepted: true, mainCommentId: null },
+        select: "body score -courseId createdAt",
+        populate: [
+          {
+            path: "userId",
+            select: "username createdAt",
+          },
+          {
+            path: "children",
+            select: "createdAt body",
+            populate: {
+              path: "userId",
+              select: "username createdAt",
+            },
+          },
+        ],
       })
       .select("-__v")
       .lean();
