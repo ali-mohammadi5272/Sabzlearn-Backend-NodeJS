@@ -21,6 +21,7 @@ const getAll = async (req, res) => {
       .populate("teacherId", "firstname lastname")
       .populate("categoryId", "title")
       .select("title cover price discount status teacherId categoryId")
+      .populate("studentsCount")
       .lean();
     if (!courses) {
       return res.status(500).json({ message: "Internal Server Error !!" });
