@@ -100,14 +100,14 @@ const getCourse = async (req, res) => {
         populate: [
           {
             path: "userId",
-            select: "username createdAt",
+            select: "username",
           },
           {
             path: "children",
             select: "createdAt body",
             populate: {
               path: "userId",
-              select: "username createdAt",
+              select: "username",
             },
           },
         ],
