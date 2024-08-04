@@ -6,6 +6,7 @@ const {
   registerCourse,
   getCoursesByCategory,
   removeCourse,
+  getPopularCourses,
 } = require("../../controllers/v1/courseController");
 const { uploader } = require("../../utils/uploader");
 const { roles } = require("../../utils/constants");
@@ -17,6 +18,7 @@ const {
 const router = express.Router();
 
 router.route("/").get(getAll);
+router.route("/popular").get(getPopularCourses);
 router.route("/category/:categoryId").get(getCoursesByCategory);
 router.route("/:id").get(getCourse);
 router.route("/register").post(authMiddleware, registerCourse);
