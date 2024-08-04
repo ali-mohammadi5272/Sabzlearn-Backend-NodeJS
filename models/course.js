@@ -78,6 +78,13 @@ schema.virtual("comments", {
   foreignField: "courseId",
 });
 
+schema.virtual("studentsCount", {
+  ref: "UserCourse",
+  count: true,
+  localField: "_id",
+  foreignField: "courseId",
+});
+
 const model = mongoose.models.Course || mongoose.model("Course", schema);
 
 module.exports = {
