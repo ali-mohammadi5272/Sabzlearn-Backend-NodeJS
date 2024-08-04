@@ -339,14 +339,45 @@
           "name": "Get one Course",
           "request": {
             "auth": {
-              "type": "noauth"
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
+                  "type": "string"
+                }
+              ]
             },
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
+              "raw": "{{base_url}}/api/{{version}}/courses/66aa312425e8e048992b8379",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "courses", "{{id}}"]
+              "path": [
+                "api",
+                "{{version}}",
+                "courses",
+                "66aa312425e8e048992b8379"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses by CategoryId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses/category/669e8e9a850afb7faa4df754",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "courses",
+                "category",
+                "669e8e9a850afb7faa4df754"
+              ]
             }
           },
           "response": []
@@ -359,7 +390,7 @@
               "bearer": [
                 {
                   "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI0Mjk0NTcsImV4cCI6MTcyMjUxNTg1N30.tEO5QZ4ozt6lqRHfpT5R_9R-dfNwveNMyR9GPqCXrZ4",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
                   "type": "string"
                 }
               ]
@@ -376,7 +407,7 @@
                 },
                 {
                   "key": "title",
-                  "value": "دوره جامع NextJS",
+                  "value": "دوره جامع HTML",
                   "type": "text"
                 },
                 {
@@ -390,8 +421,8 @@
                   "type": "text"
                 },
                 {
-                  "key": "categories",
-                  "value": "[\"669f3acdb8ef29517507e276\"]",
+                  "key": "categoryId",
+                  "value": "669e8e9a850afb7faa4df754",
                   "type": "text"
                 },
                 {
@@ -467,14 +498,24 @@
           "response": []
         },
         {
-          "name": "Get Courses by CategoryId",
+          "name": "Remove Course",
           "request": {
-            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/courses/category/{{id}}",
+              "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "courses", "category", "{{id}}"]
+              "path": ["api", "{{version}}", "courses", "{{id}}"]
             }
           },
           "response": []
@@ -638,6 +679,97 @@
               "raw": "{{base_url}}/api/{{version}}/comments",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "comments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/comments/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "comments", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/comments/accept/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "comments", "accept", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Answer Comment in Admin Panel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI3NDc3MjEsImV4cCI6MTcyMjgzNDEyMX0.gktXhz6NZ6FPjUrNqJPSzc2cSLtDDaq37Vjs-4dkF-0",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"body\": \"خیلی خوشحالم از اینکه دوره مورد رضایتتون هست 🌷🙏\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/comments/answer/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "comments", "answer", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/comments/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "comments", ""]
             }
           },
           "response": []
