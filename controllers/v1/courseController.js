@@ -32,6 +32,28 @@ const getAll = async (req, res) => {
   }
 };
 
+const getPopularCourses = async (req, res) => {
+  try {
+    const courses = await courseModel
+      .find({})
+      .populate("teacherId", "firstname lastname")
+      .populate("categoryId", "title")
+      .select("title cover price discount status teacherId categoryId")
+      .populate("studentsCount")
+      .lean();
+    if (!courses) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    const coursesClone = Object.assign([], courses);
+    const sortedCourses = coursesClone.sort(
+      (prev, current) => current.studentsCount - prev.studentsCount
+    );
+    return res.status(200).json(sortedCourses);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const addCourse = async (req, res) => {
   req.body.price = +req.body.price;
   req.body.qualification = JSON.parse(req.body.qualification);
@@ -260,4 +282,5 @@ module.exports = {
   registerCourse,
   getCoursesByCategory,
   removeCourse,
+  getPopularCourses,
 };
