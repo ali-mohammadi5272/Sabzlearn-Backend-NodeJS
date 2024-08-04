@@ -98,4 +98,57 @@ const acceptComment = async (req, res) => {
   }
 };
 
-module.exports = { addComment, removeComment, acceptComment };
+const answerComment = async (req, res) => {
+  const isValidRequestBody = answerCommentValidate(req.body);
+  if (!isValidRequestBody) {
+    return res.status(422).json(answerCommentValidate.errors);
+  }
+
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "CommentId is not valid !!" });
+  }
+  const { body } = req.body;
+
+  try {
+    const comment = await commentModel
+      .findByIdAndUpdate(
+        { _id: id },
+        {
+          isAccepted: true,
+        }
+      )
+      .populate("userId courseId", "username title cover")
+      .select("-__v");
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found !!" });
+    }
+
+    const answerComment = await commentModel.create({
+      body,
+      userId: req.user._id,
+      courseId: comment.courseId,
+      score: 5,
+      isAccepted: true,
+      isAnswer: true,
+      mainCommentId: comment._id,
+    });
+
+    if (!answerComment) {
+      return res.status(404).json({ message: "Added Answer Comment faild !!" });
+    }
+
+    const answerCommentObject = answerComment.toObject();
+    Reflect.deleteProperty(answerCommentObject, "__v");
+
+    return res.status(200).json({
+      message: "Comment added successfully :))",
+      comment: answerCommentObject,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { addComment, removeComment, acceptComment, answerComment };
