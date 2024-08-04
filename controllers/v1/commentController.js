@@ -155,6 +155,7 @@ const getAll = async (req, res) => {
   try {
     const comments = await commentModel
       .find({ mainCommentId: null })
+      .populate("userId", "username")
       .populate({
         path: "children",
         select: "userId isAccepted createdAt body mainCommentId",
