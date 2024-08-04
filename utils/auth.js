@@ -28,7 +28,6 @@ const tokenPayloadData = (token) => {
     const tokenPayload = jwt.verify(token, TokenSecretKey);
     return tokenPayload;
   } catch (err) {
-    console.log("Error verifying token !!", err);
     return null;
   }
 };
