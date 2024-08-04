@@ -38,6 +38,12 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 );
 
+schema.virtual("children", {
+  ref: "Comment",
+  localField: "_id",
+  foreignField: "mainCommentId",
+});
+
 const model = mongoose.models.Comment || mongoose.model("Comment", schema);
 
 module.exports = {
