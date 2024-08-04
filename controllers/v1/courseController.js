@@ -117,6 +117,7 @@ const getCourse = async (req, res) => {
     if (!course) {
       return res.status(404).json({ message: "Course not found !!" });
     }
+
     const relatedCourses = await courseModel
       .find({
         categoryId: course.categoryId,
@@ -125,12 +126,19 @@ const getCourse = async (req, res) => {
       .select("title cover")
       .lean();
 
+    const studentsCount = await userCourseModel
+      .find({
+        courseId: course._id,
+      })
+      .countDocuments();
+
     const user = await userRegisterInApplicationInfo(req);
     if (!user) {
       return res.status(200).json({
         ...course,
         isUserRegisteredToThisCourse: false,
         relatedCourses,
+        studentsCount,
       });
     }
 
@@ -139,9 +147,12 @@ const getCourse = async (req, res) => {
       courseId: course._id,
     }));
 
-    return res
-      .status(200)
-      .json({ ...course, isUserRegisteredToThisCourse, relatedCourses });
+    return res.status(200).json({
+      ...course,
+      isUserRegisteredToThisCourse,
+      relatedCourses,
+      studentsCount,
+    });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -230,7 +241,6 @@ const removeCourse = async (req, res) => {
     if (!findedCourse) {
       return res.status(404).json({ message: "Course not found !!" });
     }
-    console.log("findedCourse-->", findedCourse);
     fs.unlinkSync(
       path.join(process.cwd(), "public/courses/covers", findedCourse.cover)
     );
