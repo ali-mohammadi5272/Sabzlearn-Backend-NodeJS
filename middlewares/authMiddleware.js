@@ -13,4 +13,4 @@ const middleware = async (req, res, next) => {
   }
 };
 
-module.exports.default = middleware;
+module.exports = middleware;

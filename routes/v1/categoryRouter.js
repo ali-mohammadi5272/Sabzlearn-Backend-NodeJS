@@ -6,7 +6,7 @@ const {
   removeCategory,
   updateCategory,
 } = require("../../controllers/v1/categoryController");
-const { default: authMiddleware } = require("../../middlewares/authMiddleware");
+const authMiddleware = require("../../middlewares/authMiddleware");
 const {
   default: accessLevelMiddleware,
 } = require("../../middlewares/accessLevelMiddleware");

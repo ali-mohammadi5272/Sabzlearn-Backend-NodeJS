@@ -9,7 +9,7 @@ const {
   banUser,
   updateUser,
 } = require("../../controllers/v1/userController");
-const { default: authMiddleware } = require("../../middlewares/authMiddleware");
+const authMiddleware = require("../../middlewares/authMiddleware");
 const {
   default: accessLevelMiddleware,
 } = require("../../middlewares/accessLevelMiddleware");
