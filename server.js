@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { default: connectToDB } = require("./configs/db");
+const connectToDB = require("./configs/db");
 const app = require("./app");
 connectToDB();
 
