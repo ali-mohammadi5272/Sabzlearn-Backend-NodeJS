@@ -11,43 +11,39 @@ const isAllowedUser = (validRoles, userRole) => {
   return validRoles.some((role) => role === userRole);
 };
 
-const managerLevel = [roles.manager];
-const adminLevel = [roles.manager, roles.admin];
-const teacherLevel = [roles.manager, roles.admin, roles.teacher];
-const teacherHelperLevel = [
-  roles.manager,
-  roles.admin,
-  roles.teacher,
-  roles.teacherHelper,
-];
+const { manager, admin, teacher, teacherHelper, user } = roles;
+const managerLevel = [manager];
+const adminLevel = [manager, admin];
+const teacherLevel = [manager, admin, teacher];
+const teacherHelperLevel = [manager, admin, teacher, teacherHelper];
 
 const middleware = (middlwareRole) => {
   return (req, res, next) => {
     const { role: userRole } = req.user;
 
     // Manager Access Level:
-    if (middlwareRole === roles.manager) {
+    if (middlwareRole === manager) {
       const isAdmin = isAllowedUser(managerLevel, userRole);
       if (!isAdmin) return forbiddenResponse(res);
       next();
     }
 
     // Admin Access Level:
-    else if (middlwareRole === roles.admin) {
+    else if (middlwareRole === admin) {
       const isAdmin = isAllowedUser(adminLevel, userRole);
       if (!isAdmin) return forbiddenResponse(res);
       next();
     }
 
     // Teacher Access Level:
-    else if (middlwareRole === roles.teacher) {
+    else if (middlwareRole === teacher) {
       const isAdmin = isAllowedUser(teacherLevel, userRole);
       if (!isAdmin) return forbiddenResponse(res);
       next();
     }
 
     // Teacher_Helper Access Level:
-    else if (middlwareRole === roles.teacherHelper) {
+    else if (middlwareRole === teacherHelper) {
       const isAdmin = isAllowedUser(teacherHelperLevel, userRole);
       if (!isAdmin) return forbiddenResponse(res);
       next();
