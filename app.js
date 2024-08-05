@@ -28,7 +28,7 @@ app.use(`/api/${VERSION}/categories/`, categoryRouter);
 app.use(`/api/${VERSION}/courses/`, courseRouter);
 app.use(`/api/${VERSION}/sessions/`, sessionRouter);
 app.use(`/api/${VERSION}/comments/`, commentRouter);
-app.use(`/api/${VERSION}/contactUs/`, contactUsRouter);
+app.use(`/api/${VERSION}/contact-us/`, contactUsRouter);
 
 app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
