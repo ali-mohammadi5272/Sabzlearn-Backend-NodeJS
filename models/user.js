@@ -59,7 +59,4 @@ const schema = new mongoose.Schema(
 
 const model = mongoose.models.User || mongoose.model("User", schema);
 
-module.exports = {
-  schema,
-  default: model,
-};
+module.exports = model;

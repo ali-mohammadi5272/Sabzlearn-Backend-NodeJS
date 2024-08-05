@@ -1,7 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { default: userModel } = require("../models/user");
+const userModel = require("../models/user");
 
 const hashPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);

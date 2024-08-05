@@ -1,4 +1,4 @@
-const { default: userModel } = require("../../models/user");
+const userModel = require("../../models/user");
 const { default: registerValidate } = require("../../validators/auth/register");
 const { default: loginValidate } = require("../../validators/auth/login");
 const {
