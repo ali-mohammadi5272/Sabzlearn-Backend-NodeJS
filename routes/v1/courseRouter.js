@@ -26,4 +26,4 @@ router
   .post(uploader("public/courses/covers").single("upload"), addCourse);
 router.route("/:id").delete(removeCourse);
 
-module.exports.default = router;
+module.exports = router;
