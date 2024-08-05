@@ -13,16 +13,6 @@
         {
           "name": "Get all Users",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE2NDU1NTgsImV4cCI6MTcyMTczMTk1OH0.EHVuOy3ItMdH7w5Jj8fNsqMUMydI1j_gnLCvoV8N_k0",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -75,16 +65,6 @@
         {
           "name": "Update User",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE2NTk5NDYsImV4cCI6MTcyMTc0NjM0Nn0.rXDauaKiVAkjEvQ2Xq99G_pXT-Eo7XfZHvx5G72m02I",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "PUT",
             "header": [],
             "body": {
@@ -107,16 +87,6 @@
         {
           "name": "Change Role",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3NDE4NTMsImV4cCI6MTcyMTgyODI1M30.WieWnpXQZvmIgzN3Jnf7eVDB9La78awZiUV2ku8lTLk",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "PUT",
             "header": [],
             "body": {
@@ -158,16 +128,6 @@
         {
           "name": "Login",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI3NzE1ODMsImV4cCI6MTcyMjg1Nzk4M30.YIwSMijhqLW01TX_z5RHG45JBn98Mls3x9atJ2RiqzE",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
@@ -243,16 +203,6 @@
         {
           "name": "Update Category",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3MTExMTAsImV4cCI6MTcyMTc5NzUxMH0.hpZ_CnWvfgBMuVcHL6ZaeY-dtrj42dh6RIS-dyQ5Ii8",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "PUT",
             "header": [],
             "body": {
@@ -275,16 +225,6 @@
         {
           "name": "Delete Category",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3MTExMTAsImV4cCI6MTcyMTc5NzUxMH0.hpZ_CnWvfgBMuVcHL6ZaeY-dtrj42dh6RIS-dyQ5Ii8",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "DELETE",
             "header": [],
             "url": {
@@ -298,16 +238,6 @@
         {
           "name": "Add Category",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE3MTExMTAsImV4cCI6MTcyMTc5NzUxMH0.hpZ_CnWvfgBMuVcHL6ZaeY-dtrj42dh6RIS-dyQ5Ii8",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
@@ -348,16 +278,6 @@
         {
           "name": "Get one Course",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -390,16 +310,6 @@
         {
           "name": "Add Course",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
@@ -473,16 +383,6 @@
         {
           "name": "Register Course",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI0MTE4ODQsImV4cCI6MTcyMjQ5ODI4NH0.Z_O4LqKolq8C6rcers05qsJtB1vmnRMzePWF4EM5cxI",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
@@ -505,16 +405,6 @@
         {
           "name": "Remove Course",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "DELETE",
             "header": [],
             "url": {
@@ -546,16 +436,6 @@
         {
           "name": "Add Session",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjE5MTA5MTcsImV4cCI6MTcyMTk5NzMxN30.TQLD8blZ_hhIYi1AY352_IDw3hn6N3NPHqfvF85qO2E",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
@@ -599,16 +479,6 @@
         {
           "name": "Get all Sessions",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjIxNzEwNjEsImV4cCI6MTcyMjI1NzQ2MX0.yWdPijL6YEXPSUKdiPjagGAQaXDZeELRAtUTmz-wN44",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [],
             "url": {
@@ -672,16 +542,6 @@
         {
           "name": "Add Comment",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI0MTE4ODQsImV4cCI6MTcyMjQ5ODI4NH0.Z_O4LqKolq8C6rcers05qsJtB1vmnRMzePWF4EM5cxI",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "POST",
             "header": [],
             "body": {
@@ -704,16 +564,6 @@
         {
           "name": "Remove Comment",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "DELETE",
             "header": [],
             "url": {
@@ -727,16 +577,6 @@
         {
           "name": "Accept Comment",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI2ODk2ODMsImV4cCI6MTcyMjc3NjA4M30.XnZBBL5_o154O-2z9OF7_Gd09qAPYQxFc5r-5rhrPWM",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "PUT",
             "header": [],
             "url": {
@@ -750,16 +590,6 @@
         {
           "name": "Answer Comment in Admin Panel",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI3NDc3MjEsImV4cCI6MTcyMjgzNDEyMX0.gktXhz6NZ6FPjUrNqJPSzc2cSLtDDaq37Vjs-4dkF-0",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "PUT",
             "header": [],
             "body": {
