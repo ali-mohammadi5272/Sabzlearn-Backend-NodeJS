@@ -5,9 +5,7 @@ const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
-const {
-  default: sessionValidate,
-} = require("../../validators/sessions/session");
+const sessionValidate = require("../../validators/sessions/session");
 const path = require("path");
 
 const getAll = async (req, res) => {
