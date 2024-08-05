@@ -2,7 +2,7 @@ const userModel = require("../../models/user");
 const banUserModel = require("../../models/banUser");
 const { phoneNumberPrefixPattern } = require("../../utils/patterns");
 const { default: registerValidate } = require("../../validators/auth/register");
-const { default: loginValidate } = require("../../validators/auth/login");
+const loginValidate = require("../../validators/auth/login");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
