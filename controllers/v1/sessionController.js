@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { default: sessionModel } = require("../../models/session");
+const sessionModel = require("../../models/session");
 const courseModel = require("../../models/course");
 const { isValidObjectId } = require("mongoose");
 const {

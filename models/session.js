@@ -34,7 +34,4 @@ const schema = new mongoose.Schema(
 
 const model = mongoose.models.Session || mongoose.model("Session", schema);
 
-module.exports = {
-  schema,
-  default: model,
-};
+module.exports = model;
