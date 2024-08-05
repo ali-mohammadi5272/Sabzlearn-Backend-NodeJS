@@ -10,9 +10,7 @@ const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
 const courseValidate = require("../../validators/courses/course");
-const {
-  default: registerCourseValidate,
-} = require("../../validators/courses/registerCourse");
+const registerCourseValidate = require("../../validators/courses/registerCourse");
 
 const getAll = async (req, res) => {
   try {
