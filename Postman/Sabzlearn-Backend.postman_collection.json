@@ -158,11 +158,21 @@
         {
           "name": "Login",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjllMjZlMGRiNjQzOWUwMmY1NTM5MDAiLCJpYXQiOjE3MjI3NzE1ODMsImV4cCI6MTcyMjg1Nzk4M30.YIwSMijhqLW01TX_z5RHG45JBn98Mls3x9atJ2RiqzE",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"identifier\": \"{{$randomEmail}}\",\r\n    \"password\": \"{{$randomPassword}}\"\r\n}",
+              "raw": "{\r\n    \"identifier\": \"{{$randomUserName}}\", \r\n    \"password\": \"{{$randomPassword}}\"\r\n}\r\n// identifier = Username || email",
               "options": {
                 "raw": {
                   "language": "json"
@@ -351,14 +361,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/courses/66aa312425e8e048992b8379",
+              "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
               "host": ["{{base_url}}"],
-              "path": [
-                "api",
-                "{{version}}",
-                "courses",
-                "66aa312425e8e048992b8379"
-              ]
+              "path": ["api", "{{version}}", "courses", "{{id}}"]
             }
           },
           "response": []
@@ -516,6 +521,19 @@
               "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "courses", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get popular Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses/popular",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses", "popular"]
             }
           },
           "response": []
@@ -746,7 +764,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"body\": \"خیلی خوشحالم از اینکه دوره مورد رضایتتون هست 🌷🙏\"\r\n}",
+              "raw": "{\r\n    \"body\": \"{{$randomLoremParagraph}}\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -770,6 +788,33 @@
               "raw": "{{base_url}}/api/{{version}}/comments/",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "comments", ""]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Contact-Us",
+      "item": [
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"fullname\": \"{{$randomFullName}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"phone\": \"+989152505373\",\r\n    \"body\": \"{{$randomLoremParagraph}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/contact-us",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "contact-us"]
             }
           },
           "response": []
