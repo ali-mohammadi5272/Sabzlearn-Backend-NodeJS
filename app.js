@@ -6,9 +6,7 @@ const categoryRouter = require(`./routes/${process.env.VERSION}/categoryRouter`)
 const {
   default: courseRouter,
 } = require(`./routes/${process.env.VERSION}/courseRouter`);
-const {
-  default: sessionRouter,
-} = require(`./routes/${process.env.VERSION}/sessionRouter`);
+const sessionRouter = require(`./routes/${process.env.VERSION}/sessionRouter`);
 const {
   default: commentRouter,
 } = require(`./routes/${process.env.VERSION}/commentRouter`);

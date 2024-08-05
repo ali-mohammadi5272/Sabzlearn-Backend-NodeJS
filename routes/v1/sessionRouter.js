@@ -23,4 +23,4 @@ router
   .post(uploader("public/courses/sessions").single("upload"), addSession);
 router.route("/:id").delete(removeSession);
 
-module.exports.default = router;
+module.exports = router;
