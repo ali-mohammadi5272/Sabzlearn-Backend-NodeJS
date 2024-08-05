@@ -1,5 +1,5 @@
 const { isValidObjectId } = require("mongoose");
-const { default: commentModel } = require("../../models/comment");
+const commentModel = require("../../models/comment");
 const courseModel = require("../../models/course");
 
 const {
