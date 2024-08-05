@@ -5,9 +5,7 @@ const courseModel = require("../../models/course");
 const {
   default: commentValidate,
 } = require("../../validators/comments/comment");
-const {
-  default: answerCommentValidate,
-} = require("../../validators/comments/answerComment");
+const answerCommentValidate = require("../../validators/comments/answerComment");
 
 const addComment = async (req, res) => {
   const isValidRequestBody = commentValidate(req.body);
