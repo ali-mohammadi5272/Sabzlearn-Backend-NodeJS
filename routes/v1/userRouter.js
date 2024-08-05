@@ -1,5 +1,7 @@
 const express = require("express");
 const { roles } = require("../../utils/constants");
+const authMiddleware = require("../../middlewares/authMiddleware");
+const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
 const {
   getAll,
   getUser,
@@ -9,8 +11,6 @@ const {
   banUser,
   updateUser,
 } = require("../../controllers/v1/userController");
-const authMiddleware = require("../../middlewares/authMiddleware");
-const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
 
 const router = express.Router();
 

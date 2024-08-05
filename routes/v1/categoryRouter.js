@@ -1,4 +1,7 @@
 const express = require("express");
+const authMiddleware = require("../../middlewares/authMiddleware");
+const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
+const { roles } = require("../../utils/constants");
 const {
   addCategroy,
   getAll,
@@ -6,9 +9,6 @@ const {
   removeCategory,
   updateCategory,
 } = require("../../controllers/v1/categoryController");
-const authMiddleware = require("../../middlewares/authMiddleware");
-const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
-const { roles } = require("../../utils/constants");
 
 const router = express.Router();
 

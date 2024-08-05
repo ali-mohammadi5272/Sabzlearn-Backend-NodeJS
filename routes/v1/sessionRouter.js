@@ -1,4 +1,8 @@
 const express = require("express");
+const { uploader } = require("../../utils/uploader");
+const { roles } = require("../../utils/constants");
+const authMiddleware = require("../../middlewares/authMiddleware");
+const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
 const {
   getAll,
   addSession,
@@ -6,10 +10,6 @@ const {
   getSessionAndAllCourseSessions,
   removeSession,
 } = require("../../controllers/v1/sessionController");
-const { uploader } = require("../../utils/uploader");
-const { roles } = require("../../utils/constants");
-const authMiddleware = require("../../middlewares/authMiddleware");
-const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
 
 const router = express.Router();
 
