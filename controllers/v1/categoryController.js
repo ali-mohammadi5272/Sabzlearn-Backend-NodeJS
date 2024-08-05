@@ -3,9 +3,7 @@ const categoryModel = require("../../models/category");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
-const {
-  default: categoryValidate,
-} = require("../../validators/categories/categroy");
+const categoryValidate = require("../../validators/categories/categroy");
 
 const addCategroy = async (req, res) => {
   const isValidRequestBody = categoryValidate(req.body);

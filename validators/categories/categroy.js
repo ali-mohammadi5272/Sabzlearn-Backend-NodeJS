@@ -20,4 +20,4 @@ const schema = {
 
 const validate = ajv.compile(schema);
 
-module.exports.default = validate;
+module.exports = validate;
