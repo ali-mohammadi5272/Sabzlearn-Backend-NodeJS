@@ -648,6 +648,68 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Answer Message with Email",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"subject\": \"...:موضوع\",\r\n    \"body\": \"{{$randomLoremParagraph}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/contact-us/answer/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "contact-us", "answer", "{{id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Newsletters",
+      "item": [
+        {
+          "name": "Get all Newsletters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/newsletter",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "newsletter"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register Newsletter",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"{{$randomEmail}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/newsletter/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "newsletter", "register"]
+            }
+          },
+          "response": []
         }
       ]
     }
