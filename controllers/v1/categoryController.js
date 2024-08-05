@@ -1,5 +1,5 @@
 const { isValidObjectId } = require("mongoose");
-const { default: categoryModel } = require("../../models/category");
+const categoryModel = require("../../models/category");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");

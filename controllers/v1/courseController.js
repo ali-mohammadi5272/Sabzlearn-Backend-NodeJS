@@ -4,7 +4,7 @@ const path = require("path");
 const { isValidObjectId } = require("mongoose");
 const courseModel = require("../../models/course");
 const userCourseModel = require("../../models/userCourse");
-const { default: categoryModel } = require("../../models/category");
+const categoryModel = require("../../models/category");
 const { userRegisterInApplicationInfo } = require("../../utils/auth");
 const {
   checkDBCollectionIndexes,
