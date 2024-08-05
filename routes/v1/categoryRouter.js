@@ -18,4 +18,4 @@ router.use(authMiddleware, accessLevelMiddleware(roles.admin));
 router.route("/").post(addCategroy);
 router.route("/:id").delete(removeCategory).put(updateCategory);
 
-module.exports.default = router;
+module.exports = router;
