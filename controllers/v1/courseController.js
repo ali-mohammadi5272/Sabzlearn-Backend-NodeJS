@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { isValidObjectId } = require("mongoose");
 const courseModel = require("../../models/course");
-const { default: userCourseModel } = require("../../models/userCourse");
+const userCourseModel = require("../../models/userCourse");
 const { default: categoryModel } = require("../../models/category");
 const { userRegisterInApplicationInfo } = require("../../utils/auth");
 const {

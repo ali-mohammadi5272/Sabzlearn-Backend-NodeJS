@@ -23,7 +23,4 @@ const schema = new mongoose.Schema(
 const model =
   mongoose.models.UserCourse || mongoose.model("UserCourse", schema);
 
-module.exports = {
-  schema,
-  default: model,
-};
+module.exports = model;
