@@ -19,4 +19,4 @@ router.route("/accept/:id").put(acceptComment);
 router.route("/answer/:id").put(answerComment);
 router.route("/").get(getAll);
 
-module.exports.default = router;
+module.exports = router;

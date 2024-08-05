@@ -5,9 +5,7 @@ const userRouter = require(`./routes/${process.env.VERSION}/userRouter`);
 const categoryRouter = require(`./routes/${process.env.VERSION}/categoryRouter`);
 const courseRouter = require(`./routes/${process.env.VERSION}/courseRouter`);
 const sessionRouter = require(`./routes/${process.env.VERSION}/sessionRouter`);
-const {
-  default: commentRouter,
-} = require(`./routes/${process.env.VERSION}/commentRouter`);
+const commentRouter = require(`./routes/${process.env.VERSION}/commentRouter`);
 
 const helmet = require("helmet");
 const cors = require("cors");
