@@ -7,6 +7,7 @@ const categoryRouter = require(`./routes/${VERSION}/categoryRouter`);
 const courseRouter = require(`./routes/${VERSION}/courseRouter`);
 const sessionRouter = require(`./routes/${VERSION}/sessionRouter`);
 const commentRouter = require(`./routes/${VERSION}/commentRouter`);
+const contactUsRouter = require(`./routes/${VERSION}/contactUsRouter`);
 
 const helmet = require("helmet");
 const cors = require("cors");
@@ -27,6 +28,7 @@ app.use(`/api/${VERSION}/categories/`, categoryRouter);
 app.use(`/api/${VERSION}/courses/`, courseRouter);
 app.use(`/api/${VERSION}/sessions/`, sessionRouter);
 app.use(`/api/${VERSION}/comments/`, commentRouter);
+app.use(`/api/${VERSION}/contactUs/`, contactUsRouter);
 
 app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
