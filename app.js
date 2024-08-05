@@ -1,8 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const {
-  default: authRouter,
-} = require(`./routes/${process.env.VERSION}/authRouter`);
+const authRouter = require(`./routes/${process.env.VERSION}/authRouter`);
 const {
   default: userRouter,
 } = require(`./routes/${process.env.VERSION}/userRouter`);
