@@ -1,6 +1,6 @@
 const { isValidObjectId } = require("mongoose");
 const { default: commentModel } = require("../../models/comment");
-const { default: courseModel } = require("../../models/course");
+const courseModel = require("../../models/course");
 
 const {
   default: commentValidate,

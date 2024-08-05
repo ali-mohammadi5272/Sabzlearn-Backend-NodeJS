@@ -87,7 +87,4 @@ schema.virtual("studentsCount", {
 
 const model = mongoose.models.Course || mongoose.model("Course", schema);
 
-module.exports = {
-  schema,
-  default: model,
-};
+module.exports = model;

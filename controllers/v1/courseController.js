@@ -2,7 +2,7 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { isValidObjectId } = require("mongoose");
-const { default: courseModel } = require("../../models/course");
+const courseModel = require("../../models/course");
 const { default: userCourseModel } = require("../../models/userCourse");
 const { default: categoryModel } = require("../../models/category");
 const { userRegisterInApplicationInfo } = require("../../utils/auth");
