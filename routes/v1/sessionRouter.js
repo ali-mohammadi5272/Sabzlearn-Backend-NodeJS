@@ -9,9 +9,7 @@ const {
 const { uploader } = require("../../utils/uploader");
 const { roles } = require("../../utils/constants");
 const authMiddleware = require("../../middlewares/authMiddleware");
-const {
-  default: accessLevelMiddleware,
-} = require("../../middlewares/accessLevelMiddleware");
+const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
 
 const router = express.Router();
 

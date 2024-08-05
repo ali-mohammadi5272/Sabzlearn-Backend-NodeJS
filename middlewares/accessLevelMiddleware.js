@@ -56,6 +56,4 @@ const middleware = (middlwareRole) => {
   };
 };
 
-module.exports = {
-  default: middleware,
-};
+module.exports = middleware;

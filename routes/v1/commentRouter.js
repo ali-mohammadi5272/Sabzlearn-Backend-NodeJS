@@ -7,9 +7,7 @@ const {
   getAll,
 } = require("../../controllers/v1/commentController");
 const authMiddleware = require("../../middlewares/authMiddleware");
-const {
-  default: accessLevelMiddleware,
-} = require("../../middlewares/accessLevelMiddleware");
+const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
 const { roles } = require("../../utils/constants");
 
 const router = express.Router();

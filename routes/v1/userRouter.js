@@ -10,9 +10,8 @@ const {
   updateUser,
 } = require("../../controllers/v1/userController");
 const authMiddleware = require("../../middlewares/authMiddleware");
-const {
-  default: accessLevelMiddleware,
-} = require("../../middlewares/accessLevelMiddleware");
+const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
+
 const router = express.Router();
 
 router.use(authMiddleware);
