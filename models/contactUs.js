@@ -31,23 +31,6 @@ const schema = new mongoose.Schema({
     default: false,
     trim: true,
   },
-  isAnswer: {
-    type: Boolean,
-    default: false,
-    trim: true,
-  },
-  mainContactUsMessageId: {
-    type: mongoose.Types.ObjectId,
-    ref: "ContactUs",
-    default: null,
-    trim: true,
-  },
-});
-
-schema.virtual("children", {
-  ref: "ContactUs",
-  localField: "_id",
-  foreignField: "mainContactUsMessageId",
 });
 
 const model = mongoose.models.ContactUs || mongoose.model("ContactUs", schema);
