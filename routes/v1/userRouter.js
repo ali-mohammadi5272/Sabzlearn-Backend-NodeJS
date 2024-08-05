@@ -23,4 +23,4 @@ router.post("/ban/:id", banUser);
 router.put("/free/:id", freeUser);
 router.route("/:id").get(getUser).delete(removeUser);
 
-module.exports.default = router;
+module.exports = router;
