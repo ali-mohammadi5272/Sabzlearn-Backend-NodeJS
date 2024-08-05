@@ -9,7 +9,7 @@ const { userRegisterInApplicationInfo } = require("../../utils/auth");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
-const { default: courseValidate } = require("../../validators/courses/course");
+const courseValidate = require("../../validators/courses/course");
 const {
   default: registerCourseValidate,
 } = require("../../validators/courses/registerCourse");
