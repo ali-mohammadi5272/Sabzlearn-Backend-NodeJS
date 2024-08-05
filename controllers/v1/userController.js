@@ -4,9 +4,7 @@ const banUserModel = require("../../models/banUser");
 const {
   default: updateUserValidate,
 } = require("../../validators/users/updateUser");
-const {
-  default: changeRoleValidate,
-} = require("../../validators/users/changeRole");
+const changeRoleValidate = require("../../validators/users/changeRole");
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
