@@ -1,4 +1,6 @@
 const userModel = require("../../models/user");
+const banUserModel = require("../../models/banUser");
+const { phoneNumberPrefixPattern } = require("../../utils/patterns");
 const { default: registerValidate } = require("../../validators/auth/register");
 const { default: loginValidate } = require("../../validators/auth/login");
 const {
@@ -9,8 +11,6 @@ const {
   hashPassword,
   isValidHashedPassword,
 } = require("../../utils/auth");
-const { phoneNumberPrefixPattern } = require("../../utils/patterns");
-const { default: banUserModel } = require("../../models/banUser");
 
 const register = async (req, res) => {
   const isValidRequestBody = registerValidate(req.body);

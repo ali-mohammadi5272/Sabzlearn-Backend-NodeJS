@@ -15,7 +15,4 @@ const schema = new mongoose.Schema(
 
 const model = mongoose.models.BanUser || mongoose.model("BanUser", schema);
 
-module.exports = {
-  schema,
-  default: model,
-};
+module.exports = model;

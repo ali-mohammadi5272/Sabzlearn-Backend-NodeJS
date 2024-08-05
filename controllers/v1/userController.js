@@ -1,6 +1,6 @@
 const { isValidObjectId } = require("mongoose");
 const userModel = require("../../models/user");
-const { default: banUserModel } = require("../../models/banUser");
+const banUserModel = require("../../models/banUser");
 const {
   default: updateUserValidate,
 } = require("../../validators/users/updateUser");
