@@ -22,8 +22,9 @@ const schema = new mongoose.Schema(
       default: 5,
     },
     isAccepted: {
-      type: Boolean,
-      default: false,
+      type: Number,
+      enum: [0, 1, 2], // 0 => not accepted , 1 => accepted , 2 => rejected
+      default: 0,
     },
     isAnswer: {
       type: Boolean,
