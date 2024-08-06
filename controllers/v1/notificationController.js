@@ -2,6 +2,7 @@ const notificationModel = require("../../models/notification");
 const userModel = require("../../models/user");
 const notificationValidate = require("../../validators/notification/sendNotification");
 const { roles } = require("../../utils/constants");
+const { isValidObjectId } = require("mongoose");
 
 const sendNotification = async (req, res) => {
   const isValidRequestBody = notificationValidate(req.body);
@@ -46,12 +47,10 @@ const sendNotification = async (req, res) => {
 
 const getNotificationsByAdmin = async (req, res) => {
   if (req.user.role === roles.manager) {
-    return res
-      .status(422)
-      .json({
-        message:
-          "You have not any Notification, because you are Manager and no one can't send Notifications to you !!",
-      });
+    return res.status(422).json({
+      message:
+        "You have not any Notification, because you are Manager and no one can't send Notifications to you !!",
+    });
   }
   try {
     const notifications = await notificationModel
@@ -68,4 +67,35 @@ const getNotificationsByAdmin = async (req, res) => {
   }
 };
 
-module.exports = { sendNotification, getNotificationsByAdmin };
+const seeNotification = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "NotificationId is not valid !!" });
+  }
+
+  try {
+    const notification = await notificationModel
+      .findOneAndUpdate(
+        { _id: id, adminId: req.user._id },
+        {
+          seen: 1,
+        }
+      )
+      .select("-__v");
+    if (!notification) {
+      return res.status(404).json({ message: "Notification not found !!" });
+    }
+    return res.status(200).json({
+      message: "Notification updated successfully :))",
+      notification: {
+        ...notification.toObject(),
+        seen: 1,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { sendNotification, getNotificationsByAdmin, seeNotification };
