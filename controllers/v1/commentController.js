@@ -19,7 +19,6 @@ const addComment = async (req, res) => {
     const newComment = await commentModel.create({
       ...req.body,
       userId: req.user._id,
-      isAccepted: false,
     });
     if (!newComment) {
       return res.status(500).json({ message: "Add Comment failed !!" });
