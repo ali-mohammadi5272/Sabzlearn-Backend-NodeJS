@@ -98,4 +98,31 @@ const seeNotification = async (req, res) => {
   }
 };
 
-module.exports = { sendNotification, getNotificationsByAdmin, seeNotification };
+const removeNotification = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "NotificationId is not valid !!" });
+  }
+
+  try {
+    const notification = await notificationModel
+      .findOneAndDelete({ _id: id })
+      .select("-__v");
+    if (!notification) {
+      return res.status(404).json({ message: "Notification not found !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Notification deleted successfully :))", notification });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  sendNotification,
+  getNotificationsByAdmin,
+  seeNotification,
+  removeNotification,
+};
