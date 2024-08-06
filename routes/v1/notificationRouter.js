@@ -6,6 +6,7 @@ const {
   sendNotification,
   getNotificationsByAdmin,
   seeNotification,
+  removeNotification,
 } = require("../../controllers/v1/notificationController");
 
 const router = express.Router();
@@ -13,6 +14,14 @@ const router = express.Router();
 router
   .route("/")
   .post(authMiddleware, accessLevelMiddleware(roles.manager), sendNotification);
+
+router
+  .route("/:id")
+  .delete(
+    authMiddleware,
+    accessLevelMiddleware(roles.manager),
+    removeNotification
+  );
 
 router
   .route("/admin")
