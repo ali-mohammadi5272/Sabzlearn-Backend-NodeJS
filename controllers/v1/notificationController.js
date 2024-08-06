@@ -67,6 +67,28 @@ const getNotificationsByAdmin = async (req, res) => {
   }
 };
 
+const getAdminNotificationsByManager = async (req, res) => {
+  const { adminId } = req.params;
+  const isValidId = isValidObjectId(adminId);
+  if (!isValidId) {
+    return res.status(422).json({ message: "AdminId is not valid !!" });
+  }
+
+  try {
+    const notifications = await notificationModel
+      .find({ adminId })
+      .select("-__v")
+      .lean();
+    if (!notifications) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+
+    return res.status(200).json(notifications);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 const seeNotification = async (req, res) => {
   const { id } = req.params;
   const isValidId = isValidObjectId(id);
@@ -125,4 +147,5 @@ module.exports = {
   getNotificationsByAdmin,
   seeNotification,
   removeNotification,
+  getAdminNotificationsByManager,
 };
