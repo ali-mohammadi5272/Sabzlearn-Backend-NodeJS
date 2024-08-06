@@ -191,7 +191,7 @@ const rejectComment = async (req, res) => {
       return res.status(404).json({ message: "Comment not found !!" });
     }
     return res.status(200).json({
-      message: "Comment updated successfully :))",
+      message: "Comment rejected successfully :))",
       comment: {
         ...comment.toObject(),
         isAccepted: 2,
