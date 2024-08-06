@@ -31,7 +31,7 @@ router
     getNotificationsByAdmin
   );
 router
-  .route("/see/:id")
+  .route("/admin/see/:id")
   .put(
     authMiddleware,
     accessLevelMiddleware(roles.teacherHelper),
