@@ -5,6 +5,7 @@ const { roles } = require("../../utils/constants");
 const {
   sendNotification,
   getNotificationsByAdmin,
+  seeNotification,
 } = require("../../controllers/v1/notificationController");
 
 const router = express.Router();
@@ -19,5 +20,12 @@ router
     authMiddleware,
     accessLevelMiddleware(roles.teacherHelper),
     getNotificationsByAdmin
+  );
+router
+  .route("/see/:id")
+  .put(
+    authMiddleware,
+    accessLevelMiddleware(roles.teacherHelper),
+    seeNotification
   );
 module.exports = router;
