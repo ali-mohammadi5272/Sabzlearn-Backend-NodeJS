@@ -7,6 +7,7 @@ const {
   getNotificationsByAdmin,
   seeNotification,
   removeNotification,
+  getAdminNotificationsByManager,
 } = require("../../controllers/v1/notificationController");
 
 const router = express.Router();
@@ -21,6 +22,14 @@ router
     authMiddleware,
     accessLevelMiddleware(roles.manager),
     removeNotification
+  );
+
+router
+  .route("/:adminId")
+  .get(
+    authMiddleware,
+    accessLevelMiddleware(roles.manager),
+    getAdminNotificationsByManager
   );
 
 router
