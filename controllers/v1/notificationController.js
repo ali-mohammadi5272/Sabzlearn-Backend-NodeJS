@@ -44,4 +44,28 @@ const sendNotification = async (req, res) => {
   }
 };
 
-module.exports = { sendNotification };
+const getNotificationsByAdmin = async (req, res) => {
+  if (req.user.role === roles.manager) {
+    return res
+      .status(422)
+      .json({
+        message:
+          "You have not any Notification, because you are Manager and no one can't send Notifications to you !!",
+      });
+  }
+  try {
+    const notifications = await notificationModel
+      .find({ adminId: req.user._id })
+      .select("-__v")
+      .lean();
+    if (!notifications) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+
+    return res.status(200).json(notifications);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { sendNotification, getNotificationsByAdmin };
