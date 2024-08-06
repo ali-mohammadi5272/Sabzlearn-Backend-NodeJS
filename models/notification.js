@@ -13,8 +13,9 @@ const schema = new mongoose.Schema(
       required: true,
     },
     seen: {
-      type: Boolean,
-      default: false,
+      type: Number,
+      enum: [0, 1], // 0 => false, 1 => true
+      default: 0,
     },
   },
   { timestamps: true }
