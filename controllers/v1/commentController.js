@@ -73,7 +73,7 @@ const acceptComment = async (req, res) => {
       .findOneAndUpdate(
         { _id: id },
         {
-          isAccepted: true,
+          isAccepted: 1,
         }
       )
       .populate("userId courseId", "username title cover")
@@ -85,7 +85,7 @@ const acceptComment = async (req, res) => {
       message: "Comment updated successfully :))",
       comment: {
         ...comment.toObject(),
-        isAccepted: true,
+        isAccepted: 1,
       },
     });
   } catch (error) {
