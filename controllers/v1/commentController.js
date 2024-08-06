@@ -170,10 +170,43 @@ const getAll = async (req, res) => {
   }
 };
 
+const rejectComment = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "CommentId is not valid !!" });
+  }
+
+  try {
+    const comment = await commentModel
+      .findOneAndUpdate(
+        { _id: id },
+        {
+          isAccepted: 2,
+        }
+      )
+      .populate("userId courseId", "username title cover")
+      .select("-__v");
+    if (!comment) {
+      return res.status(404).json({ message: "Comment not found !!" });
+    }
+    return res.status(200).json({
+      message: "Comment updated successfully :))",
+      comment: {
+        ...comment.toObject(),
+        isAccepted: 2,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addComment,
   removeComment,
   acceptComment,
   answerComment,
   getAll,
+  rejectComment,
 };
