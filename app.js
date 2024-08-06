@@ -9,6 +9,7 @@ const sessionRouter = require(`./routes/${VERSION}/sessionRouter`);
 const commentRouter = require(`./routes/${VERSION}/commentRouter`);
 const contactUsRouter = require(`./routes/${VERSION}/contactUsRouter`);
 const newsletterRouter = require(`./routes/${VERSION}/newsletterRouter`);
+const searchRouter = require(`./routes/${VERSION}/searchRouter`);
 
 const helmet = require("helmet");
 const cors = require("cors");
@@ -31,6 +32,7 @@ app.use(`/api/${VERSION}/sessions/`, sessionRouter);
 app.use(`/api/${VERSION}/comments/`, commentRouter);
 app.use(`/api/${VERSION}/contact-us/`, contactUsRouter);
 app.use(`/api/${VERSION}/newsletter/`, newsletterRouter);
+app.use(`/api/${VERSION}/search/`, searchRouter);
 
 app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
