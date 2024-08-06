@@ -610,6 +610,19 @@
           "response": []
         },
         {
+          "name": "Reject Comment",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/comments/reject/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "comments", "reject", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Get all Comments",
           "request": {
             "method": "GET",
@@ -707,6 +720,116 @@
               "raw": "{{base_url}}/api/{{version}}/newsletter/register",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "newsletter", "register"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Global Search",
+      "item": [
+        {
+          "name": "Global Search",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/search?keyword={{keyword}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "search"],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "{{keyword}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notifications",
+      "item": [
+        {
+          "name": "Send Notification",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"message\": \"دوره Django حدودا کی تموم میشه؟\",\r\n    \"adminId\": \"66b22f8c268656e5d4c7d78a\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/notifications",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "notifications"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Notifications by Admin",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/notifications/admin",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "notifications", "admin"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Admin's Notifications by Manager",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/notifications/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "notifications", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "See Notification by Admin",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/notifications/admin/see/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "notifications",
+                "admin",
+                "see",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Notification",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/notifications/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "notifications", "{{id}}"]
             }
           },
           "response": []
