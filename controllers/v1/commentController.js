@@ -111,7 +111,7 @@ const answerComment = async (req, res) => {
       .findByIdAndUpdate(
         { _id: id },
         {
-          isAccepted: true,
+          isAccepted: 1,
         }
       )
       .populate("userId courseId", "username title cover")
@@ -125,7 +125,7 @@ const answerComment = async (req, res) => {
       userId: req.user._id,
       courseId: comment.courseId,
       score: 5,
-      isAccepted: true,
+      isAccepted: 1,
       isAnswer: true,
       mainCommentId: comment._id,
     });
