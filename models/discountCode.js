@@ -4,6 +4,7 @@ const schema = new mongoose.Schema(
   {
     code: {
       type: String,
+      minLength: 4,
       required: true,
       unique: true,
     },
