@@ -30,7 +30,7 @@ const schema = new mongoose.Schema(
     uses: {
       type: Number,
       min: 0,
-      required: true,
+      default: 0,
     },
   },
   { timestamps: true }
