@@ -10,6 +10,7 @@ const schema = new mongoose.Schema(
     percent: {
       type: Number,
       min: 0,
+      max: 100,
       required: true,
     },
     courses: {
