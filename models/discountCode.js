@@ -27,6 +27,11 @@ const schema = new mongoose.Schema(
       min: 0,
       required: true,
     },
+    expireTime: {
+      type: Date,
+      min: new Date().getTime(),
+      required: true,
+    },
     uses: {
       type: Number,
       min: 0,
