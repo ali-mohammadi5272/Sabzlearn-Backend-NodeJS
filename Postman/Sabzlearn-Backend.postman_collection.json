@@ -835,6 +835,55 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "DiscountCodes",
+      "item": [
+        {
+          "name": "Discount all Courses",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"discount\": 50\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/discountCode/all",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "discountCode", "all"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add new DiscountCode",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"code\": \"sddsdsd\",\r\n    \"percent\": 20,\r\n    \"courses\": [\r\n        \"66a26b9e14eed805273b908f\",\r\n        \"66aa312425e8e048992b8379\"\r\n    ],\r\n    \"maxUse\": 10,\r\n    \"expireTime\": 1093594600000\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/discountCode",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "discountCode"]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "auth": {
