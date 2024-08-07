@@ -27,8 +27,12 @@ const schema = {
       type: "number",
       minimum: 0,
     },
+    expireTime: {
+      type: "number",
+      minimum: new Date().getTime(),
+    },
   },
-  required: ["code", "percent", "courses", "maxUse"],
+  required: ["code", "percent", "courses", "maxUse", "expireTime"],
   additionalProperties: false,
 };
 
