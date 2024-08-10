@@ -5,6 +5,7 @@ const { roles } = require("../../utils/constants");
 const {
   discountAllCourses,
   addDiscountCode,
+  getAll,
 } = require("../../controllers/v1/discountCodeController");
 
 const router = express.Router();
@@ -19,6 +20,7 @@ router
 
 router
   .route("/")
+  .get(authMiddleware, accessLevelMiddleware(roles.admin), getAll)
   .post(authMiddleware, accessLevelMiddleware(roles.admin), addDiscountCode);
 
 module.exports = router;
