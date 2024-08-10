@@ -70,4 +70,20 @@ const addDiscountCode = async (req, res) => {
   }
 };
 
-module.exports = { discountAllCourses, addDiscountCode };
+const getAll = async (req, res) => {
+  try {
+    const discountCodes = await discountCodeModel
+      .find({})
+      .populate("courses", "title cover price discount")
+      .select("-__v")
+      .lean();
+    if (!discountCodes) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(discountCodes);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { discountAllCourses, addDiscountCode, getAll };
