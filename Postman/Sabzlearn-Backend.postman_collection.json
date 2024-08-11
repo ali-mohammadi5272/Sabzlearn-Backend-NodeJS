@@ -867,9 +867,15 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/discountCodes/{{code}}",
+              "raw": "{{base_url}}/api/{{version}}/discountCodes/{{code}}/{{courseId}}",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "discountCodes", "{{code}}"]
+              "path": [
+                "api",
+                "{{version}}",
+                "discountCodes",
+                "{{code}}",
+                "{{courseId}}"
+              ]
             }
           },
           "response": []
@@ -915,9 +921,16 @@
             "method": "PUT",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/discountCodes/use/{{code}}",
+              "raw": "{{base_url}}/api/{{version}}/discountCodes/use/{{code}}/{{courseId}}",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "discountCodes", "use", "{{code}}"]
+              "path": [
+                "api",
+                "{{version}}",
+                "discountCodes",
+                "use",
+                "{{code}}",
+                "{{courseId}}"
+              ]
             }
           },
           "response": []
