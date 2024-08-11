@@ -13,7 +13,7 @@ const {
 
 const router = express.Router();
 
-router.route("/use/:code").put(authMiddleware, useDiscountCode);
+router.route("/use/:code/:courseId").put(authMiddleware, useDiscountCode);
 
 router.route("/:code/:courseId").get(authMiddleware, getDiscountCode);
 
