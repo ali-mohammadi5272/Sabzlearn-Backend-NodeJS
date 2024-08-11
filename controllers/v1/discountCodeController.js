@@ -1,6 +1,7 @@
 const discountCodeModel = require("../../models/discountCode");
 const courseModel = require("../../models/course");
 const discountAllValidate = require("../../validators/discountCodes/discountAll");
+const useDsicountCodeValidate = require("../../validators/discountCodes/useDsicountCode");
 const addDiscountCodeValidate = require("../../validators/discountCodes/addDiscountCode");
 const {
   checkDBCollectionIndexes,
@@ -134,10 +135,57 @@ const removeDsicountCode = async (req, res) => {
   }
 };
 
+const useDiscountCode = async (req, res) => {
+  const isValidRequest = useDsicountCodeValidate(req.params);
+  if (!isValidRequest) {
+    return res.status(422).json(useDsicountCodeValidate.errors);
+  }
+  const { code } = req.params;
+  try {
+    const findedDiscountCode = await discountCodeModel.findOne({ code });
+
+    if (!findedDiscountCode) {
+      return res.status(404).json({ message: "DiscountCode not found !!" });
+    }
+
+    const { maxUse, uses, expireTime } = findedDiscountCode;
+
+    if (new Date().getTime() > new Date(expireTime).getTime()) {
+      return res
+        .status(410)
+        .json({ message: "This discount code has expired !!" });
+    }
+
+    if (uses >= maxUse) {
+      return res
+        .status(410)
+        .json({ message: "The discount code is no longer valid !!" });
+    }
+
+    const updatedDiscountCode = await discountCodeModel.findOneAndUpdate(
+      { code },
+      {
+        $inc: {
+          uses: 1,
+        },
+      }
+    );
+    if (!updatedDiscountCode) {
+      return res.status(404).json({ message: "DiscountCode not found !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "DiscountCode updated successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   discountAllCourses,
   addDiscountCode,
   getAll,
   getDiscountCode,
   removeDsicountCode,
+  useDiscountCode,
 };
