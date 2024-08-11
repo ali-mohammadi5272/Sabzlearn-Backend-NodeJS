@@ -101,7 +101,14 @@ const getDiscountCode = async (req, res) => {
   if (!isValidRequest) {
     return res.status(422).json(useDsicountCodeValidate.errors);
   }
+
   const { code, courseId } = req.params;
+
+  const isValidId = isValidObjectId(courseId);
+  if (!isValidId) {
+    return res.status(422).json({ message: "CourseId is not valid !!" });
+  }
+
   try {
     const findedDiscountCode = await discountCodeModel
       .findOne({ code, courseId })
