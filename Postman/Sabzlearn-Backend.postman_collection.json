@@ -920,17 +920,19 @@
           "request": {
             "method": "PUT",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"code\": \"{{$randomLoremWord}}\",\r\n    \"courseId\": \"66aa315fada66e0f0d10d971\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/discountCodes/use/{{code}}/{{courseId}}",
+              "raw": "{{base_url}}/api/{{version}}/discountCodes/use",
               "host": ["{{base_url}}"],
-              "path": [
-                "api",
-                "{{version}}",
-                "discountCodes",
-                "use",
-                "{{code}}",
-                "{{courseId}}"
-              ]
+              "path": ["api", "{{version}}", "discountCodes", "use"]
             }
           },
           "response": []
