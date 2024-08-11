@@ -158,12 +158,12 @@ const removeDsicountCode = async (req, res) => {
 };
 
 const useDiscountCode = async (req, res) => {
-  const isValidRequest = useDsicountCodeValidate(req.params);
-  if (!isValidRequest) {
+  const isValidRequestBody = useDsicountCodeValidate(req.body);
+  if (!isValidRequestBody) {
     return res.status(422).json(useDsicountCodeValidate.errors);
   }
-  
-  const { code, courseId } = req.params;
+
+  const { code, courseId } = req.body;
 
   const isValidId = isValidObjectId(courseId);
   if (!isValidId) {
