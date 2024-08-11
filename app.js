@@ -36,7 +36,7 @@ app.use(`/api/${VERSION}/contact-us/`, contactUsRouter);
 app.use(`/api/${VERSION}/newsletter/`, newsletterRouter);
 app.use(`/api/${VERSION}/search/`, searchRouter);
 app.use(`/api/${VERSION}/notifications/`, notificationRouter);
-app.use(`/api/${VERSION}/discountCode/`, discountCodeRouter);
+app.use(`/api/${VERSION}/discountCodes/`, discountCodeRouter);
 
 app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
