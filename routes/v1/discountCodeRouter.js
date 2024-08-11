@@ -8,9 +8,13 @@ const {
   getAll,
   getDiscountCode,
   removeDsicountCode,
+  useDiscountCode,
 } = require("../../controllers/v1/discountCodeController");
 
 const router = express.Router();
+
+router.route("/use/:code").put(authMiddleware, useDiscountCode);
+
 router
   .route("/all")
   .put(
