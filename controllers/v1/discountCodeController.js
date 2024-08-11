@@ -101,10 +101,10 @@ const getDiscountCode = async (req, res) => {
   if (!isValidRequest) {
     return res.status(422).json(useDsicountCodeValidate.errors);
   }
-  const { code } = req.params;
+  const { code, courseId } = req.params;
   try {
     const findedDiscountCode = await discountCodeModel
-      .findOne({ code })
+      .findOne({ code, courseId })
       .select("-__v -creator -createdAt -updatedAt");
 
     if (!findedDiscountCode) {
