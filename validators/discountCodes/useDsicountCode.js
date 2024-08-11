@@ -8,8 +8,11 @@ const schema = {
       type: "string",
       minLength: 4,
     },
+    courseId: {
+      type: "string",
+    },
   },
-  required: ["code"],
+  required: ["code", "courseId"],
   additionalProperties: false,
 };
 
