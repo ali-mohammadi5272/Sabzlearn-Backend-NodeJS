@@ -93,23 +93,34 @@ const getAll = async (req, res) => {
 };
 
 const getDiscountCode = async (req, res) => {
-  const { id } = req.params;
-  const isValidId = isValidObjectId(id);
-  if (!isValidId) {
-    return res.status(422).json({ message: "DiscountCodeId is not valid !!" });
+  const isValidRequest = useDsicountCodeValidate(req.params);
+  if (!isValidRequest) {
+    return res.status(422).json(useDsicountCodeValidate.errors);
   }
-
+  const { code } = req.params;
   try {
-    const code = await discountCodeModel
-      .findOne({ _id: id })
-      .populate("courses", "title cover price discount")
-      .populate("creator", "username")
-      .select("-__v")
-      .lean();
-    if (!code) {
+    const findedDiscountCode = await discountCodeModel
+      .findOne({ code })
+      .select("-__v -creator -createdAt -updatedAt");
+
+    if (!findedDiscountCode) {
       return res.status(404).json({ message: "DiscountCode not found !!" });
     }
-    return res.status(200).json(code);
+
+    const { maxUse, uses, expireTime } = findedDiscountCode;
+
+    if (new Date().getTime() > new Date(expireTime).getTime()) {
+      return res
+        .status(410)
+        .json({ message: "This discount code has expired !!" });
+    }
+
+    if (uses >= maxUse) {
+      return res
+        .status(410)
+        .json({ message: "The discount code is no longer valid !!" });
+    }
+    return res.status(200).json(findedDiscountCode);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
