@@ -840,6 +840,54 @@
       "name": "DiscountCodes",
       "item": [
         {
+          "name": "Add new DiscountCode",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"code\": \"{{$randomLoremWord}}\",\r\n    \"percent\": 20,\r\n    \"courses\": [\r\n        \"66a26b9e14eed805273b908f\",\r\n        \"66aa312425e8e048992b8379\",\r\n        \"66ae4f5afa656722208c4e81\"\r\n    ],\r\n    \"maxUse\": 5,\r\n    \"expireTime\": 1723367064990\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/discountCodes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "discountCodes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one DiscountCode",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/discountCodes/{{code}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "discountCodes", "{{code}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all DiscountCodes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/discountCodes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "discountCodes"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Discount all Courses",
           "request": {
             "method": "PUT",
@@ -854,31 +902,35 @@
               }
             },
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/discountCode/all",
+              "raw": "{{base_url}}/api/{{version}}/discountCodes/all",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "discountCode", "all"]
+              "path": ["api", "{{version}}", "discountCodes", "all"]
             }
           },
           "response": []
         },
         {
-          "name": "Add new DiscountCode",
+          "name": "Use DiscountCode",
           "request": {
-            "method": "POST",
+            "method": "PUT",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"code\": \"sddsdsd\",\r\n    \"percent\": 20,\r\n    \"courses\": [\r\n        \"66a26b9e14eed805273b908f\",\r\n        \"66aa312425e8e048992b8379\"\r\n    ],\r\n    \"maxUse\": 10,\r\n    \"expireTime\": 1093594600000\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/discountCode",
+              "raw": "{{base_url}}/api/{{version}}/discountCodes/use/{{code}}",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "discountCode"]
+              "path": ["api", "{{version}}", "discountCodes", "use", "{{code}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete DiscountCode",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/discountCodes/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "discountCodes", "{{id}}"]
             }
           },
           "response": []
