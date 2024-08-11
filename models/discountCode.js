@@ -14,13 +14,9 @@ const schema = new mongoose.Schema(
       max: 100,
       required: true,
     },
-    courses: {
-      type: [
-        {
-          type: mongoose.Types.ObjectId,
-          ref: "Course",
-        },
-      ],
+    courseId: {
+      type: mongoose.Types.ObjectId,
+      ref: "Course",
       required: true,
     },
     maxUse: {
