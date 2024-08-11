@@ -155,9 +155,12 @@ const useDiscountCode = async (req, res) => {
   if (!isValidRequest) {
     return res.status(422).json(useDsicountCodeValidate.errors);
   }
-  const { code } = req.params;
+  const { code, courseId } = req.params;
   try {
-    const findedDiscountCode = await discountCodeModel.findOne({ code });
+    const findedDiscountCode = await discountCodeModel.findOne({
+      code,
+      courseId,
+    });
 
     if (!findedDiscountCode) {
       return res.status(404).json({ message: "DiscountCode not found !!" });
