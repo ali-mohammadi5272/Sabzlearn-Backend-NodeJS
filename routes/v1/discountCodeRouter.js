@@ -7,6 +7,7 @@ const {
   addDiscountCode,
   getAll,
   getDiscountCode,
+  removeDsicountCode,
 } = require("../../controllers/v1/discountCodeController");
 
 const router = express.Router();
@@ -25,6 +26,11 @@ router
 
 router
   .route("/:id")
-  .get(authMiddleware, accessLevelMiddleware(roles.admin), getDiscountCode);
+  .get(authMiddleware, accessLevelMiddleware(roles.admin), getDiscountCode)
+  .delete(
+    authMiddleware,
+    accessLevelMiddleware(roles.admin),
+    removeDsicountCode
+  );
 
 module.exports = router;
