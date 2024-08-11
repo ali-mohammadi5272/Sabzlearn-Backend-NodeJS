@@ -51,7 +51,10 @@ const addDiscountCode = async (req, res) => {
   }
 
   try {
-    const newCode = await discountCodeModel.create({ ...req.body });
+    const newCode = await discountCodeModel.create({
+      ...req.body,
+      creator: req.user._id,
+    });
     if (!newCode) {
       return res
         .status(500)
