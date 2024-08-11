@@ -5,6 +5,7 @@ const addDiscountCodeValidate = require("../../validators/discountCodes/addDisco
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
+const { isValidObjectId } = require("mongoose");
 
 const discountAllCourses = async (req, res) => {
   const isValidRequestBody = discountAllValidate(req.body);
@@ -78,6 +79,7 @@ const getAll = async (req, res) => {
     const discountCodes = await discountCodeModel
       .find({})
       .populate("courses", "title cover price discount")
+      .populate("creator", "username")
       .select("-__v")
       .lean();
     if (!discountCodes) {
@@ -89,4 +91,32 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { discountAllCourses, addDiscountCode, getAll };
+const getDiscountCode = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "DiscountCodeId is not valid !!" });
+  }
+
+  try {
+    const code = await discountCodeModel
+      .findOne({ _id: id })
+      .populate("courses", "title cover price discount")
+      .populate("creator", "username")
+      .select("-__v")
+      .lean();
+    if (!code) {
+      return res.status(404).json({ message: "DiscountCode not found !!" });
+    }
+    return res.status(200).json(code);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  discountAllCourses,
+  addDiscountCode,
+  getAll,
+  getDiscountCode,
+};
