@@ -1,6 +1,5 @@
 const Ajv = require("ajv");
 const ajv = new Ajv();
-require("ajv-keywords")(ajv, "transform");
 
 const schema = {
   type: "object",
@@ -14,14 +13,8 @@ const schema = {
       minimum: 0,
       maximum: 100,
     },
-    courses: {
-      type: "array",
-      uniqueItems: true,
-      items: {
-        type: "string",
-        transform: ["trim", "toLowerCase"],
-      },
-      minItems: 1,
+    courseId: {
+      type: "string",
     },
     maxUse: {
       type: "number",
@@ -32,7 +25,7 @@ const schema = {
       minimum: new Date().getTime(),
     },
   },
-  required: ["code", "percent", "courses", "maxUse", "expireTime"],
+  required: ["code", "percent", "courseId", "maxUse", "expireTime"],
   additionalProperties: false,
 };
 
