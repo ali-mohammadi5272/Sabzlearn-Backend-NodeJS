@@ -13,7 +13,12 @@ const {
 
 const router = express.Router();
 
-router.route("/use/:code").put(authMiddleware, useDiscountCode);
+router
+  .route("/use/:code")
+  .put(authMiddleware, useDiscountCode)
+  .get(authMiddleware, getDiscountCode);
+
+router.route("/:code").get(authMiddleware, getDiscountCode);
 
 router
   .route("/all")
@@ -26,6 +31,6 @@ router
 router.use(authMiddleware, accessLevelMiddleware(roles.admin));
 
 router.route("/").get(getAll).post(addDiscountCode);
-router.route("/:id").get(getDiscountCode).delete(removeDsicountCode);
+router.route("/:id").delete(removeDsicountCode);
 
 module.exports = router;
