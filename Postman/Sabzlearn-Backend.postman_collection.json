@@ -846,7 +846,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"code\": \"{{$randomLoremWord}}\",\r\n    \"percent\": 20,\r\n    \"courses\": [\r\n        \"66a26b9e14eed805273b908f\",\r\n        \"66aa312425e8e048992b8379\",\r\n        \"66ae4f5afa656722208c4e81\"\r\n    ],\r\n    \"maxUse\": 5,\r\n    \"expireTime\": 1723367064990\r\n}",
+              "raw": "{\r\n    \"code\": \"{{$randomLoremWord}}\",\r\n    \"percent\": 20,\r\n    \"courseId\": \"66a26b9e14eed805273b908f\",\r\n    \"maxUse\": 5,\r\n    \"expireTime\": 1723367064990\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
