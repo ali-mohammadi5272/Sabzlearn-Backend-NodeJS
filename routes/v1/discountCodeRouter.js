@@ -19,18 +19,9 @@ router
     discountAllCourses
   );
 
-router
-  .route("/")
-  .get(authMiddleware, accessLevelMiddleware(roles.admin), getAll)
-  .post(authMiddleware, accessLevelMiddleware(roles.admin), addDiscountCode);
+router.use(authMiddleware, accessLevelMiddleware(roles.admin));
 
-router
-  .route("/:id")
-  .get(authMiddleware, accessLevelMiddleware(roles.admin), getDiscountCode)
-  .delete(
-    authMiddleware,
-    accessLevelMiddleware(roles.admin),
-    removeDsicountCode
-  );
+router.route("/").get(getAll).post(addDiscountCode);
+router.route("/:id").get(getDiscountCode).delete(removeDsicountCode);
 
 module.exports = router;
