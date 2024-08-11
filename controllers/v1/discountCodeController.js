@@ -114,9 +114,30 @@ const getDiscountCode = async (req, res) => {
   }
 };
 
+const removeDsicountCode = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "DiscountCodeId is not valid !!" });
+  }
+
+  try {
+    const code = await discountCodeModel.findOneAndDelete({ _id: id });
+    if (!code) {
+      return res.status(404).json({ message: "DiscountCode not found !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "DiscountCode removed successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   discountAllCourses,
   addDiscountCode,
   getAll,
   getDiscountCode,
+  removeDsicountCode,
 };
