@@ -79,8 +79,12 @@ const getAll = async (req, res) => {
   try {
     const discountCodes = await discountCodeModel
       .find({})
-      .populate("courses", "title cover price discount")
-      .populate("creator", "username")
+      .populate({
+        path: "courseId",
+        select: "title cover price discount studentsCount",
+        populate: "studentsCount",
+      })
+      .populate("creator", "firstname lastname")
       .select("-__v")
       .lean();
     if (!discountCodes) {
