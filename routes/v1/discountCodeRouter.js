@@ -6,10 +6,10 @@ const {
   discountAllCourses,
   addDiscountCode,
   getAll,
+  getDiscountCode,
 } = require("../../controllers/v1/discountCodeController");
 
 const router = express.Router();
-
 router
   .route("/all")
   .put(
@@ -22,5 +22,9 @@ router
   .route("/")
   .get(authMiddleware, accessLevelMiddleware(roles.admin), getAll)
   .post(authMiddleware, accessLevelMiddleware(roles.admin), addDiscountCode);
+
+router
+  .route("/:id")
+  .get(authMiddleware, accessLevelMiddleware(roles.admin), getDiscountCode);
 
 module.exports = router;
