@@ -3,6 +3,7 @@ const addDepartmentValidate = require("../../validators/department/addDepartment
 const {
   checkDBCollectionIndexes,
 } = require("../../utils/checkCollectionIndexes");
+const { isValidObjectId } = require("mongoose");
 
 const addDepartment = async (req, res) => {
   const isValidRequestBody = addDepartmentValidate(req.body);
@@ -53,4 +54,24 @@ const getAll = async (req, res) => {
   }
 };
 
-module.exports = { addDepartment, getAll };
+const removeDepartment = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "DepartmentId is not valid !!" });
+  }
+
+  try {
+    const department = await departmentModel.findOneAndDelete({ _id: id });
+    if (!department) {
+      return res.status(404).json({ message: "Department not found !!" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Department removed successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { addDepartment, getAll, removeDepartment };
