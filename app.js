@@ -13,6 +13,7 @@ const searchRouter = require(`./routes/${VERSION}/searchRouter`);
 const notificationRouter = require(`./routes/${VERSION}/notificationRouter`);
 const discountCodeRouter = require(`./routes/${VERSION}/discountCodeRouter`);
 const ordersRouter = require(`./routes/${VERSION}/ordersRouter`);
+const departmentRouter = require(`./routes/${VERSION}/departmentRouter`);
 
 const helmet = require("helmet");
 const cors = require("cors");
@@ -39,6 +40,7 @@ app.use(`/api/${VERSION}/search/`, searchRouter);
 app.use(`/api/${VERSION}/notifications/`, notificationRouter);
 app.use(`/api/${VERSION}/discountCodes/`, discountCodeRouter);
 app.use(`/api/${VERSION}/orders/`, ordersRouter);
+app.use(`/api/${VERSION}/departments/`, departmentRouter);
 
 app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
