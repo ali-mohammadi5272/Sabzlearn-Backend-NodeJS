@@ -29,11 +29,6 @@ const schema = new mongoose.Schema(
       enum: [0, 1], // 0 => not answered , 1 => answered
       default: 0,
     },
-    isAnswer: {
-      type: Number, // 0 => question , 1 => answer
-      enum: [0, 1],
-      default: 0,
-    },
     mainTicketId: {
       type: mongoose.Types.ObjectId,
       ref: "Ticket",
