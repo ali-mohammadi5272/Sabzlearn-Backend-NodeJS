@@ -4,20 +4,24 @@ const schema = new mongoose.Schema(
   {
     title: {
       type: String,
+      trim: true,
       required: true,
     },
     body: {
       type: String,
+      trim: true,
       required: true,
     },
     userId: {
       type: mongoose.Types.ObjectId,
       ref: "User",
+      trim: true,
       required: true,
     },
     departmentId: {
       type: mongoose.Types.ObjectId,
       ref: "Department",
+      trim: true,
       required: true,
     },
     hasBeenAnswered: {
@@ -33,6 +37,7 @@ const schema = new mongoose.Schema(
     mainTicketId: {
       type: mongoose.Types.ObjectId,
       ref: "Ticket",
+      trim: true,
       default: null,
     },
   },
