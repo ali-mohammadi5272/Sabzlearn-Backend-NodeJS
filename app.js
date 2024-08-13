@@ -12,7 +12,7 @@ const newsletterRouter = require(`./routes/${VERSION}/newsletterRouter`);
 const searchRouter = require(`./routes/${VERSION}/searchRouter`);
 const notificationRouter = require(`./routes/${VERSION}/notificationRouter`);
 const discountCodeRouter = require(`./routes/${VERSION}/discountCodeRouter`);
-const ordersRouter = require(`./routes/${VERSION}/ordersRouter`);
+const orderRouter = require(`./routes/${VERSION}/orderRouter`);
 const departmentRouter = require(`./routes/${VERSION}/departmentRouter`);
 
 const helmet = require("helmet");
@@ -39,7 +39,7 @@ app.use(`/api/${VERSION}/newsletter/`, newsletterRouter);
 app.use(`/api/${VERSION}/search/`, searchRouter);
 app.use(`/api/${VERSION}/notifications/`, notificationRouter);
 app.use(`/api/${VERSION}/discountCodes/`, discountCodeRouter);
-app.use(`/api/${VERSION}/orders/`, ordersRouter);
+app.use(`/api/${VERSION}/orders/`, orderRouter);
 app.use(`/api/${VERSION}/departments/`, departmentRouter);
 
 app.use((err, req, res, next) => {
