@@ -41,4 +41,16 @@ const addDepartment = async (req, res) => {
   }
 };
 
-module.exports = { addDepartment };
+const getAll = async (req, res) => {
+  try {
+    const departments = await departmentModel.find({}).select("title").lean();
+    if (!departments) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(departments);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { addDepartment, getAll };
