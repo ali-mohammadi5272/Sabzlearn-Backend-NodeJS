@@ -1,10 +1,10 @@
 const express = require("express");
 const authMiddleware = require("../../middlewares/authMiddleware");
 const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
-const { addTicket } = require("../../controllers/v1/ticketController");
+const { sendTicket } = require("../../controllers/v1/ticketController");
 
 const router = express.Router();
 
-router.route("/").post(authMiddleware, addTicket);
+router.route("/").post(authMiddleware, sendTicket);
 
 module.exports = router;

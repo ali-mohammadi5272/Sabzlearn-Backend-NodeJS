@@ -1,11 +1,11 @@
 const ticketModel = require("../../models/ticket");
 const departmentModel = require("../../models/department");
-const addTicketValidate = require("../../validators/tickets/addTicket");
+const sendTicketValidate = require("../../validators/tickets/sendTicket");
 
-const addTicket = async (req, res) => {
-  const isValidRequestBody = addTicketValidate(req.body);
+const sendTicket = async (req, res) => {
+  const isValidRequestBody = sendTicketValidate(req.body);
   if (!isValidRequestBody) {
-    return res.status(422).json(addTicketValidate.errors);
+    return res.status(422).json(sendTicketValidate.errors);
   }
 
   try {
@@ -41,5 +41,5 @@ const addTicket = async (req, res) => {
 };
 
 module.exports = {
-  addTicket,
+  sendTicket,
 };
