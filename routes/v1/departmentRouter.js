@@ -4,6 +4,7 @@ const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware")
 const {
   addDepartment,
   getAll,
+  removeDepartment,
 } = require("../../controllers/v1/departmentController");
 const { roles } = require("../../utils/constants");
 
@@ -15,5 +16,9 @@ router
   .route("/")
   .get(getAll)
   .post(accessLevelMiddleware(roles.admin), addDepartment);
+
+router
+  .route("/:id")
+  .delete(accessLevelMiddleware(roles.admin), removeDepartment);
 
 module.exports = router;
