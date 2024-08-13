@@ -26,7 +26,7 @@ const schema = new mongoose.Schema(
       default: 0,
     },
     isAnswer: {
-      type: Boolean, // 0 => question , 1 => answer
+      type: Number, // 0 => question , 1 => answer
       enum: [0, 1],
       default: 0,
     },
