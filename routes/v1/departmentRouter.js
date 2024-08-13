@@ -1,8 +1,14 @@
 const express = require("express");
-const { addDepartment } = require("../../controllers/v1/departmentController");
+const authMiddleware = require("../../middlewares/authMiddleware");
+const {
+  addDepartment,
+  getAll,
+} = require("../../controllers/v1/departmentController");
 
 const router = express.Router();
 
-router.route("/").post(addDepartment);
+router.use(authMiddleware);
+
+router.route("/").get(getAll).post(addDepartment);
 
 module.exports = router;
