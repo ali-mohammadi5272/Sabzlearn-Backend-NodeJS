@@ -145,8 +145,24 @@ const answerTicketByUser = async (req, res) => {
   }
 };
 
+const getAllTicketsByUser = async (req, res) => {
+  try {
+    const tickets = await ticketModel
+      .find({ userId: req.user._id, mainTicketId: null })
+      .select("-__v")
+      .lean();
+    if (!tickets) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(tickets);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createTicket,
   answerTicketByAdmin,
   answerTicketByUser,
+  getAllTicketsByUser,
 };
