@@ -4,6 +4,7 @@ const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware")
 const {
   createTicket,
   answerTicketByAdmin,
+  answerTicketByUser,
 } = require("../../controllers/v1/ticketController");
 const { roles } = require("../../utils/constants");
 
@@ -17,5 +18,6 @@ router
     accessLevelMiddleware(roles.admin),
     answerTicketByAdmin
   );
+router.route("/answerByUser/:id").post(authMiddleware, answerTicketByUser);
 
 module.exports = router;
