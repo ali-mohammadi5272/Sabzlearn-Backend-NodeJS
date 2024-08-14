@@ -263,51 +263,6 @@
       "name": "Courses",
       "item": [
         {
-          "name": "Get all Courses",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/{{version}}/courses",
-              "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "courses"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get one Course",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
-              "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "courses", "{{id}}"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Courses by CategoryId",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/{{version}}/courses/category/669e8e9a850afb7faa4df754",
-              "host": ["{{base_url}}"],
-              "path": [
-                "api",
-                "{{version}}",
-                "courses",
-                "category",
-                "669e8e9a850afb7faa4df754"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Add Course",
           "request": {
             "method": "POST",
@@ -403,14 +358,46 @@
           "response": []
         },
         {
-          "name": "Remove Course",
+          "name": "Get all Courses",
           "request": {
-            "method": "DELETE",
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one Course",
+          "request": {
+            "method": "GET",
             "header": [],
             "url": {
               "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "courses", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Courses by CategoryId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses/category/669e8e9a850afb7faa4df754",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "courses",
+                "category",
+                "669e8e9a850afb7faa4df754"
+              ]
             }
           },
           "response": []
@@ -424,6 +411,19 @@
               "raw": "{{base_url}}/api/{{version}}/courses/popular",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "courses", "popular"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove Course",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/courses/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "courses", "{{id}}"]
             }
           },
           "response": []
@@ -946,6 +946,222 @@
               "raw": "{{base_url}}/api/{{version}}/discountCodes/{{id}}",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "discountCodes", "{{id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get Orders by UserId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/orders/user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "orders", "user"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Departments",
+      "item": [
+        {
+          "name": "Add Department",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"{{$randomLoremWord}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/departments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "departments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Departments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/departments",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "departments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove one Department",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/departments/66bb40a7781d3d74d617295e",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "departments",
+                "66bb40a7781d3d74d617295e"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Create Ticket",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"{{$randomLoremWords}}\",\r\n    \"body\": \"{{$randomLoremParagraph}}\",\r\n    \"departmentId\": \"66bb3c5b080e95a4d00a0435\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tickets",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tickets"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Answer Ticket by Admin",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"body\": \"{{$randomLoremParagraph}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tickets/answerByAdmin/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "tickets",
+                "answerByAdmin",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Answer Ticket by User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"body\": \"{{$randomLoremParagraph}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tickets/answerByUser/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "tickets",
+                "answerByUser",
+                "{{id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all main Tickets by User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tickets/user",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tickets", "user"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Ticket",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tickets/66bc7f05efd15304e83b8066",
+              "host": ["{{base_url}}"],
+              "path": [
+                "api",
+                "{{version}}",
+                "tickets",
+                "66bc7f05efd15304e83b8066"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all unAnswered Tickets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tickets/unAnswered",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tickets", "unAnswered"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Tickets by Manager",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/tickets",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "tickets"]
             }
           },
           "response": []
