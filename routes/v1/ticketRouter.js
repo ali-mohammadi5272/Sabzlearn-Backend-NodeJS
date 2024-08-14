@@ -6,12 +6,14 @@ const {
   answerTicketByAdmin,
   answerTicketByUser,
   getAllTicketsByUser,
+  getTicket,
 } = require("../../controllers/v1/ticketController");
 const { roles } = require("../../utils/constants");
 
 const router = express.Router();
 
 router.route("/").post(authMiddleware, createTicket);
+router.route("/:id").get(authMiddleware, getTicket);
 router
   .route("/answerByAdmin/:id")
   .post(
