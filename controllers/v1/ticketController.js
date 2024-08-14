@@ -2,7 +2,7 @@ const ticketModel = require("../../models/ticket");
 const departmentModel = require("../../models/department");
 const sendTicketValidate = require("../../validators/tickets/sendTicket");
 
-const sendTicket = async (req, res) => {
+const createTicket = async (req, res) => {
   const isValidRequestBody = sendTicketValidate(req.body);
   if (!isValidRequestBody) {
     return res.status(422).json(sendTicketValidate.errors);
@@ -42,5 +42,5 @@ const sendTicket = async (req, res) => {
 };
 
 module.exports = {
-  sendTicket,
+  createTicket,
 };
