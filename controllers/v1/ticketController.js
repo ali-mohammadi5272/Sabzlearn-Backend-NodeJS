@@ -19,6 +19,7 @@ const sendTicket = async (req, res) => {
       ...req.body,
       userId: req.user._id,
       hasBeenAnswered: 0,
+      isAnswer: 0,
       mainTicketId: null,
     });
     if (!newTicket) {
