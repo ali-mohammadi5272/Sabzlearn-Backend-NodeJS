@@ -69,7 +69,7 @@ const answerTicketByAdmin = async (req, res) => {
     }
 
     const answerTicket = await ticketModel.create({
-      title: "Ticket's Answer",
+      title: "Ticket's Answer By Admin",
       body,
       userId: req.user._id,
       departmentId: ticket.departmentId,
