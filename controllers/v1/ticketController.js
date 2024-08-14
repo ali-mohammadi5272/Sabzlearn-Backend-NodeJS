@@ -94,7 +94,59 @@ const answerTicketByAdmin = async (req, res) => {
   }
 };
 
+const answerTicketByUser = async (req, res) => {
+  const isValidRequestBody = answerTicketValidate(req.body);
+  if (!isValidRequestBody) {
+    return res.status(422).json(answerTicketValidate.errors);
+  }
+
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "TicketId is not valid !!" });
+  }
+
+  const { body } = req.body;
+
+  try {
+    const ticket = await ticketModel.findOneAndUpdate(
+      { _id: id, userId: req.user._id },
+      {
+        hasBeenAnswered: 0,
+      }
+    );
+    if (!ticket) {
+      return res.status(404).json({ message: "Ticket not found !!" });
+    }
+
+    const answerTicket = await ticketModel.create({
+      title: "Ticket's Answer By User",
+      body,
+      userId: ticket.userId,
+      departmentId: ticket.departmentId,
+      hasBeenAnswered: 0,
+      isAnswer: 0,
+      mainTicketId: ticket._id,
+    });
+
+    if (!answerTicket) {
+      return res.status(404).json({ message: "Add Answer Ticket faild !!" });
+    }
+
+    const answerTicketObject = answerTicket.toObject();
+    Reflect.deleteProperty(answerTicketObject, "__v");
+
+    return res.status(200).json({
+      message: "Answer Ticket added successfully :))",
+      ticket: answerTicketObject,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createTicket,
   answerTicketByAdmin,
+  answerTicketByUser,
 };
