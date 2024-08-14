@@ -160,9 +160,45 @@ const getAllTicketsByUser = async (req, res) => {
   }
 };
 
+const getTicket = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "TicketId is not valid !!" });
+  }
+
+  try {
+    const ticket = await ticketModel
+      .findOne({ _id: id, userId: req.user._id, mainTicketId: null })
+      .populate({
+        path: "children",
+        select: "-__v",
+        populate: [
+          {
+            path: "userId",
+            select: "firstname lastname",
+          },
+          {
+            path: "departmentId",
+            select: "title",
+          },
+        ],
+      })
+      .select("-__v")
+      .lean();
+    if (!ticket) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(ticket);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createTicket,
   answerTicketByAdmin,
   answerTicketByUser,
   getAllTicketsByUser,
+  getTicket,
 };
