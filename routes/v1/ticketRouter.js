@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.route("/").post(authMiddleware, createTicket);
 router
-  .route("/answer/:id")
+  .route("/answerByAdmin/:id")
   .post(
     authMiddleware,
     accessLevelMiddleware(roles.admin),
