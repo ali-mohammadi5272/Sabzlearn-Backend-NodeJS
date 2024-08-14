@@ -28,15 +28,16 @@ const createTicket = async (req, res) => {
       return res.status(500).json({ message: "Create Ticket failed !!" });
     }
 
-    const newTicketObject = newTicket.toObject();
-    Reflect.deleteProperty(newTicketObject, "__v");
-    Reflect.deleteProperty(newTicketObject, "userId");
-    Reflect.deleteProperty(newTicketObject, "departmentId");
-    Reflect.deleteProperty(newTicketObject, "updatedAt");
+    const findedTicket = await ticketModel
+      .findOne({ _id: answerTicket._id })
+      .populate("userId", "firstname lastname")
+      .populate("departmentId", "title")
+      .select("-__v")
+      .lean();
 
     return res.status(201).json({
       message: "Ticket created successfully :))",
-      ticket: newTicketObject,
+      ticket: findedTicket,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
