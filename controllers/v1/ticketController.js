@@ -179,6 +179,8 @@ const getTicket = async (req, res) => {
   try {
     const ticket = await ticketModel
       .findOne({ _id: id, userId: req.user._id, mainTicketId: null })
+      .populate("userId", "firstname lastname")
+      .populate("departmentId", "title")
       .populate({
         path: "children",
         select: "-__v",
