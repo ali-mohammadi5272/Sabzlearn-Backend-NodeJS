@@ -59,7 +59,7 @@ const answerTicketByAdmin = async (req, res) => {
 
   try {
     const ticket = await ticketModel.findOneAndUpdate(
-      { _id: id },
+      { _id: id, mainTicketId: null },
       {
         hasBeenAnswered: 1,
       }
