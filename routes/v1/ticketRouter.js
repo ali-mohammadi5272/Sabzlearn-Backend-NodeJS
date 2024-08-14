@@ -7,12 +7,20 @@ const {
   answerTicketByUser,
   getAllTicketsByUser,
   getTicket,
+  getAllUnAnsweredTickets,
 } = require("../../controllers/v1/ticketController");
 const { roles } = require("../../utils/constants");
 
 const router = express.Router();
 
 router.route("/").post(authMiddleware, createTicket);
+router
+  .route("/unAnswered")
+  .get(
+    authMiddleware,
+    accessLevelMiddleware(roles.admin),
+    getAllUnAnsweredTickets
+  );
 router.route("/:id").get(authMiddleware, getTicket);
 router
   .route("/answerByAdmin/:id")
