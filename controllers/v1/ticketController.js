@@ -223,6 +223,37 @@ const getAllUnAnsweredTickets = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const tickets = await ticketModel
+      .find({ mainTicketId: null })
+      .populate("userId", "firstname lastname")
+      .populate("departmentId", "title")
+      .populate({
+        path: "children",
+        select: "-__v",
+        populate: [
+          {
+            path: "userId",
+            select: "firstname lastname",
+          },
+          {
+            path: "departmentId",
+            select: "title",
+          },
+        ],
+      })
+      .select("-__v")
+      .lean();
+    if (!tickets) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(tickets);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createTicket,
   answerTicketByAdmin,
@@ -230,4 +261,5 @@ module.exports = {
   getAllTicketsByUser,
   getTicket,
   getAllUnAnsweredTickets,
+  getAll,
 };
