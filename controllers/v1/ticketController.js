@@ -23,7 +23,7 @@ const createTicket = async (req, res) => {
       mainTicketId: null,
     });
     if (!newTicket) {
-      return res.status(500).json({ message: "Add Ticket failed !!" });
+      return res.status(500).json({ message: "Create Ticket failed !!" });
     }
 
     const newTicketObject = newTicket.toObject();
@@ -33,7 +33,7 @@ const createTicket = async (req, res) => {
     Reflect.deleteProperty(newTicketObject, "updatedAt");
 
     return res.status(201).json({
-      message: "Ticket added successfully :))",
+      message: "Ticket created successfully :))",
       ticket: newTicketObject,
     });
   } catch (error) {
