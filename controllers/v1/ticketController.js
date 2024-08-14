@@ -138,12 +138,16 @@ const answerTicketByUser = async (req, res) => {
       return res.status(404).json({ message: "Add Answer Ticket faild !!" });
     }
 
-    const answerTicketObject = answerTicket.toObject();
-    Reflect.deleteProperty(answerTicketObject, "__v");
+    const newTicket = await ticketModel
+      .findOne({ _id: answerTicket._id })
+      .populate("userId", "firstname lastname")
+      .populate("departmentId", "title")
+      .select("-__v")
+      .lean();
 
     return res.status(200).json({
       message: "Answer Ticket added successfully :))",
-      ticket: answerTicketObject,
+      ticket: newTicket,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
