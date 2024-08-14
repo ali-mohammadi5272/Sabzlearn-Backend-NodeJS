@@ -5,6 +5,7 @@ const {
   createTicket,
   answerTicketByAdmin,
   answerTicketByUser,
+  getAllTicketsByUser,
 } = require("../../controllers/v1/ticketController");
 const { roles } = require("../../utils/constants");
 
@@ -19,5 +20,6 @@ router
     answerTicketByAdmin
   );
 router.route("/answerByUser/:id").post(authMiddleware, answerTicketByUser);
+router.route("/user").get(authMiddleware, getAllTicketsByUser);
 
 module.exports = router;
