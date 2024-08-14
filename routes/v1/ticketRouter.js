@@ -8,12 +8,16 @@ const {
   getAllTicketsByUser,
   getTicket,
   getAllUnAnsweredTickets,
+  getAll,
 } = require("../../controllers/v1/ticketController");
 const { roles } = require("../../utils/constants");
 
 const router = express.Router();
 
-router.route("/").post(authMiddleware, createTicket);
+router
+  .route("/")
+  .post(authMiddleware, createTicket)
+  .get(authMiddleware, accessLevelMiddleware(roles.manager), getAll);
 router
   .route("/unAnswered")
   .get(
