@@ -206,10 +206,28 @@ const getTicket = async (req, res) => {
   }
 };
 
+const getAllUnAnsweredTickets = async (req, res) => {
+  try {
+    const tickets = await ticketModel
+      .find({ mainTicketId: null, hasBeenAnswered: 0 })
+      .populate("userId", "firstname lastname")
+      .populate("departmentId", "title")
+      .select("-__v")
+      .lean();
+    if (!tickets) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(tickets);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   createTicket,
   answerTicketByAdmin,
   answerTicketByUser,
   getAllTicketsByUser,
   getTicket,
+  getAllUnAnsweredTickets,
 };
