@@ -110,7 +110,7 @@ const answerTicketByUser = async (req, res) => {
 
   try {
     const ticket = await ticketModel.findOneAndUpdate(
-      { _id: id, userId: req.user._id },
+      { _id: id, userId: req.user._id, mainTicketId: null },
       {
         hasBeenAnswered: 0,
       }
