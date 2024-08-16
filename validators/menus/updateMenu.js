@@ -11,7 +11,7 @@ const schema = {
       type: "string",
     },
     parent: {
-      type: "string",
+      type: ["string", "null"],
     },
   },
   required: ["title", "href", "parent"],
