@@ -44,6 +44,23 @@ const addMenu = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const menus = await menuModel
+      .find({ parent: null })
+      .populate("subMenus", "title href -parent")
+      .select("title href")
+      .lean();
+    if (!menus) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(menus);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addMenu,
+  getAll,
 };
