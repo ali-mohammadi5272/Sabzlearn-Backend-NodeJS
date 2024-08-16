@@ -1,5 +1,6 @@
 const menuModel = require("../../models/menu");
 const addMenuValidate = require("../../validators/menus/addMenu");
+const updateMenuValidate = require("../../validators/menus/updateMenu");
 const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
@@ -78,8 +79,32 @@ const removeMenu = async (req, res) => {
   }
 };
 
+const updateMenu = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "MenuId is not valid !!" });
+  }
+
+  const isValidRequestBody = updateMenuValidate(req.body);
+  if (!isValidRequestBody) {
+    return res.status(422).json(updateMenuValidate.errors);
+  }
+
+  try {
+    const menu = await menuModel.findOneAndUpdate({ _id: id }, req.body);
+    if (!menu) {
+      return res.status(404).json({ message: "Menu not found !!" });
+    }
+    return res.status(200).json({ message: "Menu updated successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addMenu,
   getAll,
   removeMenu,
+  updateMenu,
 };
