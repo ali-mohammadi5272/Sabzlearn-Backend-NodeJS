@@ -25,7 +25,7 @@ router
     accessLevelMiddleware(roles.admin),
     getAllUnAnsweredTickets
   );
-router.route("/:id").get(authMiddleware, getTicket);
+router.route("/user").get(authMiddleware, getAllTicketsByUser);
 router
   .route("/answerByAdmin/:id")
   .post(
@@ -34,6 +34,6 @@ router
     answerTicketByAdmin
   );
 router.route("/answerByUser/:id").post(authMiddleware, answerTicketByUser);
-router.route("/user").get(authMiddleware, getAllTicketsByUser);
+router.route("/:id").get(authMiddleware, getTicket);
 
 module.exports = router;
