@@ -6,4 +6,8 @@ const { addMenu } = require("../../controllers/v1/menuController");
 
 const router = express.Router();
 
+router
+  .route("/")
+  .post(authMiddleware, accessLevelMiddleware(roles.admin), addMenu);
+
 module.exports = router;
