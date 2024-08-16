@@ -24,7 +24,7 @@ const schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-schema.virtual("subMenu", {
+schema.virtual("subMenus", {
   ref: "Menu",
   localField: "_id",
   foreignField: "parent",
