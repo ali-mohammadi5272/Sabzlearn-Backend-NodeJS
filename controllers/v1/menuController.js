@@ -23,7 +23,7 @@ const addMenu = async (req, res) => {
       })
       .lean();
     if (isMenuExistBefore) {
-      return res.status(422).json({ message: "Category is already exist !!" });
+      return res.status(422).json({ message: "Menu is already exist !!" });
     }
   }
 
