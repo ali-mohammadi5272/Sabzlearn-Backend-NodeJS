@@ -96,7 +96,14 @@ const updateMenu = async (req, res) => {
     if (!menu) {
       return res.status(404).json({ message: "Menu not found !!" });
     }
-    return res.status(200).json({ message: "Menu updated successfully :))" });
+    const updatedMenu = await menuModel
+      .findOne({ _id: menu._id })
+      .populate("parent", "title href parent")
+      .select("title href parent");
+
+    return res
+      .status(200)
+      .json({ message: "Menu updated successfully :))", menu: updatedMenu });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
