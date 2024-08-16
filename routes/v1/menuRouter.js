@@ -6,6 +6,7 @@ const {
   addMenu,
   getAll,
   removeMenu,
+  updateMenu,
 } = require("../../controllers/v1/menuController");
 
 const router = express.Router();
@@ -17,6 +18,7 @@ router
 
 router
   .route("/:id")
+  .put(authMiddleware, accessLevelMiddleware(roles.admin), updateMenu)
   .delete(authMiddleware, accessLevelMiddleware(roles.admin), removeMenu);
 
 module.exports = router;
