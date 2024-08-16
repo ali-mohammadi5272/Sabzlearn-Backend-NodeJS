@@ -158,6 +158,7 @@ const getAllTicketsByUser = async (req, res) => {
   try {
     const tickets = await ticketModel
       .find({ userId: req.user._id, mainTicketId: null })
+      .sort({ _id: -1 })
       .select("-__v")
       .lean();
     if (!tickets) {
