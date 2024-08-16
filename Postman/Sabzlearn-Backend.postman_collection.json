@@ -1167,6 +1167,81 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Menus",
+      "item": [
+        {
+          "name": "Add New Menu",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"{{$randomLoremWord}}\",\r\n    \"href\": \"categories/front-end\"\r\n    // \"parent\":\"parentId\" optional\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/menus",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "menus"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Menus",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/menus",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "menus"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove a Menu",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/menus/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "menus", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Menu",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"{{$randomLoremWord}}\",\r\n    \"href\": \"categories/front-end\",\r\n    \"parent\": \"parentId\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/menus/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "menus", "{{id}}"]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "auth": {
