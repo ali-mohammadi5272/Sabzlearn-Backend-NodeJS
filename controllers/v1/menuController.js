@@ -60,7 +60,26 @@ const getAll = async (req, res) => {
   }
 };
 
+const removeMenu = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "MenuId is not valid !!" });
+  }
+
+  try {
+    const menu = await menuModel.findOneAndDelete({ _id: id });
+    if (!menu) {
+      return res.status(404).json({ message: "Menu not found !!" });
+    }
+    return res.status(200).json({ message: "Menu removed successfully :))" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addMenu,
   getAll,
+  removeMenu,
 };
