@@ -15,6 +15,7 @@ const discountCodeRouter = require(`./routes/${VERSION}/discountCodeRouter`);
 const orderRouter = require(`./routes/${VERSION}/orderRouter`);
 const departmentRouter = require(`./routes/${VERSION}/departmentRouter`);
 const ticketRouter = require(`./routes/${VERSION}/ticketRouter`);
+const menuRouter = require(`./routes/${VERSION}/menuRouter`);
 
 const helmet = require("helmet");
 const cors = require("cors");
@@ -43,6 +44,7 @@ app.use(`/api/${VERSION}/discountCodes/`, discountCodeRouter);
 app.use(`/api/${VERSION}/orders/`, orderRouter);
 app.use(`/api/${VERSION}/departments/`, departmentRouter);
 app.use(`/api/${VERSION}/tickets/`, ticketRouter);
+app.use(`/api/${VERSION}/menus/`, menuRouter);
 
 app.use((err, req, res, next) => {
   return res.status(500).json({ message: err.message });
