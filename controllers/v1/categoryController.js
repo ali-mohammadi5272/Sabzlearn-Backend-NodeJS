@@ -16,12 +16,12 @@ const addCategroy = async (req, res) => {
   try {
     await checkDBCollectionIndexes(categoryModel);
   } catch (err) {
-    const isUserExistBefore = await categoryModel
+    const isCategoryExistBefore = await categoryModel
       .findOne({
         $or: [{ title }, { href }],
       })
       .lean();
-    if (isUserExistBefore) {
+    if (isCategoryExistBefore) {
       return res.status(422).json({ message: "Category is already exist !!" });
     }
   }
