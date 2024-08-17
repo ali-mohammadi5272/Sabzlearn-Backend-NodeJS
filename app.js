@@ -23,12 +23,14 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(process.cwd(), "public")));
-app.use(helmet());
-app.use(cookieParser());
+app.use(
+  cors(),
+  express.json(),
+  express.urlencoded({ extended: false }),
+  express.static(path.join(process.cwd(), "public")),
+  helmet(),
+  cookieParser()
+);
 
 app.use(`/api/${VERSION}/auth/`, authRouter);
 app.use(`/api/${VERSION}/users/`, userRouter);
