@@ -1,6 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const { VERSION } = process.env;
+const helmet = require("helmet");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const path = require("path");
 const authRouter = require(`./routes/${VERSION}/authRouter`);
 const userRouter = require(`./routes/${VERSION}/userRouter`);
 const categoryRouter = require(`./routes/${VERSION}/categoryRouter`);
@@ -17,10 +21,6 @@ const departmentRouter = require(`./routes/${VERSION}/departmentRouter`);
 const ticketRouter = require(`./routes/${VERSION}/ticketRouter`);
 const menuRouter = require(`./routes/${VERSION}/menuRouter`);
 
-const helmet = require("helmet");
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const path = require("path");
 const app = express();
 
 app.use(
