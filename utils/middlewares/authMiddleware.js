@@ -1,4 +1,4 @@
-const { userRegisterInApplicationInfo } = require("../utils/auth");
+const { userRegisterInApplicationInfo } = require("../auth");
 
 const middleware = async (req, res, next) => {
   try {
