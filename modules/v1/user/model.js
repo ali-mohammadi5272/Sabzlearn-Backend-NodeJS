@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const { roles } = require("../utils/constants");
-const { phoneNumberPattern, emailPattern } = require("../utils/patterns");
+const { roles } = require("../../../utils/constants");
+const { phoneNumberPattern, emailPattern } = require("../../../utils/patterns");
 
 const schema = new mongoose.Schema(
   {
