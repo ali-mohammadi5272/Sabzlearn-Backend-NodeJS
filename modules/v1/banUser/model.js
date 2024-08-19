@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { phoneNumberPattern } = require("../utils/patterns");
+const { phoneNumberPattern } = require("../../../utils/patterns");
 
 const schema = new mongoose.Schema(
   {
