@@ -1,16 +1,16 @@
-const userModel = require("../../models/user");
-const banUserModel = require("../../models/banUser");
-const { phoneNumberPrefixPattern } = require("../../utils/patterns");
-const registerValidate = require("../../validators/auth/register");
-const loginValidate = require("../../validators/auth/login");
+const userModel = require("../user/model");
+const banUserModel = require("../banUser/model");
+const { phoneNumberPrefixPattern } = require("../../../utils/patterns");
+const registerValidate = require("../../../utils/validators/auth/register");
+const loginValidate = require("../../../utils/validators/auth/login");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
+} = require("../../../utils/checkCollectionIndexes");
 const {
   generateAccessToken,
   hashPassword,
   isValidHashedPassword,
-} = require("../../utils/auth");
+} = require("../../../utils/auth");
 
 const register = async (req, res) => {
   const isValidRequestBody = registerValidate(req.body);
