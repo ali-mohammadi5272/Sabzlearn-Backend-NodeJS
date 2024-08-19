@@ -1,6 +1,6 @@
 const Ajv = require("ajv");
-const { roles } = require("../../utils/constants");
 const ajv = new Ajv();
+const { roles } = require("../../constants");
 
 const schema = {
   type: "object",
