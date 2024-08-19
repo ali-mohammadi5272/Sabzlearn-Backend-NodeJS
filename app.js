@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const { VERSION } = process.env;
 const helmet = require("helmet");
 const cors = require("cors");
