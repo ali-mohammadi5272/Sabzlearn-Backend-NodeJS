@@ -39,7 +39,7 @@ const decodedTokenData = (token) => {
 
 const userRegisterInApplicationInfo = async (req) => {
   try {
-    const accessToken = req.cookies.accessToken;
+    const { accessToken } = req.signedCookies;
     const tokenPayload = tokenPayloadData(accessToken);
     const { _id } = tokenPayload;
     const user = await userModel.findOne({ _id }).select("-__v -password");
