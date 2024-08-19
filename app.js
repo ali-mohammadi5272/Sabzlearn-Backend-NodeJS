@@ -29,7 +29,7 @@ app.use(
   express.urlencoded({ extended: false }),
   express.static(path.join(process.cwd(), "public")),
   helmet(),
-  cookieParser()
+  cookieParser(process.env.CookieSecretKey)
 );
 
 app.use(`/api/${VERSION}/auth/`, authRouter);
