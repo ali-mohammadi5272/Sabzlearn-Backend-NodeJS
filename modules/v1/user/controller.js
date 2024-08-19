@@ -1,13 +1,13 @@
 const { isValidObjectId } = require("mongoose");
-const userModel = require("../../models/user");
-const banUserModel = require("../../models/banUser");
-const updateUserValidate = require("../../validators/users/updateUser");
-const changeRoleValidate = require("../../validators/users/changeRole");
+const userModel = require("./model");
+const banUserModel = require("../banUser/model");
+const updateUserValidate = require("../../../utils/validators/users/updateUser");
+const changeRoleValidate = require("../../../utils/validators/users/changeRole");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
-const { hashPassword, generateAccessToken } = require("../../utils/auth");
-const { phoneNumberPrefixPattern } = require("../../utils/patterns");
+} = require("../../../utils/checkCollectionIndexes");
+const { hashPassword, generateAccessToken } = require("../../../utils/auth");
+const { phoneNumberPrefixPattern } = require("../../../utils/patterns");
 
 const getAll = async (req, res) => {
   try {
@@ -150,7 +150,7 @@ const banUser = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found !!" });
     }
-    findedUser = structuredClone(user);
+    findedUser = user;
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
