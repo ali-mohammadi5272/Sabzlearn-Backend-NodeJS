@@ -1,4 +1,4 @@
-const { roles } = require("../utils/constants");
+const { roles } = require("../constants");
 
 const forbiddenResponse = (res) => {
   return res.status(403).json({
