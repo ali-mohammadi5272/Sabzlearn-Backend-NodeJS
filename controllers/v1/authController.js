@@ -68,6 +68,9 @@ const register = async (req, res) => {
     res.cookie("accessToken", accessToken, {
       maxAge: 1000 * 60 * 24,
       httpOnly: true,
+      path: "/",
+      secure: true,
+      signed: true,
     });
     return res.status(201).json({
       message: "User added successfully :))",
