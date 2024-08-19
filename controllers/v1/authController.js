@@ -116,7 +116,13 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  res.clearCookie("accessToken");
+  return res.status(200).json({ message: "Logout successfully :))" });
+};
+
 module.exports = {
   register,
   login,
+  logout,
 };
