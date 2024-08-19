@@ -148,6 +148,19 @@
           "response": []
         },
         {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "auth", "logout"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Register",
           "request": {
             "method": "POST",
