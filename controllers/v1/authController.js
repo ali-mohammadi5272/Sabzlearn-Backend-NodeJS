@@ -72,7 +72,6 @@ const register = async (req, res) => {
     return res.status(201).json({
       message: "User added successfully :))",
       user: newUserObject,
-      accessToken,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
