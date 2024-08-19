@@ -107,9 +107,7 @@ const login = async (req, res) => {
       maxAge: 1000 * 60 * 24,
       httpOnly: true,
     });
-    return res
-      .status(200)
-      .json({ message: "Login successfully :))", accessToken });
+    return res.status(200).json({ message: "Login successfully :))" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
