@@ -19,7 +19,7 @@ const discountCodeRouter = require(`./routes/${VERSION}/discountCodeRouter`);
 const orderRouter = require(`./routes/${VERSION}/orderRouter`);
 const departmentRouter = require(`./routes/${VERSION}/departmentRouter`);
 const ticketRouter = require(`./routes/${VERSION}/ticketRouter`);
-const menuRouter = require(`./routes/${VERSION}/menuRouter`);
+const menuRouter = require(`./modules/${VERSION}/menu/routes`);
 
 const app = express();
 
