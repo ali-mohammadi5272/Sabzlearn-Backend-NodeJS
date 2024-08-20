@@ -1,9 +1,9 @@
-const departmentModel = require("../../models/department");
-const addDepartmentValidate = require("../../validators/department/addDepartment");
+const departmentModel = require("./model");
+const addDepartmentValidate = require("../../../utils/validators/department/addDepartment");
+const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
-const { isValidObjectId } = require("mongoose");
+} = require("../../../utils/checkCollectionIndexes");
 
 const addDepartment = async (req, res) => {
   const isValidRequestBody = addDepartmentValidate(req.body);
