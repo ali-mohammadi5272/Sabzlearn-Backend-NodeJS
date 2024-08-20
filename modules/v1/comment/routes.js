@@ -1,7 +1,7 @@
 const express = require("express");
-const authMiddleware = require("../../middlewares/authMiddleware");
-const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
-const { roles } = require("../../utils/constants");
+const authMiddleware = require("../../../utils/middlewares/authMiddleware");
+const accessLevelMiddleware = require("../../../utils/middlewares/accessLevelMiddleware");
+const { roles } = require("../../../utils/constants");
 const {
   addComment,
   removeComment,
@@ -9,7 +9,7 @@ const {
   answerComment,
   getAll,
   rejectComment,
-} = require("../../controllers/v1/commentController");
+} = require("./controller");
 
 const router = express.Router();
 router.use(authMiddleware);
