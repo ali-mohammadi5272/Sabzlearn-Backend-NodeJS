@@ -1,11 +1,11 @@
 const express = require("express");
-const authMiddleware = require("../../middlewares/authMiddleware");
-const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
-const { roles } = require("../../utils/constants");
+const authMiddleware = require("../../../utils/middlewares/authMiddleware");
+const accessLevelMiddleware = require("../../../utils/middlewares/accessLevelMiddleware");
+const { roles } = require("../../../utils/constants");
 const {
   sendMessage,
   answerMessage,
-} = require("../../controllers/v1/contactUsController");
+} = require("./controller");
 
 const router = express.Router();
 
