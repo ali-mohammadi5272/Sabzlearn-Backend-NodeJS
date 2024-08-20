@@ -1,10 +1,10 @@
-const menuModel = require("../../models/menu");
-const addMenuValidate = require("../../validators/menus/addMenu");
-const updateMenuValidate = require("../../validators/menus/updateMenu");
+const menuModel = require("./model");
+const addMenuValidate = require("../../../utils/validators/menus/addMenu");
+const updateMenuValidate = require("../../../utils/validators/menus/updateMenu");
 const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
+} = require("../../../utils/checkCollectionIndexes");
 
 const addMenu = async (req, res) => {
   const isValidRequestBody = addMenuValidate(req.body);
