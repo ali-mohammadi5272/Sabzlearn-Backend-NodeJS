@@ -1,12 +1,12 @@
-const discountCodeModel = require("../../models/discountCode");
-const courseModel = require("../../models/course");
-const discountAllValidate = require("../../validators/discountCodes/discountAll");
-const useDsicountCodeValidate = require("../../validators/discountCodes/useDsicountCode");
-const addDiscountCodeValidate = require("../../validators/discountCodes/addDiscountCode");
+const discountCodeModel = require("./model");
+const courseModel = require("./../course/model");
+const discountAllValidate = require("../../../utils/validators/discountCodes/discountAll");
+const useDsicountCodeValidate = require("../../../utils/validators/discountCodes/useDsicountCode");
+const addDiscountCodeValidate = require("../../../utils/validators/discountCodes/addDiscountCode");
+const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
-const { isValidObjectId } = require("mongoose");
+} = require("../../../utils/checkCollectionIndexes");
 
 const discountAllCourses = async (req, res) => {
   const isValidRequestBody = discountAllValidate(req.body);
