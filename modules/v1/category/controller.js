@@ -1,9 +1,9 @@
 const { isValidObjectId } = require("mongoose");
-const categoryModel = require("../../models/category");
+const categoryModel = require("./model");
+const categoryValidate = require("../../../utils/validators/categories/categroy");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
-const categoryValidate = require("../../validators/categories/categroy");
+} = require("../../../utils/checkCollectionIndexes");
 
 const addCategroy = async (req, res) => {
   const isValidRequestBody = categoryValidate(req.body);
