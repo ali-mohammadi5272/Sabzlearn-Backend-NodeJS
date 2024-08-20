@@ -1,12 +1,8 @@
 const express = require("express");
-const authMiddleware = require("../../middlewares/authMiddleware");
-const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
-const {
-  addDepartment,
-  getAll,
-  removeDepartment,
-} = require("../../controllers/v1/departmentController");
-const { roles } = require("../../utils/constants");
+const authMiddleware = require("../../../utils/middlewares/authMiddleware");
+const accessLevelMiddleware = require("../../../utils/middlewares/accessLevelMiddleware");
+const { addDepartment, getAll, removeDepartment } = require("./controller");
+const { roles } = require("../../../utils/constants");
 
 const router = express.Router();
 
