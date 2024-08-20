@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { sessionTimePattern } = require("../utils/patterns");
+const { sessionTimePattern } = require("../../../utils/patterns");
 
 const schema = new mongoose.Schema(
   {
