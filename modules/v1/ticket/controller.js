@@ -1,7 +1,7 @@
-const ticketModel = require("../../models/ticket");
-const departmentModel = require("../../models/department");
-const sendTicketValidate = require("../../validators/tickets/sendTicket");
-const answerTicketValidate = require("../../validators/tickets/answerTicket");
+const ticketModel = require("./model");
+const departmentModel = require("./../department/model");
+const sendTicketValidate = require("../../../utils/validators/tickets/sendTicket");
+const answerTicketValidate = require("../../../utils/validators/tickets/answerTicket");
 const { isValidObjectId } = require("mongoose");
 
 const createTicket = async (req, res) => {
