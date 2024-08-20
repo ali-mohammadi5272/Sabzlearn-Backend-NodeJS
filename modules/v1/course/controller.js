@@ -2,15 +2,15 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { isValidObjectId } = require("mongoose");
-const courseModel = require("../../models/course");
-const userCourseModel = require("../../models/userCourse");
-const categoryModel = require("../../models/category");
-const { userRegisterInApplicationInfo } = require("../../utils/auth");
+const courseModel = require("./model");
+const userCourseModel = require("./../userCourse/model");
+const categoryModel = require("./../category/model");
+const { userRegisterInApplicationInfo } = require("../../../utils/auth");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
-const courseValidate = require("../../validators/courses/course");
-const registerCourseValidate = require("../../validators/courses/registerCourse");
+} = require("../../../utils/checkCollectionIndexes");
+const courseValidate = require("../../../utils/validators/courses/course");
+const registerCourseValidate = require("../../../utils/validators/courses/registerCourse");
 
 const getAll = async (req, res) => {
   try {
