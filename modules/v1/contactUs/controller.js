@@ -1,8 +1,8 @@
-const contactUsModel = require("../../models/contactUs");
-const contactUsValidate = require("../../validators/contactUs/contactUs");
-const answerMessageValidate = require("../../validators/contactUs/answerMessage");
+const contactUsModel = require("./model");
+const contactUsValidate = require("../../../utils/validators/contactUs/contactUs");
+const answerMessageValidate = require("../../../utils/validators/contactUs/answerMessage");
 const nodemailer = require("nodemailer");
-const { phoneNumberPrefixPattern } = require("../../utils/patterns");
+const { phoneNumberPrefixPattern } = require("../../../utils/patterns");
 const { isValidObjectId } = require("mongoose");
 
 const sendMessage = async (req, res) => {
