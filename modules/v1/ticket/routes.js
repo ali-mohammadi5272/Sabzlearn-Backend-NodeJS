@@ -1,6 +1,7 @@
 const express = require("express");
-const authMiddleware = require("../../middlewares/authMiddleware");
-const accessLevelMiddleware = require("../../middlewares/accessLevelMiddleware");
+const authMiddleware = require("../../../utils/middlewares/authMiddleware");
+const accessLevelMiddleware = require("../../../utils/middlewares/accessLevelMiddleware");
+const { roles } = require("../../../utils/constants");
 const {
   createTicket,
   answerTicketByAdmin,
@@ -9,8 +10,7 @@ const {
   getTicket,
   getAllUnAnsweredTickets,
   getAll,
-} = require("../../controllers/v1/ticketController");
-const { roles } = require("../../utils/constants");
+} = require("./controller");
 
 const router = express.Router();
 
