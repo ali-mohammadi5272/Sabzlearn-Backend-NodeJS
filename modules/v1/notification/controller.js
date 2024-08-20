@@ -1,7 +1,7 @@
-const notificationModel = require("../../models/notification");
-const userModel = require("../../models/user");
-const notificationValidate = require("../../validators/notification/sendNotification");
-const { roles } = require("../../utils/constants");
+const notificationModel = require("./model");
+const userModel = require("./../user/model");
+const notificationValidate = require("../../../utils/validators/notification/sendNotification");
+const { roles } = require("../../../utils/constants");
 const { isValidObjectId } = require("mongoose");
 
 const sendNotification = async (req, res) => {
