@@ -1,12 +1,12 @@
 const fs = require("fs");
-const sessionModel = require("../../models/session");
-const courseModel = require("../../models/course");
+const path = require("path");
+const sessionModel = require("./model");
+const courseModel = require("./../course/model");
 const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
-const sessionValidate = require("../../validators/sessions/session");
-const path = require("path");
+} = require("../../../utils/checkCollectionIndexes");
+const sessionValidate = require("../../../utils/validators/sessions/session");
 
 const getAll = async (req, res) => {
   try {
