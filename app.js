@@ -17,7 +17,7 @@ const searchRouter = require(`./routes/${VERSION}/searchRouter`);
 const notificationRouter = require(`./routes/${VERSION}/notificationRouter`);
 const discountCodeRouter = require(`./routes/${VERSION}/discountCodeRouter`);
 const orderRouter = require(`./routes/${VERSION}/orderRouter`);
-const departmentRouter = require(`./routes/${VERSION}/departmentRouter`);
+const departmentRouter = require(`./modules/${VERSION}/department/routes`);
 const ticketRouter = require(`./routes/${VERSION}/ticketRouter`);
 const menuRouter = require(`./modules/${VERSION}/menu/routes`);
 
