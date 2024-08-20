@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { emailPattern, phoneNumberPattern } = require("../utils/patterns");
+const { emailPattern, phoneNumberPattern } = require("../../../utils/patterns");
 
 const schema = new mongoose.Schema(
   {
