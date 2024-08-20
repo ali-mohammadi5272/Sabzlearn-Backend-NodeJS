@@ -1,8 +1,8 @@
-const newsletterModel = require("../../models/newsletter");
-const newsletterValidate = require("../../validators/newsletter/newsletter");
+const newsletterModel = require("./model");
+const newsletterValidate = require("../../../utils/validators/newsletter/newsletter");
 const {
   checkDBCollectionIndexes,
-} = require("../../utils/checkCollectionIndexes");
+} = require("../../../utils/checkCollectionIndexes");
 
 const getAll = async (req, res) => {
   try {
