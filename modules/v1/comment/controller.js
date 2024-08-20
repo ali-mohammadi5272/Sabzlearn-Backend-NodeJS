@@ -1,9 +1,8 @@
 const { isValidObjectId } = require("mongoose");
-const commentModel = require("../../models/comment");
-const courseModel = require("../../models/course");
-
-const commentValidate = require("../../validators/comments/comment");
-const answerCommentValidate = require("../../validators/comments/answerComment");
+const commentModel = require("./model");
+const courseModel = require("./../course/model");
+const commentValidate = require("../../../utils/validators/comments/comment");
+const answerCommentValidate = require("../../../utils/validators/comments/answerComment");
 
 const addComment = async (req, res) => {
   const isValidRequestBody = commentValidate(req.body);
