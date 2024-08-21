@@ -1,4 +1,4 @@
-const userCourseModel = require("../../models/userCourse");
+const userCourseModel = require("./../userCourse/model");
 
 const getUserOrders = async (req, res) => {
   const orders = await userCourseModel
