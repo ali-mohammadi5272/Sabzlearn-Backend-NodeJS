@@ -28,8 +28,9 @@ const schema = new mongoose.Schema(
       trim: true,
     },
     hasBeenAnswered: {
-      type: Boolean,
-      default: false,
+      type: Number,
+      enum: [0, 1],
+      default: 0,
       trim: true,
     },
   },
