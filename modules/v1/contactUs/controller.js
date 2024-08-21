@@ -76,7 +76,7 @@ const answerMessage = async (req, res) => {
       const updatedMessage = await contactUsModel.findOneAndUpdate(
         { _id: id },
         {
-          hasBeenAnswered: true,
+          hasBeenAnswered: 1,
         }
       );
       if (!updatedMessage) {
