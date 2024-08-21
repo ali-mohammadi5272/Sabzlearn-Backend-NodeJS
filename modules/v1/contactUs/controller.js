@@ -91,4 +91,20 @@ const answerMessage = async (req, res) => {
   }
 };
 
-module.exports = { sendMessage, answerMessage };
+const getAllByManager = async (req, res) => {
+  try {
+    const contacts = await contactUsModel.find({}).select("-__v").lean();
+    if (!contacts) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(contacts);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  sendMessage,
+  answerMessage,
+  getAllByManager,
+};
