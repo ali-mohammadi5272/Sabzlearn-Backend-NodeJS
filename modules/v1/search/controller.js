@@ -1,4 +1,4 @@
-const courseModel = require("../../models/course");
+const courseModel = require("./../course/model");
 
 const globalSearch = async (req, res) => {
   const { keyword } = req.query;
