@@ -11,6 +11,19 @@
       "name": "User",
       "item": [
         {
+          "name": "Ban User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/users/ban/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "users", "ban", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Get all Users",
           "request": {
             "method": "GET",
@@ -37,14 +50,14 @@
           "response": []
         },
         {
-          "name": "Ban User",
+          "name": "Get User Orders",
           "request": {
-            "method": "POST",
+            "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/users/ban/{{id}}",
+              "raw": "{{base_url}}/api/{{version}}/users/orders",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "users", "ban", "{{id}}"]
+              "path": ["api", "{{version}}", "users", "orders"]
             }
           },
           "response": []
@@ -188,6 +201,28 @@
       "name": "Category",
       "item": [
         {
+          "name": "Add Category",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"{{$randomWord}}\",\r\n    \"href\": \"{{$randomWord}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/categories",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "categories"]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Get all Categories",
           "request": {
             "method": "GET",
@@ -244,28 +279,6 @@
               "raw": "{{base_url}}/api/{{version}}/categories/{{id}}",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "categories", "{{id}}"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Add Category",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"{{$randomWord}}\",\r\n    \"href\": \"{{$randomWord}}\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/api/{{version}}/categories/",
-              "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "categories", ""]
             }
           },
           "response": []
@@ -402,15 +415,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/courses/category/669e8e9a850afb7faa4df754",
+              "raw": "{{base_url}}/api/{{version}}/courses/category/{{id}}",
               "host": ["{{base_url}}"],
-              "path": [
-                "api",
-                "{{version}}",
-                "courses",
-                "category",
-                "669e8e9a850afb7faa4df754"
-              ]
+              "path": ["api", "{{version}}", "courses", "category", "{{id}}"]
             }
           },
           "response": []
@@ -575,14 +582,14 @@
           "response": []
         },
         {
-          "name": "Remove Comment",
+          "name": "Get all Comments",
           "request": {
-            "method": "DELETE",
+            "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/comments/{{id}}",
+              "raw": "{{base_url}}/api/{{version}}/comments",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "comments", "{{id}}"]
+              "path": ["api", "{{version}}", "comments"]
             }
           },
           "response": []
@@ -636,14 +643,14 @@
           "response": []
         },
         {
-          "name": "Get all Comments",
+          "name": "Remove Comment",
           "request": {
-            "method": "GET",
+            "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/comments/",
+              "raw": "{{base_url}}/api/{{version}}/comments/{{id}}",
               "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "comments", ""]
+              "path": ["api", "{{version}}", "comments", "{{id}}"]
             }
           },
           "response": []
@@ -696,25 +703,38 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Get all Contacts by Manager",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/contact-us/all",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "contact-us", "all"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all unAnswered Contacts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/contact-us",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "contact-us"]
+            }
+          },
+          "response": []
         }
       ]
     },
     {
       "name": "Newsletters",
       "item": [
-        {
-          "name": "Get all Newsletters",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/{{version}}/newsletter",
-              "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "newsletter"]
-            }
-          },
-          "response": []
-        },
         {
           "name": "Register Newsletter",
           "request": {
@@ -733,6 +753,19 @@
               "raw": "{{base_url}}/api/{{version}}/newsletter/register",
               "host": ["{{base_url}}"],
               "path": ["api", "{{version}}", "newsletter", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Newsletters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/newsletter",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "newsletter"]
             }
           },
           "response": []
@@ -966,24 +999,6 @@
       ]
     },
     {
-      "name": "Orders",
-      "item": [
-        {
-          "name": "Get Orders by UserId",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/{{version}}/orders/user",
-              "host": ["{{base_url}}"],
-              "path": ["api", "{{version}}", "orders", "user"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
       "name": "Departments",
       "item": [
         {
@@ -1027,14 +1042,9 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/departments/66bb40a7781d3d74d617295e",
+              "raw": "{{base_url}}/api/{{version}}/departments/{{id}}",
               "host": ["{{base_url}}"],
-              "path": [
-                "api",
-                "{{version}}",
-                "departments",
-                "66bb40a7781d3d74d617295e"
-              ]
+              "path": ["api", "{{version}}", "departments", "{{id}}"]
             }
           },
           "response": []
@@ -1141,14 +1151,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/{{version}}/tickets/66bc7f05efd15304e83b8066",
+              "raw": "{{base_url}}/api/{{version}}/tickets/{{id}}",
               "host": ["{{base_url}}"],
-              "path": [
-                "api",
-                "{{version}}",
-                "tickets",
-                "66bc7f05efd15304e83b8066"
-              ]
+              "path": ["api", "{{version}}", "tickets", "{{id}}"]
             }
           },
           "response": []
@@ -1220,10 +1225,19 @@
           "response": []
         },
         {
-          "name": "Remove a Menu",
+          "name": "Update a Menu",
           "request": {
-            "method": "DELETE",
+            "method": "PUT",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"CSS\",\r\n    \"href\": \"categories/front-end/css-master\",\r\n    \"parent\": \"66bf6f921b34bb2c32188570\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{base_url}}/api/{{version}}/menus/{{id}}",
               "host": ["{{base_url}}"],
@@ -1233,19 +1247,10 @@
           "response": []
         },
         {
-          "name": "Update a Menu",
+          "name": "Remove a Menu",
           "request": {
-            "method": "PUT",
+            "method": "DELETE",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"{{$randomLoremWord}}\",\r\n    \"href\": \"categories/front-end\",\r\n    \"parent\": \"parentId\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
               "raw": "{{base_url}}/api/{{version}}/menus/{{id}}",
               "host": ["{{base_url}}"],
