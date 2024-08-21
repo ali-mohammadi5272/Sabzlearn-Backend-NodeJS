@@ -18,6 +18,7 @@ const sendMessage = async (req, res) => {
     const newMessage = await contactUsModel.create({
       ...req.body,
       phone: changedPhoneNumber,
+      hasBeenAnswered: 0,
     });
     if (!newMessage) {
       return res.status(500).json({ message: "Sent Message failed !!" });
