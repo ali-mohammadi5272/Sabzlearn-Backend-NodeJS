@@ -1,5 +1,5 @@
 const express = require("express");
-const { globalSearch } = require("../../controllers/v1/searchController");
+const { globalSearch } = require("./controller");
 
 const router = express.Router();
 
