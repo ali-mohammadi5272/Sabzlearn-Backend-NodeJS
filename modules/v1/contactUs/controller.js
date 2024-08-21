@@ -103,8 +103,24 @@ const getAllByManager = async (req, res) => {
   }
 };
 
+const getAllUnAnswered = async (req, res) => {
+  try {
+    const contacts = await contactUsModel
+      .find({ hasBeenAnswered: 0 })
+      .select("-__v")
+      .lean();
+    if (!contacts) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(contacts);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   sendMessage,
   answerMessage,
   getAllByManager,
+  getAllUnAnswered,
 };
