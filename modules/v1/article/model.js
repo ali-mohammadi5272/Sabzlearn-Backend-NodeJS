@@ -31,6 +31,12 @@ const schema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    href: {
+      type: String,
+      trim: true,
+      unique: true,
+      required: true,
+    },
     publish: {
       type: Number,
       enum: [0, 1],
