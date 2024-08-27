@@ -3,6 +3,7 @@ const roles = {
   admin: "ADMIN",
   teacher: "TEACHER",
   teacherHelper: "TEACHER_HELPER",
+  author: "AUTHOR",
   user: "USER",
 };
 
