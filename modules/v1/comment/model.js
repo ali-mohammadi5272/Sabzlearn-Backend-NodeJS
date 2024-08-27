@@ -14,7 +14,12 @@ const schema = new mongoose.Schema(
     courseId: {
       type: mongoose.Types.ObjectId,
       ref: "Course",
-      required: true,
+      default: null,
+    },
+    articleId: {
+      type: [mongoose.Types.ObjectId, null],
+      ref: "Article",
+      default: null,
     },
     score: {
       type: Number,
