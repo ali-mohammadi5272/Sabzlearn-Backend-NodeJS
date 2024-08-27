@@ -1260,6 +1260,59 @@
           "response": []
         }
       ]
+    },
+    {
+      "name": "Articles",
+      "item": [
+        {
+          "name": "Add Articles",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Kotlin vs Java",
+                  "type": "text"
+                },
+                {
+                  "key": "body",
+                  "value": "{{$randomLoremParagraph}}",
+                  "type": "text"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "669e8e9a850afb7faa4df754",
+                  "type": "text"
+                },
+                {
+                  "key": "publish",
+                  "value": "0",
+                  "type": "text"
+                },
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "src": "/C:/Users/alimo/Downloads/java-vs-kotlin-1.webp"
+                },
+                {
+                  "key": "href",
+                  "value": "Kotlin vs Java",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/articles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "articles"]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ],
   "auth": {
