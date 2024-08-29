@@ -105,7 +105,25 @@ const removeArticle = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const menus = await articleModel
+      .find({})
+      .populate("authorId", "firstname lastname")
+      .populate("categoryId", "title")
+      .select("-__v")
+      .lean();
+    if (!menus) {
+      return res.status(500).json({ message: "Internal Server Error !!" });
+    }
+    return res.status(200).json(menus);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addArticle,
   removeArticle,
+  getAll,
 };
