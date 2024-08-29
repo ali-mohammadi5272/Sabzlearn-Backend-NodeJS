@@ -3,12 +3,13 @@ const authMiddleware = require("../../../utils/middlewares/authMiddleware");
 const accessLevelMiddleware = require("../../../utils/middlewares/accessLevelMiddleware");
 const { uploader } = require("../../../utils/uploader");
 const { roles } = require("../../../utils/constants");
-const { addArticle, removeArticle } = require("./controller");
+const { addArticle, removeArticle, getAll } = require("./controller");
 
 const router = express.Router();
 
 router
   .route("/")
+  .get(getAll)
   .post(
     authMiddleware,
     accessLevelMiddleware(roles.author),
