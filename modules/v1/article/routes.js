@@ -3,7 +3,12 @@ const authMiddleware = require("../../../utils/middlewares/authMiddleware");
 const accessLevelMiddleware = require("../../../utils/middlewares/accessLevelMiddleware");
 const { uploader } = require("../../../utils/uploader");
 const { roles } = require("../../../utils/constants");
-const { addArticle, removeArticle, getAll } = require("./controller");
+const {
+  addArticle,
+  removeArticle,
+  getAll,
+  getArticle,
+} = require("./controller");
 
 const router = express.Router();
 
@@ -19,6 +24,7 @@ router
 
 router
   .route("/:id")
+  .get(getArticle)
   .delete(authMiddleware, accessLevelMiddleware(roles.admin), removeArticle);
 
 module.exports = router;
