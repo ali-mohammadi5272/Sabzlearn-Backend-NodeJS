@@ -8,6 +8,7 @@ const {
   removeArticle,
   getAll,
   getArticle,
+  updateArticle,
 } = require("./controller");
 
 const router = express.Router();
@@ -25,6 +26,12 @@ router
 router
   .route("/:id")
   .get(getArticle)
-  .delete(authMiddleware, accessLevelMiddleware(roles.admin), removeArticle);
+  .delete(authMiddleware, accessLevelMiddleware(roles.admin), removeArticle)
+  .put(
+    authMiddleware,
+    accessLevelMiddleware(roles.author),
+    uploader("public/articles/covers").single("upload"),
+    updateArticle
+  );
 
 module.exports = router;
