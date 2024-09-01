@@ -1,4 +1,5 @@
 const courseModel = require("./../course/model");
+const articleModel = require("./../article/model");
 
 const globalSearch = async (req, res) => {
   const { keyword } = req.query;
@@ -16,6 +17,10 @@ const globalSearch = async (req, res) => {
           { longDescription: { $regex: keyword, $options: "i" } },
         ],
       })
+      .populate("teacherId", "firstname lastname")
+      .populate("categoryId", "title")
+      .select("title cover price discount status teacherId categoryId")
+      .populate("studentsCount")
       .lean();
 
     const articles = await articleModel
