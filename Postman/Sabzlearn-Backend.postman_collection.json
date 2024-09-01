@@ -1311,6 +1311,106 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Delete Article",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/articles/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "articles", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get all Articles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/articles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "articles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get one Article",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/articles/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "articles", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Articles by CategoryId",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/articles/category/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "articles", "category", "{{id}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a Article",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Reactjs vs Vuejs vs Angularjs",
+                  "type": "text"
+                },
+                {
+                  "key": "body",
+                  "value": "{{$randomLoremParagraph}}",
+                  "type": "text"
+                },
+                {
+                  "key": "categoryId",
+                  "value": "669e8e9a850afb7faa4df754",
+                  "type": "text"
+                },
+                {
+                  "key": "upload",
+                  "type": "file",
+                  "src": "/C:/Users/alimo/Downloads/java-vs-kotlin-1.webp"
+                },
+                {
+                  "key": "publish",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "href",
+                  "value": "react-vs-vue-vs-angular",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/{{version}}/articles/{{id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "{{version}}", "articles", "{{id}}"]
+            }
+          },
+          "response": []
         }
       ]
     }
