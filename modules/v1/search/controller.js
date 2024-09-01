@@ -18,10 +18,19 @@ const globalSearch = async (req, res) => {
       })
       .lean();
 
-    //articles ...
-    // return res.status(200).json([...courses, ...articles]);
+    const articles = await articleModel
+      .find({
+        $or: [
+          { title: { $regex: keyword, $options: "i" } },
+          { body: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .populate("authorId", "firstname lastname")
+      .populate("categoryId", "title")
+      .select("-__v")
+      .lean();
 
-    return res.status(200).json(courses);
+    return res.status(200).json([...courses, ...articles]);
   } catch (error) {
     return res.json({ message: error.message });
   }
