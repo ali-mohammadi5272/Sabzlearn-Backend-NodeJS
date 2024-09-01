@@ -4,7 +4,9 @@ const path = require("path");
 const articleModel = require("./model");
 const categoryModel = require("./../category/model");
 const addArticleValidate = require("../../../utils/validators/articles/addArticle");
+const updateArticleValidate = require("../../../utils/validators/articles/updateArticle");
 const coverValidate = require("../../../utils/validators/articles/cover");
+const { roles } = require("../../../utils/constants");
 const { isValidObjectId } = require("mongoose");
 const {
   checkDBCollectionIndexes,
@@ -79,10 +81,9 @@ const addArticle = async (req, res) => {
     });
   } catch (error) {
     if ("file" in req) {
-    if ("file" in req) {
-    fs.unlinkSync(
-      path.join(process.cwd(), "public/articles/covers", coverName)
-    );
+      fs.unlinkSync(
+        path.join(process.cwd(), "public/articles/covers", coverName)
+      );
     }
     return res.status(500).json({ message: error.message });
   }
@@ -148,9 +149,88 @@ const getArticle = async (req, res) => {
   }
 };
 
+const updateArticle = async (req, res) => {
+  const { id } = req.params;
+  const isValidId = isValidObjectId(id);
+  if (!isValidId) {
+    return res.status(422).json({ message: "ArticleId is not valid !!" });
+  }
+
+  try {
+    const article = await articleModel
+      .findOne({ _id: id })
+      .populate("authorId", "firstname lastname")
+      .populate("categoryId", "title")
+      .select("-__v")
+      .lean();
+
+    const isUserCanEditArticle =
+      req.user._id === article.authorId ||
+      req.user.role === roles.manager ||
+      req.user.role === roles.admin;
+    if (!isUserCanEditArticle) {
+      return res.status(403).json({
+        message:
+          "You cannot edit this article because you are not the author !!",
+      });
+    }
+
+    req.body.publish = +req.body.publish;
+
+    const isValidRequestBody = updateArticleValidate(req.body);
+    if (!isValidRequestBody) {
+      if ("file" in req) {
+        fs.unlinkSync(
+          path.join(process.cwd(), "public/articles/covers", req.file.filename)
+        );
+      }
+      return res.status(422).json(updateArticleValidate.errors);
+    }
+
+    const updatedArticle = await articleModel
+      .findOneAndUpdate(
+        { _id: id },
+        {
+          ...article,
+          ...req.body,
+          cover: "file" in req ? req.file.filename : article.cover,
+          authorId: article.authorId,
+        }
+      )
+      .populate("authorId", "firstname lastname")
+      .populate("categoryId", "title")
+      .select("-__v")
+      .lean();
+
+    if ("file" in req) {
+      fs.unlinkSync(
+        path.join(process.cwd(), "public/articles/covers", article.cover)
+      );
+    }
+
+    return res.status(200).json({
+      message: "Article updated successfully :))",
+      article: {
+        ...updatedArticle,
+        ...req.body,
+        cover: "file" in req ? req.file.filename : article.cover,
+        authorId: article.authorId,
+      },
+    });
+  } catch (error) {
+    if ("file" in req) {
+      fs.unlinkSync(
+        path.join(process.cwd(), "public/articles/covers", req.file.filename)
+      );
+    }
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 module.exports = {
   addArticle,
   removeArticle,
   getAll,
   getArticle,
+  updateArticle,
 };
