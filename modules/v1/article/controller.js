@@ -187,6 +187,31 @@ const updateArticle = async (req, res) => {
       return res.status(422).json(updateArticleValidate.errors);
     }
 
+    const { categoryId } = req.body;
+
+    const isCategoryIdChanged =
+      categoryId === article.categoryId._id.toString();
+    if (!isCategoryIdChanged) {
+      const isValidCategoryId = isValidObjectId(categoryId);
+      if (!isValidCategoryId) {
+        return res.status(422).json({ message: "CategoryId is not valid !!" });
+      }
+
+      const category = await categoryModel.findOne({ _id: categoryId });
+      if (!category) {
+        if ("file" in req) {
+          fs.unlinkSync(
+            path.join(
+              process.cwd(),
+              "public/articles/covers",
+              req.file.filename
+            )
+          );
+        }
+        return res.status(422).json({ message: "Category not found !!" });
+      }
+    }
+
     const updatedArticle = await articleModel
       .findOneAndUpdate(
         { _id: id },
