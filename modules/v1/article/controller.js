@@ -78,9 +78,12 @@ const addArticle = async (req, res) => {
       article: findedArticle,
     });
   } catch (error) {
+    if ("file" in req) {
+    if ("file" in req) {
     fs.unlinkSync(
       path.join(process.cwd(), "public/articles/covers", coverName)
     );
+    }
     return res.status(500).json({ message: error.message });
   }
 };
