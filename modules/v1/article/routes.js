@@ -9,6 +9,7 @@ const {
   getAll,
   getArticle,
   updateArticle,
+  getArticlesByCategory,
 } = require("./controller");
 
 const router = express.Router();
@@ -22,6 +23,8 @@ router
     uploader("public/articles/covers").single("upload"),
     addArticle
   );
+
+router.get("/category/:categoryId", getArticlesByCategory);
 
 router
   .route("/:id")
